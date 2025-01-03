@@ -44,7 +44,6 @@
         "selector": "variable",
         "types": ["string"],
         "format": ["camelCase", "UPPER_CASE", "snake_case"],
-        // regex "^Migration\\d{14}_\\w+$"
       },
     ],
     "prettier/prettier": [
