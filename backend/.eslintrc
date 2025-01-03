@@ -1,0 +1,134 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+  },
+  "plugins": ["@typescript-eslint/eslint-plugin", "prettier", "import", "unused-imports", "jest"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "plugin:import/typescript"],
+  "root": true,
+  "env": {
+    "node": true,
+    "jest": true,
+  },
+  "ignorePatterns": [".json"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+      },
+    ],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-duplicate-enum-values": "warn",
+    "@typescript-eslint/no-duplicate-type-constituents": "warn",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      { "selector": "typeLike", "format": ["PascalCase", "UPPER_CASE"] },
+      {
+        "selector": "variableLike",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE", "snake_case"],
+        "modifiers": ["unused"],
+        "leadingUnderscore": "allow",
+      },
+      {
+        "selector": "variable",
+        "types": ["string"],
+        "format": ["camelCase", "UPPER_CASE", "snake_case"],
+        // regex "^Migration\\d{14}_\\w+$"
+      },
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "endOfLine": "lf",
+        "printWidth": 130,
+      },
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 130,
+        "tabWidth": 2,
+        "ignoreStrings": true,
+        "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+      },
+    ],
+    "import/no-unresolved": "error",
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "pathGroups": [
+          {
+            "pattern": "@nestjs/**",
+            "group": "external",
+            "position": "before",
+          },
+          { "pattern": "@src/**", "group": "internal", "position": "before" },
+          {
+            "pattern": "@modules/**",
+            "group": "internal",
+            "position": "before",
+          },
+          { "pattern": "@test/**", "group": "internal", "position": "before" },
+        ],
+        "newlines-between": "always",
+      },
+    ],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": ["return", "if", "for", "while", "function"],
+      },
+    ],
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "no-multi-spaces": "error",
+    "no-console": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-misused-promises": "error",
+    "no-return-await": "off",
+    "no-await-in-loop": "warn",
+    "@typescript-eslint/return-await": "error",
+    "@typescript-eslint/consistent-generic-constructors": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "VariableDeclarator[init.type='AwaitExpression'][id.type='ObjectPattern']",
+        "message": "Destructuring assignment is not allowed with an await on the right side.",
+      },
+    ],
+    "jest/no-conditional-expect": "error",
+    "jest/prefer-to-be": "error",
+    "jest/prefer-todo": "error",
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"],
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "tsconfig.json",
+      },
+    },
+  },
+  "reportUnusedDisableDirectives": true,
+}
