@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@domain/*": ["src/domain/*"],
+      "@src/*": ["src/*"],
+      "@test/*": ["test/*"],
+      "@test": ["test"]
+    },
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
@@ -16,6 +23,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true
   }
 }
