@@ -1,0 +1,3 @@
+node_modules/
+package*.json
+src/lib/database/migrations
