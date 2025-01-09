@@ -36,14 +36,14 @@ export class Role {
     type: 'timestamptz',
     nullable: true,
   })
-  updatedAt: Date;
+  updatedAt: Date | null;
 
   @DeleteDateColumn({
     name: 'deleted_at',
     type: 'timestamptz',
     nullable: true,
   })
-  deletedAt: Date;
+  deletedAt: Date | null;
 
   @OneToMany(() => User, (user) => user.role)
   users: User[];
