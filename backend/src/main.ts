@@ -1,6 +1,9 @@
 import { ClassSerializerInterceptor } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { config } from 'dotenv';
+
+config();
 
 import { AppModule } from './app.module';
 

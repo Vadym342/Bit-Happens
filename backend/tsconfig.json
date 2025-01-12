@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
     "paths": {
-      "@domain/*": ["src/domain/*"],
+      "@modules/*": ["src/modules/*"],
       "@src/*": ["src/*"],
-      "@test/*": ["test/*"],
-      "@test": ["test"]
+      "@test/*": ["test/*"]
     },
     "module": "commonjs",
     "declaration": true,
