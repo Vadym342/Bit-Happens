@@ -72,9 +72,9 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "project": [
-      "./tsconfig.json",
-      "./tsconfig.node.json",
-      "./tsconfig.app.json"
+      "**/tsconfig.json",
+      "**/tsconfig.node.json",
+      "**/tsconfig.app.json"
     ],
     "ecmaFeatures": {
       "jsx": true
