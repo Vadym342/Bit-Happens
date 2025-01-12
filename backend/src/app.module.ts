@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { getDataSourceConfig } from '@src/database/ormconfig';
+import { getDataSourceConfig } from './database/ormconfig';
 
 @Module({
   imports: [

@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import * as path from 'path';
+
 import { DataSourceOptions, DataSource } from 'typeorm';
 
 export const seedConfig: DataSourceOptions = {
