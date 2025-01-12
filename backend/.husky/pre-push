@@ -3,4 +3,4 @@
 
 cd backend
 
-npm build
+npm run build
