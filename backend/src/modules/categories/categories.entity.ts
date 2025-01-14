@@ -48,5 +48,5 @@ export class Category {
     name: 'administrator_id',
     nullable: true,
   })
-  administratorId: string;
+  administratorId: string | null;
 }
