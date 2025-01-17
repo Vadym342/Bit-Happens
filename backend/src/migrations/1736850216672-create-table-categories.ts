@@ -4,7 +4,7 @@ export class CreateTableCategories1736850216672 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         CREATE TABLE categories (
-            id UUID,
+            id UUID DEFAULT uuid_generate_v4() NOT NULL,
             name VARCHAR(50) NOT NULL,
             description VARCHAR(100) NOT NULL,
             created_at VARCHAR(25) NOT NULL,

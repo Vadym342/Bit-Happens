@@ -1,7 +1,19 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Favorites } from '@modules/favorites/favorites.entity';
+import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
+import { Role } from '@modules/role/role.entity';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'users' })
-export class Users {
+export class User {
   @PrimaryGeneratedColumn('uuid', {
     name: 'user_id',
   })
@@ -12,14 +24,14 @@ export class Users {
     length: 100,
     nullable: false,
   })
-  first_name: string;
+  firstName: string;
 
   @Column({
     type: 'varchar',
     length: 100,
     nullable: false,
   })
-  last_name: string;
+  lastName: string;
 
   @Column({
     type: 'varchar',
@@ -46,6 +58,15 @@ export class Users {
     nullable: false,
   })
   balance: number;
+
+  @ManyToOne(() => Role, (role) => role.id)
+  roleId: string;
+
+  @OneToOne(() => Favorites, (favorites) => favorites.id)
+  favoritesId: string;
+
+  @OneToOne(() => LearningHistory, (learningHistories) => learningHistories.id)
+  learningHistoryId: string;
 
   @CreateDateColumn({
     name: 'created_at',
