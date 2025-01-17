@@ -4,12 +4,13 @@ export class CreateTablePermission1736523434432 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         CREATE TABLE permissions (
-            id UUID PRIMARY KEY,
+            id UUID DEFAULT uuid_generate_v4() NOT NULL,
             name VARCHAR(50) NOT NULL,
             description VARCHAR(100) NOT NULL,
             created_at VARCHAR(25) NOT NULL,
             updated_at VARCHAR(25) NULL,
-            deleted_at VARCHAR(25) NULL
+            deleted_at VARCHAR(25) NULL,
+            CONSTRAINT pk_permissions PRIMARY KEY (id)
         );
     `);
   }
