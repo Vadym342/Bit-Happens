@@ -7,6 +7,8 @@ import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entit
 import { User } from '@modules/users/users.entity';
 import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
+import { Software } from '@modules/softwares/softwares.entity';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 import {
   Column,
   CreateDateColumn,
@@ -70,6 +72,9 @@ export class Course {
     nullable: false,
   })
   price: number;
+
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
+  softwareCourses: SoftwareCourse[];
 
   @CreateDateColumn({
     name: 'created_at',
