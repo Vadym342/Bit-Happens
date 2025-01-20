@@ -1,5 +1,15 @@
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
 import { User } from '@modules/users/users.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'favorites' })
 export class Favorites {
@@ -17,6 +27,9 @@ export class Favorites {
 
   @OneToOne(() => User, (user) => user.favoritesId)
   user: User;
+
+  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.favoritesId)
+  favoritesCourses: FavoritesCourses[];
 
   @CreateDateColumn({
     name: 'created_at',
