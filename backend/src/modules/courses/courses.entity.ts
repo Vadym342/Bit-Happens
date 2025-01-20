@@ -1,5 +1,7 @@
 import { Category } from '@modules/categories/categories.entity';
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import { Software } from '@modules/softwares/softwares.entity';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 import {
   Column,
   CreateDateColumn,
@@ -72,6 +74,9 @@ export class Course {
 
   @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
   learningHistoriesCourses: LearningHistoriesCourses[];
+
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
+  softwareCourses: SoftwareCourse[];
 
   @CreateDateColumn({
     name: 'created_at',

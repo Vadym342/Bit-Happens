@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'softwares' })
 export class Software {
@@ -48,6 +49,9 @@ export class Software {
     nullable: false,
   })
   logoImage: string;
+
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.softwareId)
+  softwareCourses: SoftwareCourse[];
 
   @CreateDateColumn({
     name: 'created_at',
