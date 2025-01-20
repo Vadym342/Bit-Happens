@@ -1,5 +1,15 @@
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
 import { User } from '@modules/users/users.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'learningHistories' })
 export class LearningHistory {
@@ -14,6 +24,9 @@ export class LearningHistory {
     nullable: true,
   })
   description: string | null;
+
+  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
+  learningHistoriesCourses: LearningHistoriesCourses[];
 
   @OneToOne(() => User, (user) => user.learningHistoryId)
   user: User;

@@ -1,5 +1,15 @@
 import { Category } from '@modules/categories/categories.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'courses' })
 export class Course {
@@ -59,6 +69,9 @@ export class Course {
 
   @ManyToOne(() => Category, (category) => category.id)
   categoryId: string;
+
+  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
+  learningHistoriesCourses: LearningHistoriesCourses[];
 
   @CreateDateColumn({
     name: 'created_at',
