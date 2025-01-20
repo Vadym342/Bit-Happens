@@ -76,6 +76,9 @@ export class Course {
   @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
   softwareCourses: SoftwareCourse[];
 
+  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.id)
+  favoritesCourses: FavoritesCourses[];
+
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
