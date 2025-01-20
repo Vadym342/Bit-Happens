@@ -56,6 +56,9 @@ export class Software {
   })
   logoImage: string;
 
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.softwareId)
+  softwareCourses: SoftwareCourse[];
+
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
