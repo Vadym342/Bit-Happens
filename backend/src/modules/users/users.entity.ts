@@ -1,12 +1,14 @@
 import { Favorites } from '@modules/favorites/favorites.entity';
 import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import { Role } from '@modules/role/role.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -67,6 +69,9 @@ export class User {
 
   @OneToOne(() => LearningHistory, (learningHistories) => learningHistories.id)
   learningHistoryId: string;
+
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  userCourses: UserCourse[];
 
   @CreateDateColumn({
     name: 'created_at',

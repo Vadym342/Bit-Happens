@@ -1,20 +1,28 @@
+import { Lesson } from '@modules/lessons/lessons.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Permission } from '@modules/permission/permission.entity';
-import { Role } from '@modules/role/role.entity';
-
-@Entity({ name: 'rolesPermissions' })
-export class RolesPermissions {
+@Entity({ name: 'comments' })
+export class Comment {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'role_permission_id',
+    name: 'comment_id',
   })
   id: string;
 
-  @ManyToOne(() => Role, (role) => role.id)
-  roleId: string;
+  @Column({
+    name: 'content',
+    type: 'text',
+    nullable: false,
+  })
+  content: string;
 
-  @ManyToOne(() => Permission, (permission) => permission.id)
-  permissionId: string;
+  @Column('uuid', {
+    name: 'user_id',
+    nullable: false,
+  })
+  userId: string;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.id)
+  lessonId: string;
 
   @CreateDateColumn({
     name: 'created_at',
