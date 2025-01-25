@@ -1,10 +1,19 @@
 import { Course } from '@modules/courses/courses.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'discounts' })
 export class Discount {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'discount_id',
+    name: 'id',
   })
   id: string;
 
@@ -30,9 +39,6 @@ export class Discount {
     nullable: false,
   })
   endDate: string;
-
-  @OneToOne(() => Course, (course) => course.id)
-  course: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -60,4 +66,8 @@ export class Discount {
     nullable: true,
   })
   administratorId: string | null;
+
+  @OneToOne(() => Course, (course) => course.id)
+  @JoinColumn({ name: 'course_id' })
+  course: string;
 }

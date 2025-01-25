@@ -1,21 +1,21 @@
+import { Comment } from '@modules/comments/comments.entity';
+import { Course } from '@modules/courses/courses.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Comment } from '@modules/comments/comments.entity';
-import { Course } from '@modules/courses/courses.entity';
-
 @Entity({ name: 'lessons' })
 export class Lesson {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'lesson_id',
+    name: 'id',
   })
   id: string;
 
@@ -42,12 +42,6 @@ export class Lesson {
   })
   description: string;
 
-  @OneToMany(() => Comment, (comment) => comment.id)
-  commentId: Comment[];
-
-  @ManyToOne(() => Course, (course) => course.id)
-  courseId: string;
-
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
@@ -68,4 +62,11 @@ export class Lesson {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToMany(() => Comment, (comment) => comment.id)
+  commentId: Comment[];
+
+  @ManyToOne(() => Course, (course) => course.id)
+  @JoinColumn({ name: 'course_id' })
+  courseId: string;
 }

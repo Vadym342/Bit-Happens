@@ -1,10 +1,19 @@
 import { Lesson } from '@modules/lessons/lessons.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'comments' })
 export class Comment {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'comment_id',
+    name: 'id',
   })
   id: string;
 
@@ -20,9 +29,6 @@ export class Comment {
     nullable: false,
   })
   userId: string;
-
-  @ManyToOne(() => Lesson, (lesson) => lesson.id)
-  lessonId: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -50,4 +56,8 @@ export class Comment {
     nullable: true,
   })
   administratorId: string | null;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.id)
+  @JoinColumn({ name: 'lesson_id' })
+  lessonId: string;
 }

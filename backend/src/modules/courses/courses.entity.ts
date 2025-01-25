@@ -8,6 +8,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -18,7 +19,7 @@ import {
 @Entity({ name: 'courses' })
 export class Course {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'course_id',
+    name: 'id',
   })
   id: string;
 
@@ -72,21 +73,6 @@ export class Course {
   })
   price: number;
 
-  @ManyToOne(() => Category, (category) => category.id)
-  categoryId: string;
-
-  @OneToMany(() => Lesson, (lesson) => lesson.id)
-  lessons: Lesson[];
-
-  @OneToOne(() => Discount, (discount) => discount.id)
-  discount: string;
-
-  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
-  wishlistCourses: WishlistCourse[];
-
-  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
-  userCourses: UserCourse[];
-
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
@@ -107,4 +93,20 @@ export class Course {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @ManyToOne(() => Category, (category) => category.id)
+  @JoinColumn({ name: 'category_id' })
+  categoryId: string;
+
+  @OneToMany(() => Lesson, (lesson) => lesson.id)
+  lessons: Lesson[];
+
+  @OneToOne(() => Discount, (discount) => discount.id)
+  discount: string;
+
+  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
+  wishlistCourses: WishlistCourse[];
+
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  userCourses: UserCourse[];
 }

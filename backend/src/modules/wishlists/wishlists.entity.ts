@@ -1,6 +1,5 @@
-import { CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
+import { CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'wishlists' })
 export class Wishlist {
@@ -8,9 +7,6 @@ export class Wishlist {
     name: 'id',
   })
   id: string;
-
-  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
-  wishlistCourses: WishlistCourse[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -32,4 +28,7 @@ export class Wishlist {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
+  wishlistCourses: WishlistCourse[];
 }

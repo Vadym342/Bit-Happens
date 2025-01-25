@@ -1,12 +1,20 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
 import { Course } from '@modules/courses/courses.entity';
 import { Wishlist } from '@modules/wishlists/wishlists.entity';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'wishlistsCourses' })
 export class WishlistCourse {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'wishlists_courses_id',
+    name: 'id',
   })
   id: string;
 
@@ -24,12 +32,6 @@ export class WishlistCourse {
     nullable: false,
   })
   priority: number;
-
-  @ManyToOne(() => Wishlist, (wishlist) => wishlist.id)
-  wishlistId: string;
-
-  @ManyToOne(() => Course, (course) => course.id)
-  courseId: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -51,4 +53,12 @@ export class WishlistCourse {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @ManyToOne(() => Wishlist, (wishlist) => wishlist.id)
+  @JoinColumn({ name: 'wishlist_id' })
+  wishlistId: string;
+
+  @ManyToOne(() => Course, (course) => course.id)
+  @JoinColumn({ name: 'course_id' })
+  courseId: string;
 }
