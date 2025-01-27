@@ -1,5 +1,6 @@
-import { User } from '@modules/users/users.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { User } from '@modules/users/users.entity';
 
 @Entity({ name: 'learningHistories' })
 export class LearningHistory {
