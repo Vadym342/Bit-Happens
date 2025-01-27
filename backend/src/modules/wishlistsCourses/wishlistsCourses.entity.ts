@@ -1,5 +1,5 @@
 import { Course } from '@modules/courses/courses.entity';
-import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
   CreateDateColumn,
@@ -11,20 +11,27 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'learningHistoriesCourses' })
-export class LearningHistoriesCourses {
+@Entity({ name: 'wishlistsCourses' })
+export class WishlistCourse {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'learning_history_course_id',
+    name: 'id',
   })
   id: string;
 
   @Column({
     name: 'status',
     type: 'varchar',
-    length: 20,
+    length: 25,
     nullable: false,
   })
   status: string;
+
+  @Column({
+    name: 'priority',
+    type: 'int',
+    nullable: false,
+  })
+  priority: number;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -47,9 +54,9 @@ export class LearningHistoriesCourses {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => LearningHistory, (learningHistory) => learningHistory.id)
-  @JoinColumn({ name: 'learning_history_id' })
-  learningHistoryId: string;
+  @ManyToOne(() => Wishlist, (wishlist) => wishlist.id)
+  @JoinColumn({ name: 'wishlist_id' })
+  wishlistId: string;
 
   @ManyToOne(() => Course, (course) => course.id)
   @JoinColumn({ name: 'course_id' })

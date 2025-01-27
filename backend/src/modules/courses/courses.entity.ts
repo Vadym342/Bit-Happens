@@ -1,14 +1,21 @@
 import { Category } from '@modules/categories/categories.entity';
+import { Discount } from '@modules/discounts/discounts.entity';
 import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import { Lesson } from '@modules/lessons/lessons.entity';
 import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { User } from '@modules/users/users.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -16,7 +23,7 @@ import {
 @Entity({ name: 'courses' })
 export class Course {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'course_id',
+    name: 'id',
   })
   id: string;
 
@@ -34,11 +41,6 @@ export class Course {
     nullable: false,
   })
   description: string;
-
-  @Column('uuid', {
-    name: 'teacher_id',
-  })
-  teacherId: string;
 
   @Column({
     name: 'content',
@@ -69,18 +71,6 @@ export class Course {
   })
   price: number;
 
-  @ManyToOne(() => Category, (category) => category.id)
-  categoryId: string;
-
-  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
-  learningHistoriesCourses: LearningHistoriesCourses[];
-
-  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
-  softwareCourses: SoftwareCourse[];
-
-  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.id)
-  favoritesCourses: FavoritesCourses[];
-
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
@@ -101,4 +91,33 @@ export class Course {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @ManyToOne(() => Category, (category) => category.id)
+  @JoinColumn({ name: 'category_id' })
+  categoryId: string;
+
+  @OneToMany(() => Lesson, (lesson) => lesson.id)
+  lessons: Lesson[];
+
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'teacher_id' })
+  teacherId: string;
+
+  @OneToOne(() => Discount, (discount) => discount.id)
+  discount: string;
+
+  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
+  wishlistCourses: WishlistCourse[];
+
+  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
+  learningHistoriesCourses: LearningHistoriesCourses[];
+
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
+  softwareCourses: SoftwareCourse[];
+
+  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.id)
+  favoritesCourses: FavoritesCourses[];
+
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  userCourses: UserCourse[];
 }

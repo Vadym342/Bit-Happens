@@ -1,21 +1,21 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
 import { User } from '@modules/users/users.entity';
+import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
+import {
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity({ name: 'learningHistories' })
-export class LearningHistory {
+@Entity({ name: 'wishlists' })
+export class Wishlist {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
   })
   id: string;
-
-  @Column({
-    name: 'description',
-    type: 'varchar',
-    length: 100,
-    nullable: true,
-  })
-  description: string | null;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -38,6 +38,9 @@ export class LearningHistory {
   })
   deletedAt: Date | null;
 
-  @OneToOne(() => User, (user) => user.learningHistoryId)
+  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
+  wishlistCourses: WishlistCourse[];
+
+  @OneToOne(() => User, (user) => user.wishlistId)
   user: User;
 }

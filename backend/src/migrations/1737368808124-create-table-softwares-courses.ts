@@ -7,9 +7,9 @@ export class CreateTableSoftwaresCourses1737368808124 implements MigrationInterf
         id UUID DEFAULT uuid_generate_v4() NOT NULL,
         software_id UUID NOT NULL,
         course_id UUID NOT NULL,
-        created_at VARCHAR(25) NOT NULL,
-        updated_at VARCHAR(25) NULL,
-        deleted_at VARCHAR(25) NULL,
+        created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+        updated_at TIMESTAMPTZ DEFAULT NULL,
+        deleted_at TIMESTAMPTZ DEFAULT NULL,
         CONSTRAINT pk_softwares_courses PRIMARY KEY (id),
         CONSTRAINT fk_softwares_courses_software_id FOREIGN KEY (software_id) REFERENCES softwares (id),
         CONSTRAINT fk_softwares_courses_course_id FOREIGN KEY (course_id) REFERENCES courses (id)

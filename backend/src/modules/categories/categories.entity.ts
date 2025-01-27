@@ -1,9 +1,10 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Course } from '@modules/courses/courses.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'categories' })
 export class Category {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'category_id',
+    name: 'id',
   })
   id: string;
 
@@ -49,4 +50,7 @@ export class Category {
     nullable: true,
   })
   administratorId: string | null;
+
+  @OneToMany(() => Course, (course) => course.categoryId)
+  courses: Course[];
 }

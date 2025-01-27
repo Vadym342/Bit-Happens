@@ -1,19 +1,22 @@
 import { Permission } from '@modules/permission/permission.entity';
 import { Role } from '@modules/role/role.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'rolesPermissions' })
 export class RolesPermissions {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'role_permission_id',
+    name: 'id',
   })
   id: string;
-
-  @ManyToOne(() => Role, (role) => role.id)
-  roleId: string;
-
-  @ManyToOne(() => Permission, (permission) => permission.id)
-  permissionId: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -41,4 +44,12 @@ export class RolesPermissions {
     nullable: true,
   })
   administratorId: string | null;
+
+  @ManyToOne(() => Role, (role) => role.id)
+  @JoinColumn({ name: 'role_id' })
+  roleId: string;
+
+  @ManyToOne(() => Permission, (permission) => permission.id)
+  @JoinColumn({ name: 'permission_id' })
+  permissionId: string;
 }

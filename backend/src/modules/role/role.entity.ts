@@ -5,7 +5,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryG
 @Entity({ name: 'roles' })
 export class Role {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'role_id',
+    name: 'id',
   })
   id: string;
 
@@ -24,12 +24,6 @@ export class Role {
     nullable: false,
   })
   description: string;
-
-  @OneToMany(() => RolesPermissions, (rolesPermissions) => rolesPermissions.roleId)
-  rolesPermissions: RolesPermissions[];
-
-  @OneToMany(() => User, (user) => user.roleId)
-  users: User[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -51,4 +45,10 @@ export class Role {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToMany(() => RolesPermissions, (rolesPermissions) => rolesPermissions.roleId)
+  rolesPermissions: RolesPermissions[];
+
+  @OneToMany(() => User, (user) => user.roleId)
+  users: User[];
 }

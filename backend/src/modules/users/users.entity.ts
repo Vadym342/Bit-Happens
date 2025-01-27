@@ -1,11 +1,13 @@
 import { Favorites } from '@modules/favorites/favorites.entity';
 import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import { Role } from '@modules/role/role.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -15,11 +17,12 @@ import {
 @Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'user_id',
+    name: 'id',
   })
   id: string;
 
   @Column({
+    name: 'first_name',
     type: 'varchar',
     length: 100,
     nullable: false,
@@ -27,6 +30,7 @@ export class User {
   firstName: string;
 
   @Column({
+    name: 'last_name',
     type: 'varchar',
     length: 100,
     nullable: false,
@@ -34,6 +38,7 @@ export class User {
   lastName: string;
 
   @Column({
+    name: 'email',
     type: 'varchar',
     length: 40,
     nullable: false,
@@ -41,32 +46,26 @@ export class User {
   email: string;
 
   @Column({
+    name: 'age',
     type: 'int',
     nullable: false,
   })
   age: number;
 
   @Column({
+    name: 'password',
     type: 'varchar',
-    length: 40,
+    length: 255,
     nullable: false,
   })
   password: string;
 
   @Column({
+    name: 'balance',
     type: 'real',
     nullable: false,
   })
   balance: number;
-
-  @ManyToOne(() => Role, (role) => role.id)
-  roleId: string;
-
-  @OneToOne(() => Favorites, (favorites) => favorites.id)
-  favoritesId: string;
-
-  @OneToOne(() => LearningHistory, (learningHistories) => learningHistories.id)
-  learningHistoryId: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -88,4 +87,20 @@ export class User {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @ManyToOne(() => Role, (role) => role.id)
+  @JoinColumn({ name: 'role_id' })
+  roleId: string;
+
+  @OneToOne(() => Favorites, (favorites) => favorites.id)
+  @JoinColumn({ name: 'favorites_id' })
+  favoritesId: string;
+
+  @OneToOne(() => LearningHistory, (learningHistories) => learningHistories.id)
+  @JoinColumn({ name: 'learning_history_id' })
+  learningHistoryId: string;
+
+  @OneToOne(() => Wishlist, (wishlists) => wishlists.id)
+  @JoinColumn({ name: 'wishlist_id' })
+  wishlistId: string;
 }

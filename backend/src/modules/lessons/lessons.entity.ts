@@ -1,5 +1,5 @@
+import { Comment } from '@modules/comments/comments.entity';
 import { Course } from '@modules/courses/courses.entity';
-import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import {
   Column,
   CreateDateColumn,
@@ -7,24 +7,40 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'learningHistoriesCourses' })
-export class LearningHistoriesCourses {
+@Entity({ name: 'lessons' })
+export class Lesson {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'learning_history_course_id',
+    name: 'id',
   })
   id: string;
 
   @Column({
-    name: 'status',
+    name: 'title',
     type: 'varchar',
-    length: 20,
+    length: 150,
     nullable: false,
   })
-  status: string;
+  title: string;
+
+  @Column({
+    name: 'content',
+    type: 'text',
+    nullable: false,
+  })
+  content: string;
+
+  @Column({
+    name: 'description',
+    type: 'varchar',
+    length: 400,
+    nullable: false,
+  })
+  description: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -47,9 +63,8 @@ export class LearningHistoriesCourses {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => LearningHistory, (learningHistory) => learningHistory.id)
-  @JoinColumn({ name: 'learning_history_id' })
-  learningHistoryId: string;
+  @OneToMany(() => Comment, (comment) => comment.id)
+  commentId: Comment[];
 
   @ManyToOne(() => Course, (course) => course.id)
   @JoinColumn({ name: 'course_id' })

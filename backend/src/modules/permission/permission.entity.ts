@@ -4,7 +4,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryG
 @Entity({ name: 'permissions' })
 export class Permission {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'permission_id',
+    name: 'id',
   })
   id: string;
 
@@ -23,9 +23,6 @@ export class Permission {
     nullable: false,
   })
   description: string;
-
-  @OneToMany(() => RolesPermissions, (rolesPermissions) => rolesPermissions.permissionId)
-  rolesPermissions: RolesPermissions[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -47,4 +44,7 @@ export class Permission {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToMany(() => RolesPermissions, (rolesPermissions) => rolesPermissions.permissionId)
+  rolesPermissions: RolesPermissions[];
 }
