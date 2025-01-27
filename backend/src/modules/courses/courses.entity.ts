@@ -7,6 +7,7 @@ import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entit
 import { User } from '@modules/users/users.entity';
 import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
+
 import {
   Column,
   CreateDateColumn,

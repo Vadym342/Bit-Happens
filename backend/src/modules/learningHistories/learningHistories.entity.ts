@@ -1,6 +1,16 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { User } from '@modules/users/users.entity';
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
 
 @Entity({ name: 'learningHistories' })
 export class LearningHistory {
@@ -37,6 +47,9 @@ export class LearningHistory {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.learningHistoryId)
+  learningHistoriesCourses: LearningHistoriesCourses[];
 
   @OneToOne(() => User, (user) => user.learningHistoryId)
   user: User;

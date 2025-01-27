@@ -13,7 +13,7 @@ export class CreateTableSoftwaresCourses1737368808124 implements MigrationInterf
         CONSTRAINT pk_softwares_courses PRIMARY KEY (id),
         CONSTRAINT fk_softwares_courses_software_id FOREIGN KEY (software_id) REFERENCES softwares (id),
         CONSTRAINT fk_softwares_courses_course_id FOREIGN KEY (course_id) REFERENCES courses (id)
-    );
+      );
     `);
   }
 
