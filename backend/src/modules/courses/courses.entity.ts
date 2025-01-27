@@ -9,6 +9,9 @@ import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import { Software } from '@modules/softwares/softwares.entity';
 import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { User } from '@modules/users/users.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   Column,
   CreateDateColumn,
