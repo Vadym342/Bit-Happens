@@ -1,17 +1,17 @@
-import { User } from '@modules/users/users.entity';
-import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
+import { Course } from '@modules/courses/courses.entity';
+import { Software } from '@modules/softwares/softwares.entity';
 import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToMany,
-  OneToOne,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'wishlists' })
-export class Wishlist {
+@Entity({ name: 'softwaresCourses' })
+export class SoftwareCourse {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
   })
@@ -38,9 +38,11 @@ export class Wishlist {
   })
   deletedAt: Date | null;
 
-  @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
-  wishlistCourses: WishlistCourse[];
+  @ManyToOne(() => Software, (software) => software.id)
+  @JoinColumn({ name: 'software_id' })
+  softwareId: string;
 
-  @OneToOne(() => User, (user) => user.wishlistId)
-  user: User;
+  @ManyToOne(() => Course, (course) => course.id)
+  @JoinColumn({ name: 'course_id' })
+  courseId: string;
 }

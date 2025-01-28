@@ -6,9 +6,9 @@ export class CreateTableFavorites1736976730340 implements MigrationInterface {
         CREATE TABLE favorites (
             id UUID DEFAULT uuid_generate_v4() NOT NULL,
             description VARCHAR(100) NULL,
-            created_at VARCHAR(25) NOT NULL,
-            updated_at VARCHAR(25) NULL,
-            deleted_at VARCHAR(25) NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMPTZ DEFAULT NULL,
+            deleted_at TIMESTAMPTZ DEFAULT NULL,
             CONSTRAINT pk_favorites PRIMARY KEY (id)
         );
     `);

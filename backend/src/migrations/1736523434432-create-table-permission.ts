@@ -7,9 +7,9 @@ export class CreateTablePermission1736523434432 implements MigrationInterface {
             id UUID DEFAULT uuid_generate_v4() NOT NULL,
             name VARCHAR(50) NOT NULL,
             description VARCHAR(100) NOT NULL,
-            created_at VARCHAR(25) NOT NULL,
-            updated_at VARCHAR(25) NULL,
-            deleted_at VARCHAR(25) NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMPTZ DEFAULT NULL,
+            deleted_at TIMESTAMPTZ DEFAULT NULL,
             CONSTRAINT pk_permissions PRIMARY KEY (id)
         );
     `);

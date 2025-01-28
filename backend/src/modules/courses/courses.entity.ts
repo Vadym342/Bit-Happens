@@ -1,6 +1,10 @@
 import { Category } from '@modules/categories/categories.entity';
 import { Discount } from '@modules/discounts/discounts.entity';
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
 import { Lesson } from '@modules/lessons/lessons.entity';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { User } from '@modules/users/users.entity';
 import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
@@ -37,12 +41,6 @@ export class Course {
     nullable: false,
   })
   description: string;
-
-  @Column('uuid', {
-    name: 'teacher_id',
-    nullable: false,
-  })
-  teacherId: string;
 
   @Column({
     name: 'content',
@@ -101,11 +99,24 @@ export class Course {
   @OneToMany(() => Lesson, (lesson) => lesson.id)
   lessons: Lesson[];
 
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'teacher_id' })
+  teacherId: string;
+
   @OneToOne(() => Discount, (discount) => discount.id)
   discount: string;
 
   @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
   wishlistCourses: WishlistCourse[];
+
+  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.id)
+  learningHistoriesCourses: LearningHistoriesCourses[];
+
+  @OneToMany(() => SoftwareCourse, (softwareCourse) => softwareCourse.id)
+  softwareCourses: SoftwareCourse[];
+
+  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.id)
+  favoritesCourses: FavoritesCourses[];
 
   @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
   userCourses: UserCourse[];

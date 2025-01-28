@@ -13,9 +13,9 @@ export class CreateTableCourses1737200576518 implements MigrationInterface {
         logo_image VARCHAR(50) NULL,
         price MONEY NOT NULL,
         category_id UUID NOT NULL,
-        created_at VARCHAR(25) NOT NULL,
-        updated_at VARCHAR(25) NULL,
-        deleted_at VARCHAR(25) NULL,
+        created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+        updated_at TIMESTAMPTZ DEFAULT NULL,
+        deleted_at TIMESTAMPTZ DEFAULT NULL,
         CONSTRAINT pk_courses PRIMARY KEY (id),
         CONSTRAINT fk_courses_category_id FOREIGN KEY (category_id) REFERENCES categories (id),
         CONSTRAINT fk_courses_teacher_id FOREIGN KEY (teacher_id) REFERENCES users (id)

@@ -9,9 +9,9 @@ export class CreateTableDiscounts1737236532673 implements MigrationInterface {
             discount_percentage REAL NULL,
             start_date VARCHAR(25) NOT NULL,
             end_date VARCHAR(20) NOT NULL,
-            created_at VARCHAR(20) NOT NULL,
-            updated_at VARCHAR(20) NULL,
-            deleted_at VARCHAR(20) NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMPTZ DEFAULT NULL,
+            deleted_at TIMESTAMPTZ DEFAULT NULL,
             administrator_id UUID NULL,
             CONSTRAINT pk_discounts PRIMARY KEY (id),
             CONSTRAINT fk_discounts_course_id FOREIGN KEY (course_id) REFERENCES courses (id)
