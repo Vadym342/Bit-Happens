@@ -1,22 +1,30 @@
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
 import { User } from '@modules/users/users.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'favorites' })
 export class Favorites {
   @PrimaryGeneratedColumn('uuid', {
-    name: 'favorites_id',
+    name: 'id',
   })
   id: string;
 
   @Column({
+    name: 'description',
     type: 'varchar',
     length: 100,
     nullable: true,
   })
   description: string | null;
-
-  @OneToOne(() => User, (user) => user.favoritesId)
-  user: User;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -38,4 +46,10 @@ export class Favorites {
     nullable: true,
   })
   deletedAt: Date | null;
+
+  @OneToOne(() => User, (user) => user.favoritesId)
+  user: User;
+
+  @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.favoritesId)
+  favoritesCourses: FavoritesCourses[];
 }

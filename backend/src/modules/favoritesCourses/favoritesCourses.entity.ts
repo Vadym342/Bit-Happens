@@ -1,31 +1,30 @@
+import { Course } from '@modules/courses/courses.entity';
+import { Favorites } from '@modules/favorites/favorites.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToMany,
-  OneToOne,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import { User } from '@modules/users/users.entity';
-import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
-
-@Entity({ name: 'learningHistories' })
-export class LearningHistory {
+@Entity({ name: 'favoritesCourses' })
+export class FavoritesCourses {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
   })
   id: string;
 
   @Column({
-    name: 'description',
+    name: 'status',
     type: 'varchar',
-    length: 100,
-    nullable: true,
+    length: 20,
+    nullable: false,
   })
-  description: string | null;
+  status: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -48,9 +47,11 @@ export class LearningHistory {
   })
   deletedAt: Date | null;
 
-  @OneToMany(() => LearningHistoriesCourses, (learningHistoriesCourses) => learningHistoriesCourses.learningHistoryId)
-  learningHistoriesCourses: LearningHistoriesCourses[];
+  @ManyToOne(() => Favorites, (favorites) => favorites.id)
+  @JoinColumn({ name: 'favorite_id' })
+  favoritesId: string;
 
-  @OneToOne(() => User, (user) => user.learningHistoryId)
-  user: User;
+  @ManyToOne(() => Course, (course) => course.id)
+  @JoinColumn({ name: 'course_id' })
+  courseId: string;
 }

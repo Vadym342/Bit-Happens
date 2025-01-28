@@ -9,9 +9,9 @@ export class CreateTableLessons1737226029330 implements MigrationInterface {
             title VARCHAR(150) NOT NULL,
             content TEXT NOT NULL,
             description VARCHAR(400) NOT NULL,
-            created_at VARCHAR(25) NOT NULL,
-            updated_at VARCHAR(25) NULL,
-            deleted_at VARCHAR(25) NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMPTZ DEFAULT NULL,
+            deleted_at TIMESTAMPTZ DEFAULT NULL,
             CONSTRAINT pk_lessons PRIMARY KEY (id),
             CONSTRAINT fk_lessons_course_id FOREIGN KEY (course_id) REFERENCES courses (id)
         );

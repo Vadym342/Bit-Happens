@@ -8,9 +8,9 @@ export class CreateTableComments1737238222990 implements MigrationInterface {
             lesson_id UUID NOT NULL,
             content TEXT NOT NULL,
             user_id UUID NOT NULL,
-            created_at VARCHAR(25) NOT NULL,
-            updated_at VARCHAR(25) NULL,
-            deleted_at VARCHAR(25) NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMPTZ DEFAULT NULL,
+            deleted_at TIMESTAMPTZ DEFAULT NULL,
             administrator_id UUID NULL,
             CONSTRAINT pk_comments PRIMARY KEY (id),
             CONSTRAINT fk_comments_lesson_id FOREIGN KEY (lesson_id) REFERENCES lessons(id)
