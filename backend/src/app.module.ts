@@ -1,3 +1,4 @@
+import { CourseModule } from '@modules/courses/course.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -12,6 +13,7 @@ import { UsersModule } from '@modules/users/users.module';
       useFactory: () => getDataSourceConfig(),
     }),
     UsersModule,
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

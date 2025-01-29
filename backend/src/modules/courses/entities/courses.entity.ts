@@ -33,7 +33,7 @@ export class Course {
     length: 150,
     nullable: false,
   })
-  name: string;
+  title: string;
 
   @Column({
     name: 'description',
