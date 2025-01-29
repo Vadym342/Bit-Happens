@@ -1,4 +1,3 @@
-import { Course } from '@modules/courses/entities/courses.entity';
 import {
   Column,
   CreateDateColumn,
@@ -9,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Course } from '@modules/courses/entities/courses.entity';
 
 @Entity({ name: 'discounts' })
 export class Discount {

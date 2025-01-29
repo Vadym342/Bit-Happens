@@ -17,6 +17,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Favorites } from '@modules/favorites/favorites.entity';
+import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
+import { Role } from '@modules/role/role.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
+
 @Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid', {

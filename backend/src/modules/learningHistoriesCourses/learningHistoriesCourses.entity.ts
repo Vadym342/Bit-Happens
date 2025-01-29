@@ -1,5 +1,4 @@
 import { Course } from '@modules/courses/courses.entity';
-import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,6 +9,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 
 @Entity({ name: 'learningHistoriesCourses' })
 export class LearningHistoriesCourses {

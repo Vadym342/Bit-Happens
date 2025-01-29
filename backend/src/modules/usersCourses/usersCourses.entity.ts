@@ -11,6 +11,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Course } from '@modules/courses/entities/courses.entity';
+import { User } from '@modules/users/users.entity';
+
 @Entity({ name: 'usersCourses' })
 export class UserCourse {
   @PrimaryGeneratedColumn('uuid', {

@@ -1,5 +1,6 @@
-import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 
 @Entity({ name: 'softwares' })
 export class Software {

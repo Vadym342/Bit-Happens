@@ -11,6 +11,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
+import { User } from '@modules/users/users.entity';
+
 @Entity({ name: 'favorites' })
 export class Favorites {
   @PrimaryGeneratedColumn('uuid', {
