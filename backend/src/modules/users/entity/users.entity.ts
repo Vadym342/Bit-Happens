@@ -44,6 +44,7 @@ export class User {
     name: 'email',
     type: 'varchar',
     length: 40,
+    unique: true,
     nullable: false,
   })
   email: string;
@@ -66,6 +67,7 @@ export class User {
   @Column({
     name: 'balance',
     type: 'real',
+    default: 0,
     nullable: false,
   })
   balance: number;
