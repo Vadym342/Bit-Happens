@@ -1,4 +1,4 @@
-import { User } from '@modules/users/users.entity';
+import { User } from '@modules/users/entity/users.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   CreateDateColumn,

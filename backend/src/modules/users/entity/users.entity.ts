@@ -2,6 +2,7 @@ import { Course } from '@modules/courses/courses.entity';
 import { Favorites } from '@modules/favorites/favorites.entity';
 import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import { Role } from '@modules/role/role.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
@@ -102,10 +103,13 @@ export class User {
   @JoinColumn({ name: 'learning_history_id' })
   learningHistoryId: string;
 
-  @OneToOne(() => Wishlist, (wishlists) => wishlists.id)
+  @OneToOne(() => Wishlist, (wishlist) => wishlist.id)
   @JoinColumn({ name: 'wishlist_id' })
   wishlistId: string;
 
   @OneToMany(() => Course, (course) => course.id)
   courses: Course[];
+
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  userCourses: UserCourse[];
 }
