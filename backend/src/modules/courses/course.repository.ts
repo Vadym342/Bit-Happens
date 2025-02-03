@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -14,7 +14,11 @@ export class CourseRepository extends Repository<Course> {
     super(courseRepository.target, courseRepository.manager, courseRepository.queryRunner);
   }
 
-  async createCourse(courseData: CreateCourseDto): Promise<Course> {
-    return this.save(courseData);
+  async createCourse(courseData: CreateCourseDto): Promise<void> {
+    try {
+      await this.save(courseData);
+    } catch (error) {
+      throw new BadRequestException(`Error creating course: ${error.message}`);
+    }
   }
 }

@@ -18,7 +18,7 @@ export class CreateTableCourses1737200576518 implements MigrationInterface {
         deleted_at TIMESTAMPTZ DEFAULT NULL,
         CONSTRAINT pk_courses PRIMARY KEY (id),
         CONSTRAINT fk_courses_category_id FOREIGN KEY (category_id) REFERENCES categories (id),
-        CONSTRAINT fk_courses_teacher_id FOREIGN KEY (teacher_id) REFERENCES users (id),
+        CONSTRAINT fk_courses_teacher_id FOREIGN KEY (teacher_id) REFERENCES users (id)
       );
     `);
   }

@@ -1,4 +1,5 @@
-import { Course } from '@modules/courses/courses.entity';
+import { Course } from '@modules/courses/entities/courses.entity';
+import { Software } from '@modules/softwares/softwares.entity';
 import {
   CreateDateColumn,
   DeleteDateColumn,
@@ -8,8 +9,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-import { Software } from '@modules/softwares/softwares.entity';
 
 @Entity({ name: 'softwaresCourses' })
 export class SoftwareCourse {

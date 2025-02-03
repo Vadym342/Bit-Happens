@@ -3,19 +3,19 @@ import { IsNotEmpty, IsString, IsOptional, IsUUID, IsNumber } from 'class-valida
 export class CreateCourseDto {
   @IsUUID()
   @IsNotEmpty()
-  teacherId: string;
+  teacherId!: string;
 
   @IsNotEmpty()
   @IsString()
-  title: string;
+  title!: string;
 
   @IsNotEmpty()
   @IsString()
-  description: string;
+  description!: string;
 
   @IsNotEmpty()
   @IsString()
-  content: string;
+  content!: string;
 
   @IsOptional()
   @IsNumber()
@@ -26,26 +26,14 @@ export class CreateCourseDto {
   logoImage?: string;
 
   @IsNotEmpty()
-  @IsString()
-  price: string;
+  @IsNumber()
+  price!: number;
 
   @IsUUID()
   @IsNotEmpty()
-  categoryId: string;
+  categoryId!: string;
 
   @IsOptional()
-  @IsString()
-  discount: number;
-
-  @IsNotEmpty()
-  @IsString()
-  createdAt: string;
-
-  @IsOptional()
-  @IsString()
-  updatedAt?: string;
-
-  @IsOptional()
-  @IsString()
-  deletedAt?: string;
+  @IsNumber()
+  discount?: number;
 }

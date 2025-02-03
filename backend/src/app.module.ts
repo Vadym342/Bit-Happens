@@ -1,7 +1,7 @@
+import { CategoryModule } from '@modules/categories/category.module';
+import { CourseModule } from '@modules/courses/course.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { CourseModule } from '@modules/courses/course.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,6 +15,7 @@ import { UsersModule } from '@modules/users/users.module';
     }),
     UsersModule,
     CourseModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
