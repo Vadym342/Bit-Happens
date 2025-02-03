@@ -3,6 +3,7 @@ import * as argon2 from 'argon2';
 
 import { CreateUserDto } from './dto/create-users.dto';
 import { UsersRepository } from './users.repository';
+import { User } from './entity/users.entity';
 
 @Injectable()
 export class UsersService {
@@ -26,4 +27,8 @@ export class UsersService {
       roleId: createUserDto.roleId,
     });
   }
+
+  // async findOne(username: string): Promise<User | undefined> {
+  //   return this.userRepository.findOne(username);
+  // }
 }
