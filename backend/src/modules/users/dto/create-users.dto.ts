@@ -1,14 +1,14 @@
-import { IsEmail, IsNumber, IsOptional, IsString, IsUUID, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 
 export class CreateUserDto {
-  @IsString()
   @MaxLength(100, { message: 'First name must be less then 100 symbols' })
   @MinLength(2, { message: 'First name must be more then 2 symbols' })
+  @IsString()
   firstName!: string;
 
-  @IsString()
   @MaxLength(100, { message: 'Last name must be less then 100 symbols' })
   @MinLength(2, { message: 'Last name must be more then 2 symbols' })
+  @IsString()
   lastName!: string;
 
   @IsEmail({}, { message: 'Invalid email format' })
@@ -18,9 +18,9 @@ export class CreateUserDto {
   @IsNumber()
   age!: number;
 
-  @IsString()
   @MaxLength(40, { message: 'Password must be less then 40 symbols' })
   @MinLength(6, { message: 'Password must be more then 6 symbols' })
+  @IsString()
   password!: string;
 
   @IsUUID()
