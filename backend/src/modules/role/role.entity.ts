@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { RolesPermissions } from '@modules/rolesPermissions/rolesPermissions.entity';
-import { User } from '@modules/users/users.entity';
+import { User } from '@modules/users/entity/users.entity';
 
 @Entity({ name: 'roles' })
 export class Role {

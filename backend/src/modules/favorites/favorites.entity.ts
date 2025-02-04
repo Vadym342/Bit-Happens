@@ -1,5 +1,5 @@
 import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
-import { User } from '@modules/users/users.entity';
+import { User } from '@modules/users/entity/users.entity';
 import {
   Column,
   CreateDateColumn,

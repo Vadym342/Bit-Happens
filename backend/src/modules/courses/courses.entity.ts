@@ -4,7 +4,7 @@ import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.ent
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
 import { Lesson } from '@modules/lessons/lessons.entity';
 import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
-import { User } from '@modules/users/users.entity';
+import { User } from '@modules/users/entity/users.entity';
 import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
