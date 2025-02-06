@@ -1,12 +1,12 @@
-import { BadRequestException, HttpCode, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dto/create-course.dto';
 
 @Injectable()
-export class CourseService {
+export class CoursesService {
   constructor(private readonly courseRepository: CourseRepository) {}
-  @HttpCode(HttpStatus.CREATED)
+
   async create(createCourseDto: CreateCourseDto) {
     const existCourse = await this.courseRepository.findOne({
       where: {

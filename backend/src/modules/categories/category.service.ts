@@ -1,12 +1,12 @@
-import { BadRequestException, HttpCode, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CategoryRepository } from './category.repository';
 import { CreateCategoryDto } from './dto/create-category.dto';
 
 @Injectable()
-export class CategoryService {
+export class CategoriesService {
   constructor(private readonly categoryRepository: CategoryRepository) {}
-  @HttpCode(HttpStatus.CREATED)
+
   async create(createCategoryDto: CreateCategoryDto) {
     const existCategory = await this.categoryRepository.findOne({
       where: {

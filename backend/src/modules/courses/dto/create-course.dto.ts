@@ -1,39 +1,33 @@
-import { IsNotEmpty, IsString, IsOptional, IsUUID, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsUUID, IsNumber } from 'class-validator';
 
 export class CreateCourseDto {
   @IsUUID()
-  @IsNotEmpty()
   teacherId!: string;
 
-  @IsNotEmpty()
   @IsString()
   title!: string;
 
-  @IsNotEmpty()
   @IsString()
   description!: string;
 
-  @IsNotEmpty()
   @IsString()
   content!: string;
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   rating?: number;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   logoImage?: string;
 
-  @IsNotEmpty()
   @IsNumber()
   price!: number;
 
   @IsUUID()
-  @IsNotEmpty()
   categoryId!: string;
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   discount?: number;
 }
