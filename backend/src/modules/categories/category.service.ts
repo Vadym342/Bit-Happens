@@ -16,9 +16,6 @@ export class CategoriesService {
 
     if (existCategory) throw new BadRequestException('This category name already exists!');
 
-    await this.categoryRepository.createCategory({
-      name: createCategoryDto.name,
-      description: createCategoryDto.description,
-    });
+    await this.categoryRepository.createCategory(createCategoryDto);
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 
 import { CoursesService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -8,7 +8,7 @@ export class CoursesController {
   constructor(private readonly courseService: CoursesService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe())
+  @HttpCode(HttpStatus.CREATED)
   async create(@Body() createCourseDto: CreateCourseDto) {
     return this.courseService.create(createCourseDto);
   }

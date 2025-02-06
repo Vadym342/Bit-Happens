@@ -16,16 +16,6 @@ export class CoursesService {
 
     if (existCourse) throw new BadRequestException('This course name already exists!');
 
-    await this.courseRepository.createCourse({
-      teacherId: createCourseDto.teacherId,
-      title: createCourseDto.title,
-      description: createCourseDto.description,
-      content: createCourseDto.content,
-      rating: createCourseDto.rating,
-      logoImage: createCourseDto.logoImage,
-      price: createCourseDto.price,
-      categoryId: createCourseDto.categoryId,
-      discount: createCourseDto.discount,
-    });
+    await this.courseRepository.createCourse(createCourseDto);
   }
 }
