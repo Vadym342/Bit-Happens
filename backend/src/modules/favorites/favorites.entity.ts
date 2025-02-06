@@ -1,5 +1,3 @@
-import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
-import { User } from '@modules/users/entity/users.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,6 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
+import { User } from '@modules/users/entity/users.entity';
 
 @Entity({ name: 'favorites' })
 export class Favorites {

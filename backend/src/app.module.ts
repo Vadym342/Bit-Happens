@@ -1,10 +1,12 @@
+import { CategoriesModule } from '@modules/categories/category.module';
+import { CoursesModule } from '@modules/courses/course.module';
+import { UsersModule } from '@modules/users/users.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { getDataSourceConfig } from './database/ormconfig';
-import { UsersModule } from '@modules/users/users.module';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { UsersModule } from '@modules/users/users.module';
       useFactory: () => getDataSourceConfig(),
     }),
     UsersModule,
+    CoursesModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

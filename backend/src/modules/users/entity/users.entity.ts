@@ -1,4 +1,4 @@
-import { Course } from '@modules/courses/courses.entity';
+import { Course } from '@modules/courses/entities/courses.entity';
 import { Favorites } from '@modules/favorites/favorites.entity';
 import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import { Role } from '@modules/role/role.entity';

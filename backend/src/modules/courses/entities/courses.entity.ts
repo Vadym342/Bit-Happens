@@ -33,7 +33,7 @@ export class Course {
     length: 150,
     nullable: false,
   })
-  name: string;
+  title: string;
 
   @Column({
     name: 'description',
@@ -104,7 +104,7 @@ export class Course {
   teacherId: string;
 
   @OneToOne(() => Discount, (discount) => discount.id)
-  discount: string;
+  discount: number;
 
   @OneToMany(() => WishlistCourse, (wishlistCourse) => wishlistCourse.wishlistId)
   wishlistCourses: WishlistCourse[];

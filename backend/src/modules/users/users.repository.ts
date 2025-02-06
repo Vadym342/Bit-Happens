@@ -1,8 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './entity/users.entity';
+
 import { CreateUserDto } from './dto/create-users.dto';
+import { User } from './entity/users.entity';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {

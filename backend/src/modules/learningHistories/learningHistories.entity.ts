@@ -9,8 +9,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { User } from '@modules/users/entity/users.entity';
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import { User } from '@modules/users/entity/users.entity';
 
 @Entity({ name: 'learningHistories' })
 export class LearningHistory {

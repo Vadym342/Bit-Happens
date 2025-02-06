@@ -1,4 +1,4 @@
-import { Course } from '@modules/courses/courses.entity';
+import { Course } from '@modules/courses/entities/courses.entity';
 import { Software } from '@modules/softwares/softwares.entity';
 import {
   CreateDateColumn,

@@ -1,4 +1,3 @@
-import { Lesson } from '@modules/lessons/lessons.entity';
 import {
   Column,
   CreateDateColumn,
@@ -9,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Lesson } from '@modules/lessons/lessons.entity';
 
 @Entity({ name: 'comments' })
 export class Comment {
