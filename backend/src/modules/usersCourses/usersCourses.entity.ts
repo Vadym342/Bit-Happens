@@ -1,5 +1,3 @@
-import { Course } from '@modules/courses/entities/courses.entity';
-import { User } from '@modules/users/entity/users.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,7 +10,7 @@ import {
 } from 'typeorm';
 
 import { Course } from '@modules/courses/entities/courses.entity';
-import { User } from '@modules/users/users.entity';
+import { User } from '@modules/users/entity/users.entity';
 
 @Entity({ name: 'usersCourses' })
 export class UserCourse {
