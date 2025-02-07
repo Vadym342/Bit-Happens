@@ -21,4 +21,16 @@ export class UserRepository extends Repository<User> {
       throw new BadRequestException(`Error creating user: ${error.message}`);
     }
   }
+
+  async findUserByEmail(email: string) {
+    try {
+      return await this.findOne({
+        where: {
+          email: email,
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(`Error finding user: ${error.message}`);
+    }
+  }
 }
