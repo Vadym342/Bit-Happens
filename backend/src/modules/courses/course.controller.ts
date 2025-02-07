@@ -9,7 +9,7 @@ export class CoursesController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() createCourseDto: CreateCourseDto) {
-    return this.courseService.create(createCourseDto);
+  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+    return this.courseService.createCourse(createCourseDto);
   }
 }
