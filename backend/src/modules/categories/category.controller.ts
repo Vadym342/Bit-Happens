@@ -9,7 +9,7 @@ export class CategoriesController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async createCategory(@Body() createCategoryDto: CreateCategoryDto) {
+  async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<void> {
     return this.categoriesService.createCategory(createCategoryDto);
   }
 }
