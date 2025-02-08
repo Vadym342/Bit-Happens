@@ -1,5 +1,6 @@
-import { Course } from '@modules/courses/courses.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { Course } from '@modules/courses/entities/courses.entity';
 
 @Entity({ name: 'categories' })
 export class Category {
@@ -51,6 +52,6 @@ export class Category {
   })
   administratorId: string | null;
 
-  @OneToMany(() => Course, (course) => course.categoryId)
+  @OneToMany(() => Course, (course) => course)
   courses: Course[];
 }

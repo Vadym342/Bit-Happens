@@ -1,5 +1,3 @@
-import { Course } from '@modules/courses/courses.entity';
-import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,6 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Course } from '@modules/courses/entities/courses.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
 
 @Entity({ name: 'wishlistsCourses' })
 export class WishlistCourse {

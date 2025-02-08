@@ -6,7 +6,7 @@ export class CreateTableCourses1737200576518 implements MigrationInterface {
       CREATE TABLE courses (
         id UUID DEFAULT uuid_generate_v4() NOT NULL,
         teacher_id UUID NOT NULL,
-        title VARCHAR(150) NOT NULL,
+        title VARCHAR(150) UNIQUE NOT NULL,
         description VARCHAR(150) NOT NULL,
         content TEXT NOT NULL,
         rating REAL NULL,

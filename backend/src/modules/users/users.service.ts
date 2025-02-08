@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-users.dto';
 import * as argon2 from 'argon2';
+
+import { CreateUserDto } from './dto/create-users.dto';
 import { UsersRepository } from './users.repository';
 
 @Injectable()
@@ -13,6 +14,7 @@ export class UsersService {
         email: createUserDto.email,
       },
     });
+
     if (existUser) throw new BadRequestException('This email already exist');
 
     await this.userRepository.createUser({

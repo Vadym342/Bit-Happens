@@ -1,9 +1,3 @@
-import { Course } from '@modules/courses/courses.entity';
-import { Favorites } from '@modules/favorites/favorites.entity';
-import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
-import { Role } from '@modules/role/role.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
-import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
   CreateDateColumn,
@@ -16,6 +10,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Course } from '@modules/courses/entities/courses.entity';
+import { Favorites } from '@modules/favorites/favorites.entity';
+import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
+import { Role } from '@modules/role/role.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -109,7 +110,7 @@ export class User {
   @JoinColumn({ name: 'wishlist_id' })
   wishlistId: string;
 
-  @OneToMany(() => Course, (course) => course.id)
+  @OneToMany(() => Course, (course) => course)
   courses: Course[];
 
   @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
