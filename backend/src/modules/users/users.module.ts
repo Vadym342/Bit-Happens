@@ -20,7 +20,20 @@ import { UsersService } from './users.service';
       inject: [ConfigService],
     }),
   ],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: { expiresIn: '30d' },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
   controllers: [UsersController],
+  providers: [UsersService, UserRepository],
+  exports: [UsersService],
   providers: [UsersService, UserRepository],
   exports: [UsersService],
 })
