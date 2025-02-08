@@ -22,7 +22,7 @@ export class AuthService {
     throw new UnauthorizedException('User or password are incorrect');
   }
 
-  async login(user: LoginUserEntity) {
+  async login(user: LoginUserEntity): Promise<{ id: string; email: string; token: string }> {
     const { id, email } = user;
     return {
       id,
