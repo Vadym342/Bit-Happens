@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Lesson } from '@modules/lessons/lessons.entity';
+import { Lesson } from '@modules/lessons/entities/lessons.entity';
 
 @Entity({ name: 'comments' })
 export class Comment {
