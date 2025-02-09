@@ -7,7 +7,7 @@ import { SoftwareRepository } from './software.repository';
 export class SoftwaresService {
   constructor(private readonly softwareRepository: SoftwareRepository) {}
 
-  async createSoftware(createSoftwareDto: CreateSoftwareDto) {
+  async createSoftware(createSoftwareDto: CreateSoftwareDto): Promise<void> {
     const existSoftware = await this.softwareRepository.findOne({
       where: {
         name: createSoftwareDto.name,

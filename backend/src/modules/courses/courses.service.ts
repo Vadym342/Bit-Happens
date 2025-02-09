@@ -7,7 +7,7 @@ import { CreateCourseDto } from './dtos/create-courses.dto';
 export class CoursesService {
   constructor(private readonly courseRepository: CourseRepository) {}
 
-  async createCourse(createCourseDto: CreateCourseDto) {
+  async createCourse(createCourseDto: CreateCourseDto): Promise<void> {
     const existCourse = await this.courseRepository.findOne({
       where: {
         title: createCourseDto.title,
