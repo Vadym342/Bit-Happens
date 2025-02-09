@@ -6,19 +6,25 @@ import { CreateCourseDto } from './dtos/create-courses.dto';
 import { Course } from './entities/course.entity';
 
 @Injectable()
-export class CourseRepository extends Repository<Course> {
+export class CourseRepository {
   constructor(
     @InjectRepository(Course)
-    courseRepository: Repository<Course>,
-  ) {
-    super(courseRepository.target, courseRepository.manager, courseRepository.queryRunner);
-  }
+    private readonly courseRepository: Repository<Course>,
+  ) {}
 
   async createCourse(courseData: CreateCourseDto): Promise<void> {
     try {
-      await this.save(courseData);
+      await this.courseRepository.save(courseData);
     } catch (error) {
       throw new BadRequestException(`Error creating course: ${error.message}`);
     }
+  }
+
+  async findAll(): Promise<Course[]> {
+    return this.courseRepository.find();
+  }
+
+  async findOneById(id: string): Promise<Course | null> {
+    return this.courseRepository.findOne({ where: { id } });
   }
 }
