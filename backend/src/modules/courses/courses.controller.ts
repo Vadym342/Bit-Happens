@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 
-import { CoursesService } from './course.service';
-import { CreateCourseDto } from './dto/create-course.dto';
+import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dtos/create-courses.dto';
 
 @Controller('courses')
 export class CoursesController {

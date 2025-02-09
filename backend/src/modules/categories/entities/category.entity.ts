@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Course } from '@modules/courses/entities/courses.entity';
+import { Course } from '@modules/courses/entities/course.entity';
 
 @Entity({ name: 'categories' })
 export class Category {

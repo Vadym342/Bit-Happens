@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 
-import { CategoriesService } from './category.service';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { CategoriesService } from './categories.service';
+import { CreateCategoryDto } from './dtos/create-categories.dto';
 
 @Controller('categories')
 export class CategoriesController {
