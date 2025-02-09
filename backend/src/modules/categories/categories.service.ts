@@ -7,7 +7,7 @@ import { CreateCategoryDto } from './dtos/create-categories.dto';
 export class CategoriesService {
   constructor(private readonly categoryRepository: CategoryRepository) {}
 
-  async createCategory(createCategoryDto: CreateCategoryDto) {
+  async createCategory(createCategoryDto: CreateCategoryDto): Promise<void> {
     const existCategory = await this.categoryRepository.findOne({
       where: {
         name: createCategoryDto.name,
