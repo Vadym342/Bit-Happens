@@ -1,12 +1,13 @@
+import { CategoriesModule } from '@modules/categories/categories.module';
+import { CoursesModule } from '@modules/courses/courses.module';
+import { SoftwaresModule } from '@modules/softwares/softwares.module';
+import { UsersModule } from '@modules/users/users.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CategoriesModule } from '@modules/categories/category.module';
-import { CoursesModule } from '@modules/courses/course.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { getDataSourceConfig } from './database/ormconfig';
-import { UsersModule } from '@modules/users/users.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 
@@ -21,6 +22,7 @@ import { ConfigModule } from '@nestjs/config';
     CoursesModule,
     CategoriesModule,
     AuthModule,
+    SoftwaresModule,
   ],
   controllers: [AppController],
   providers: [AppService],

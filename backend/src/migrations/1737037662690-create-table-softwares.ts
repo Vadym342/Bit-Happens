@@ -5,7 +5,7 @@ export class CreateTableSoftwares1737037662690 implements MigrationInterface {
     await queryRunner.query(`
         CREATE TABLE softwares (
             id UUID DEFAULT uuid_generate_v4() NOT NULL,
-            name VARCHAR(50) NOT NULL,
+            name VARCHAR(50) UNIQUE NOT NULL,
             description VARCHAR(1000) NOT NULL,
             system_requirements VARCHAR(250) NOT NULL,
             version VARCHAR(200) NOT NULL,

@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 import { Comment } from '@modules/comments/comments.entity';
-import { Course } from '@modules/courses/entities/courses.entity';
+import { Course } from '@modules/courses/entities/course.entity';
 
 @Entity({ name: 'lessons' })
 export class Lesson {

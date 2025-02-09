@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CourseRepository } from './course.repository';
-import { CreateCourseDto } from './dto/create-course.dto';
+import { CreateCourseDto } from './dtos/create-courses.dto';
 
 @Injectable()
 export class CoursesService {

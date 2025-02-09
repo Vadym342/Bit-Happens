@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CategoryRepository } from './category.repository';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { CreateCategoryDto } from './dtos/create-categories.dto';
 
 @Injectable()
 export class CategoriesService {
