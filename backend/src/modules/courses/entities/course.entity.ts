@@ -15,7 +15,7 @@ import { Category } from '@modules/categories/entities/category.entity';
 import { Discount } from '@modules/discounts/discounts.entity';
 import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
-import { Lesson } from '@modules/lessons/lessons.entity';
+import { Lesson } from '@modules/lessons/entities/lessons.entity';
 import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 import { User } from '@modules/users/entity/users.entity';
 import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
