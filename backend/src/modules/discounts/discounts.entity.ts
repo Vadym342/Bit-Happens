@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Course } from '@modules/courses/entities/courses.entity';
+import { Course } from '@modules/courses/entities/course.entity';
 
 @Entity({ name: 'discounts' })
 export class Discount {

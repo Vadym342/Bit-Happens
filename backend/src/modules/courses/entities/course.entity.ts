@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Category } from '@modules/categories/categories.entity';
+import { Category } from '@modules/categories/entities/category.entity';
 import { Discount } from '@modules/discounts/discounts.entity';
 import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
 import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
