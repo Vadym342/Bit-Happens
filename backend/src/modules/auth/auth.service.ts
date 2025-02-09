@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { LoginUserEntity } from '@modules/users/constants/users.types';
+import { AuthResponse } from './types/auth.types';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +23,7 @@ export class AuthService {
     throw new UnauthorizedException('User or password are incorrect');
   }
 
-  async login(user: LoginUserEntity): Promise<{ id: string; email: string; token: string }> {
+  async login(user: LoginUserEntity): Promise<AuthResponse> {
     const { id, email } = user;
     return {
       id,
