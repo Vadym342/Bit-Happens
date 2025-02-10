@@ -1,7 +1,8 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dtos/create-courses.dto';
+import { Course } from './entities/course.entity';
 
 @Controller('courses')
 export class CoursesController {
@@ -11,5 +12,15 @@ export class CoursesController {
   @HttpCode(HttpStatus.CREATED)
   async createCourse(@Body() createCourseDto: CreateCourseDto): Promise<void> {
     return this.coursesService.createCourse(createCourseDto);
+  }
+
+  @Get()
+  async getAllCourses(): Promise<Course[]> {
+    return this.coursesService.findAllCourses();
+  }
+
+  @Get(':id')
+  async getCourseById(@Param('id') id: string): Promise<Course> {
+    return this.coursesService.findCourseById(id);
   }
 }
