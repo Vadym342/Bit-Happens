@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
+import { UpdateCourseDto } from './dtos/update-courses.dto';
 import { Course } from './entities/course.entity';
 
 @Injectable()
@@ -27,6 +28,20 @@ export class CoursesService {
       if (!course) throw new NotFoundException('Course not found');
 
       return course;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateCourse(id: string, updateCourseDto: UpdateCourseDto): Promise<Course> {
+    try {
+      const course = await this.courseRepository.findOneById(id);
+
+      if (!course) throw new NotFoundException('Course not found');
+
+      const updatedCourse = Object.assign(course, updateCourseDto);
+
+      return await this.courseRepository.save(updatedCourse);
     } catch (error) {
       throw error;
     }

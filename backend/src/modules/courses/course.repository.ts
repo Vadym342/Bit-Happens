@@ -35,4 +35,12 @@ export class CourseRepository {
       throw new BadRequestException(`Error fetching course: ${error.message}`);
     }
   }
+
+  async save(course: Course): Promise<Course> {
+    try {
+      return await this.courseRepository.save(course);
+    } catch (error) {
+      throw new BadRequestException(`Error saving course: ${error.message}`);
+    }
+  }
 }
