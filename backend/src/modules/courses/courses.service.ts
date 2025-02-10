@@ -34,6 +34,27 @@ export class CoursesService {
   }
 
   async updateCourse(id: string, updateCourseDto: UpdateCourseDto): Promise<void> {
-    await this.courseRepository.update(id, updateCourseDto);
+    const course = await this.courseRepository.findOneById(id);
+
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+
+    if (updateCourseDto.teacherId) {
+      const teacherExists = await this.courseRepository.teacherExists(updateCourseDto.teacherId);
+
+      if (!teacherExists) {
+        throw new NotFoundException('Teacher not found');
+      }
+    }
+
+    if (updateCourseDto.categoryId) {
+      const categoryExists = await this.courseRepository.categoryExists(updateCourseDto.categoryId);
+
+      if (!categoryExists) {
+        throw new NotFoundException('Category not found');
+      }
+    }
+    await this.courseRepository.updateOne(id, updateCourseDto);
   }
 }

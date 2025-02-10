@@ -1,6 +1,7 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 
 import { CoursesService } from './courses.service';
+import { CourseIdParamDto } from './dtos/course-id-param.dto';
 import { CreateCourseDto } from './dtos/create-courses.dto';
 import { UpdateCourseDto } from './dtos/update-courses.dto';
 import { Course } from './entities/course.entity';
@@ -27,7 +28,7 @@ export class CoursesController {
 
   @Patch(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async updateCourse(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto): Promise<void> {
-    return this.coursesService.updateCourse(id, updateCourseDto);
+  async updateCourse(@Param() { id }: CourseIdParamDto, @Body() updateCourseDto: UpdateCourseDto): Promise<void> {
+    await this.coursesService.updateCourse(id, updateCourseDto);
   }
 }
