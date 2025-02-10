@@ -28,7 +28,7 @@ export class CoursesService {
 
       return course;
     } catch (error) {
-      throw new NotFoundException(error.message || 'Error fetching course');
+      throw error;
     }
   }
 }
