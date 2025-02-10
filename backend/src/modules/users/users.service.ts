@@ -1,20 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import * as argon2 from 'argon2';
-
 import { CreateUserDto } from './dto/create-users.dto';
-import { UsersRepository } from './users.repository';
+import { UserRepository } from './users.repository';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository: UsersRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDto) {
-    const existUser = await this.userRepository.findOne({
-      where: {
-        email: createUserDto.email,
-      },
-    });
-
+    const existUser = await this.userRepository.findUserByEmail(createUserDto.email);
     if (existUser) throw new BadRequestException('This email already exist');
 
     await this.userRepository.createUser({
@@ -25,5 +19,9 @@ export class UsersService {
       password: await argon2.hash(createUserDto.password),
       roleId: createUserDto.roleId,
     });
+  }
+
+  async findOne(email: string) {
+    return this.userRepository.findUserByEmail(email);
   }
 }

@@ -6,7 +6,7 @@ import { CreateUserDto } from './dto/create-users.dto';
 import { User } from './entity/users.entity';
 
 @Injectable()
-export class UsersRepository extends Repository<User> {
+export class UserRepository extends Repository<User> {
   constructor(
     @InjectRepository(User)
     userRepository: Repository<User>,
@@ -19,6 +19,18 @@ export class UsersRepository extends Repository<User> {
       await this.save(userData);
     } catch (error) {
       throw new BadRequestException(`Error creating user: ${error.message}`);
+    }
+  }
+
+  async findUserByEmail(email: string): Promise<User> {
+    try {
+      return await this.findOne({
+        where: {
+          email: email,
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(`Error finding user: ${error.message}`);
     }
   }
 }
