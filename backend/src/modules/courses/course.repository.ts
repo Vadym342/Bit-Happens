@@ -21,10 +21,18 @@ export class CourseRepository {
   }
 
   async findAll(): Promise<Course[]> {
-    return this.courseRepository.find();
+    try {
+      return await this.courseRepository.find();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching courses: ${error.message}`);
+    }
   }
 
   async findOneById(id: string): Promise<Course | null> {
-    return this.courseRepository.findOne({ where: { id } });
+    try {
+      return await this.courseRepository.findOne({ where: { id } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching course: ${error.message}`);
+    }
   }
 }

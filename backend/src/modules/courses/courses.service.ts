@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
@@ -21,10 +21,14 @@ export class CoursesService {
   }
 
   async findCourseById(id: string): Promise<Course> {
-    const course = await this.courseRepository.findOneById(id);
+    try {
+      const course = await this.courseRepository.findOneById(id);
 
-    if (!course) throw new BadRequestException('Course not found');
+      if (!course) throw new NotFoundException('Course not found');
 
-    return course;
+      return course;
+    } catch (error) {
+      throw new NotFoundException(error.message || 'Error fetching course');
+    }
   }
 }

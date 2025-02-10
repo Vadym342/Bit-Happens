@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dtos/create-courses.dto';
@@ -21,10 +21,6 @@ export class CoursesController {
 
   @Get(':id')
   async getCourseById(@Param('id') id: string): Promise<Course> {
-    try {
-      return await this.coursesService.findCourseById(id);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-    }
+    return this.coursesService.findCourseById(id);
   }
 }
