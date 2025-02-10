@@ -26,8 +26,8 @@ export class CoursesController {
   }
 
   @Patch(':id')
-  @HttpCode(HttpStatus.OK)
-  async updateCourse(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto): Promise<Course> {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async updateCourse(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto): Promise<void> {
     return this.coursesService.updateCourse(id, updateCourseDto);
   }
 }

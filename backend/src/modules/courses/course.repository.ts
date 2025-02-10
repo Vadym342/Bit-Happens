@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -36,11 +36,15 @@ export class CourseRepository {
     }
   }
 
-  async save(course: Course): Promise<Course> {
+  async update(id: string, updateData: Partial<Course>): Promise<void> {
     try {
-      return await this.courseRepository.save(course);
+      const result = await this.courseRepository.update(id, updateData);
+
+      if (result.affected === 0) {
+        throw new NotFoundException('Course not found');
+      }
     } catch (error) {
-      throw new BadRequestException(`Error saving course: ${error.message}`);
+      throw new Error(`Failed to update course: ${error.message}`);
     }
   }
 }

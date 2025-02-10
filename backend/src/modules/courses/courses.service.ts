@@ -33,17 +33,7 @@ export class CoursesService {
     }
   }
 
-  async updateCourse(id: string, updateCourseDto: UpdateCourseDto): Promise<Course> {
-    try {
-      const course = await this.courseRepository.findOneById(id);
-
-      if (!course) throw new NotFoundException('Course not found');
-
-      const updatedCourse = Object.assign(course, updateCourseDto);
-
-      return await this.courseRepository.save(updatedCourse);
-    } catch (error) {
-      throw error;
-    }
+  async updateCourse(id: string, updateCourseDto: UpdateCourseDto): Promise<void> {
+    await this.courseRepository.update(id, updateCourseDto);
   }
 }
