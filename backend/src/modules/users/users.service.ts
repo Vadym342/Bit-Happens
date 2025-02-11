@@ -1,12 +1,17 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import * as argon2 from 'argon2';
 
 import { CreateUserDto } from './dto/create-users.dto';
+import { User } from './entity/users.entity';
 import { UserRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: UserRepository,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const existUser = await this.userRepository.findUserByEmail(createUserDto.email);
@@ -25,5 +30,13 @@ export class UsersService {
 
   async findOne(email: string) {
     return this.userRepository.findUserByEmail(email);
+  }
+
+  async validateTeacher(teacherId: string): Promise<void> {
+    const teacher = await this.userRepository.findOne({ where: { id: teacherId } });
+
+    if (!teacher) {
+      throw new NotFoundException('Teacher not found');
+    }
   }
 }

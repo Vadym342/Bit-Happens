@@ -1,5 +1,7 @@
+import { CategoriesService } from '@modules/categories/categories.service';
 import { Category } from '@modules/categories/entities/category.entity';
 import { User } from '@modules/users/entity/users.entity';
+import { UsersService } from '@modules/users/users.service';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -13,6 +15,8 @@ import { Course } from './entities/course.entity';
 export class CoursesService {
   constructor(
     private readonly courseRepository: CourseRepository,
+    private readonly teacherService: UsersService,
+    private readonly categoryService: CategoriesService,
     @InjectRepository(User)
     private readonly teacherRepository: Repository<User>,
     @InjectRepository(Category)
@@ -71,24 +75,13 @@ export class CoursesService {
     }
 
     if (updateCourseDto.teacherId) {
-      const teacherExists = await this.teacherRepository.findOne({
-        where: { id: updateCourseDto.teacherId },
-      });
-
-      if (!teacherExists) {
-        throw new NotFoundException('Teacher not found');
-      }
+      await this.teacherService.validateTeacher(updateCourseDto.teacherId);
     }
 
     if (updateCourseDto.categoryId) {
-      const categoryExists = await this.categoryRepository.findOne({
-        where: { id: updateCourseDto.categoryId },
-      });
+      await this.categoryService.validateCategory(updateCourseDto.categoryId);
 
-      if (!categoryExists) {
-        throw new NotFoundException('Category not found');
-      }
+      await this.courseRepository.updateOne(id, updateCourseDto);
     }
-    await this.courseRepository.updateOne(id, updateCourseDto);
   }
 }
