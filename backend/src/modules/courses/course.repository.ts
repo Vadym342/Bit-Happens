@@ -1,5 +1,3 @@
-import { Category } from '@modules/categories/entities/category.entity';
-import { User } from '@modules/users/entity/users.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,10 +10,6 @@ export class CourseRepository {
   constructor(
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-    @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>,
   ) {}
 
   async createCourse(courseData: CreateCourseDto): Promise<void> {
@@ -47,26 +41,6 @@ export class CourseRepository {
       await this.courseRepository.update(id, updateData);
     } catch (error) {
       throw new BadRequestException(`Failed to update course: ${error.message}`);
-    }
-  }
-
-  async teacherExists(teacherId: string): Promise<boolean> {
-    try {
-      const teacher = await this.userRepository.findOne({ where: { id: teacherId } });
-
-      return !!teacher;
-    } catch (error) {
-      throw new BadRequestException(`Error checking teacher existence: ${error.message}`);
-    }
-  }
-
-  async categoryExists(categoryId: string): Promise<boolean> {
-    try {
-      const category = await this.categoryRepository.findOne({ where: { id: categoryId } });
-
-      return !!category;
-    } catch (error) {
-      throw new BadRequestException(`Error checking category existence: ${error.message}`);
     }
   }
 }

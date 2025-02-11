@@ -1,4 +1,8 @@
+import { Category } from '@modules/categories/entities/category.entity';
+import { User } from '@modules/users/entity/users.entity';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
@@ -7,7 +11,13 @@ import { Course } from './entities/course.entity';
 
 @Injectable()
 export class CoursesService {
-  constructor(private readonly courseRepository: CourseRepository) {}
+  constructor(
+    private readonly courseRepository: CourseRepository,
+    @InjectRepository(User)
+    private readonly teacherRepository: Repository<User>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
+  ) {}
 
   async createCourse(createCourseDto: CreateCourseDto): Promise<void> {
     const existCourse = await this.courseRepository.findOneById(createCourseDto.title);
@@ -15,6 +25,26 @@ export class CoursesService {
     if (existCourse) throw new BadRequestException('This course name already exists!');
 
     await this.courseRepository.createCourse(createCourseDto);
+
+    if (createCourseDto.teacherId) {
+      const teacherExists = await this.teacherRepository.findOne({
+        where: { id: createCourseDto.teacherId },
+      });
+
+      if (!teacherExists) {
+        throw new NotFoundException('Teacher not found');
+      }
+    }
+
+    if (createCourseDto.categoryId) {
+      const categoryExists = await this.categoryRepository.findOne({
+        where: { id: createCourseDto.categoryId },
+      });
+
+      if (!categoryExists) {
+        throw new NotFoundException('Category not found');
+      }
+    }
   }
 
   async findAllCourses(): Promise<Course[]> {
@@ -41,7 +71,9 @@ export class CoursesService {
     }
 
     if (updateCourseDto.teacherId) {
-      const teacherExists = await this.courseRepository.teacherExists(updateCourseDto.teacherId);
+      const teacherExists = await this.teacherRepository.findOne({
+        where: { id: updateCourseDto.teacherId },
+      });
 
       if (!teacherExists) {
         throw new NotFoundException('Teacher not found');
@@ -49,7 +81,9 @@ export class CoursesService {
     }
 
     if (updateCourseDto.categoryId) {
-      const categoryExists = await this.courseRepository.categoryExists(updateCourseDto.categoryId);
+      const categoryExists = await this.categoryRepository.findOne({
+        where: { id: updateCourseDto.categoryId },
+      });
 
       if (!categoryExists) {
         throw new NotFoundException('Category not found');
