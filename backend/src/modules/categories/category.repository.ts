@@ -21,4 +21,16 @@ export class CategoryRepository extends Repository<Category> {
       throw new BadRequestException(`Error creating course: ${error.message}`);
     }
   }
+
+  async isExists(categoryId: string): Promise<boolean> {
+    try {
+      return await this.exists({
+        where: {
+          id: categoryId,
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(`Error finding category: ${error.message}`);
+    }
+  }
 }

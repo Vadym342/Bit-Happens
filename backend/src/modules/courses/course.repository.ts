@@ -28,11 +28,27 @@ export class CourseRepository {
     }
   }
 
-  async findOneById(id: string): Promise<Course | null> {
+  async findOneById(id: string): Promise<Course> {
     try {
       return await this.courseRepository.findOne({ where: { id } });
     } catch (error) {
       throw new BadRequestException(`Error fetching course: ${error.message}`);
+    }
+  }
+
+  async findOneByTitle(title: string): Promise<Course> {
+    try {
+      return await this.courseRepository.findOne({ where: { title } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching course: ${error.message}`);
+    }
+  }
+
+  async updateOne(id: string, updateData: Partial<Course>): Promise<void> {
+    try {
+      await this.courseRepository.update(id, updateData);
+    } catch (error) {
+      throw new BadRequestException(`Failed to update course: ${error.message}`);
     }
   }
 }

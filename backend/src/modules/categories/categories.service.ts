@@ -18,4 +18,8 @@ export class CategoriesService {
 
     await this.categoryRepository.createCategory(createCategoryDto);
   }
+
+  async isExists(categoryId: string): Promise<boolean> {
+    return this.categoryRepository.isExists(categoryId);
+  }
 }

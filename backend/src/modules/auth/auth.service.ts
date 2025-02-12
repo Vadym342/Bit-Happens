@@ -1,8 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
-import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
+import * as argon2 from 'argon2';
+
 import { LoginUserEntity } from '@modules/users/constants/users.types';
+
+import { UsersService } from '../users/users.service';
+
 import { AuthResponse } from './types/auth.types';
 
 @Injectable()
@@ -25,6 +28,7 @@ export class AuthService {
 
   async login(user: LoginUserEntity): Promise<AuthResponse> {
     const { id, email } = user;
+
     return {
       id,
       email,
