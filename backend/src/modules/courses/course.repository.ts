@@ -36,6 +36,14 @@ export class CourseRepository {
     }
   }
 
+  async findOneByTitle(title: string): Promise<Course> {
+    try {
+      return await this.courseRepository.findOne({ where: { title } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching course: ${error.message}`);
+    }
+  }
+
   async updateOne(id: string, updateData: Partial<Course>): Promise<void> {
     try {
       await this.courseRepository.update(id, updateData);

@@ -8,10 +8,7 @@ import { UserRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: UserRepository,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDto): Promise<void> {
     try {
@@ -37,6 +34,6 @@ export class UsersService {
   }
 
   async isExists(userId: string): Promise<boolean> {
-    return this.userRepository.isExists(userId);
+    return await this.userRepository.isExists(userId);
   }
 }

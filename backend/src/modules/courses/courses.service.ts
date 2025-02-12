@@ -17,37 +17,24 @@ export class CoursesService {
     private readonly courseRepository: CourseRepository,
     private readonly usersService: UsersService,
     private readonly categoryService: CategoriesService,
-    @InjectRepository(User)
-    private readonly teacherRepository: Repository<User>,
-    @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>,
   ) {}
 
   async createCourse(createCourseDto: CreateCourseDto): Promise<void> {
-    const existCourse = await this.courseRepository.findOneById(createCourseDto.title);
+    try {
+      const existCourse = await this.courseRepository.findOneByTitle(createCourseDto.title);
 
-    if (existCourse) throw new BadRequestException('This course name already exists!');
+      if (existCourse) throw new BadRequestException('This course name already exists!');
 
-    await this.courseRepository.createCourse(createCourseDto);
+      const teacherExists = await this.usersService.isExists(createCourseDto.teacherId);
+      const categoryExists = await this.categoryService.isExists(createCourseDto.categoryId);
 
-    if (createCourseDto.teacherId) {
-      const teacherExists = await this.teacherRepository.findOne({
-        where: { id: createCourseDto.teacherId },
-      });
-
-      if (!teacherExists) {
-        throw new NotFoundException('Teacher not found');
+      if (teacherExists && categoryExists) {
+        await this.courseRepository.createCourse(createCourseDto);
       }
-    }
 
-    if (createCourseDto.categoryId) {
-      const categoryExists = await this.categoryRepository.findOne({
-        where: { id: createCourseDto.categoryId },
-      });
-
-      if (!categoryExists) {
-        throw new NotFoundException('Category not found');
-      }
+      throw new BadRequestException('Create course exception');
+    } catch (error) {
+      throw error;
     }
   }
 

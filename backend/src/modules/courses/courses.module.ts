@@ -9,11 +9,13 @@ import { CourseRepository } from './course.repository';
 import { CoursesController } from './courses.controller';
 import { CoursesService } from './courses.service';
 import { Course } from './entities/course.entity';
+import { UserRepository } from '@modules/users/users.repository';
+import { CategoryRepository } from '@modules/categories/category.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Course, User, Category])],
   controllers: [CoursesController],
-  providers: [CoursesService, CourseRepository, UsersService, CategoriesService],
+  providers: [CoursesService, CourseRepository, UsersService, CategoriesService, UserRepository, CategoryRepository],
   exports: [CoursesService],
 })
 export class CoursesModule {}
