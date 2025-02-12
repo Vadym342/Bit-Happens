@@ -28,7 +28,7 @@ export class CourseRepository {
     }
   }
 
-  async findOneById(id: string): Promise<Course | null> {
+  async findOneById(id: string): Promise<Course> {
     try {
       return await this.courseRepository.findOne({ where: { id } });
     } catch (error) {

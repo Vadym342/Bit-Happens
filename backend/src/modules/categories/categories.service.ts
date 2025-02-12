@@ -24,11 +24,7 @@ export class CategoriesService {
     await this.categoryRepository.createCategory(createCategoryDto);
   }
 
-  async validateCategory(categoryId: string): Promise<void> {
-    const category = await this.categoryRepository.findOne({ where: { id: categoryId } });
-
-    if (!category) {
-      throw new NotFoundException('Category not found');
-    }
+  async isExists(categoryId: string): Promise<boolean> {
+    return this.categoryRepository.isExists(categoryId);
   }
 }

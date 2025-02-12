@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsUUID, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsUUID, IsNumber, MaxLength } from 'class-validator';
 
 export class UpdateCourseDto {
   @IsUUID()

@@ -15,7 +15,7 @@ import { Course } from './entities/course.entity';
 export class CoursesService {
   constructor(
     private readonly courseRepository: CourseRepository,
-    private readonly teacherService: UsersService,
+    private readonly usersService: UsersService,
     private readonly categoryService: CategoriesService,
     @InjectRepository(User)
     private readonly teacherRepository: Repository<User>,
@@ -68,20 +68,29 @@ export class CoursesService {
   }
 
   async updateCourse(id: string, updateCourseDto: UpdateCourseDto): Promise<void> {
-    const course = await this.courseRepository.findOneById(id);
+    try {
+      const course = await this.courseRepository.findOneById(id);
 
-    if (!course) {
-      throw new NotFoundException('Course not found');
-    }
+      if (!course) {
+        throw new NotFoundException('Course not found');
+      }
 
-    if (updateCourseDto.teacherId) {
-      await this.teacherService.validateTeacher(updateCourseDto.teacherId);
-    }
+      let doesUserExist = true;
+      let doesCategoryExist = true;
 
-    if (updateCourseDto.categoryId) {
-      await this.categoryService.validateCategory(updateCourseDto.categoryId);
+      if (updateCourseDto?.teacherId) {
+        doesUserExist = await this.usersService.isExists(updateCourseDto.teacherId);
+      }
 
-      await this.courseRepository.updateOne(id, updateCourseDto);
+      if (updateCourseDto?.categoryId) {
+        doesCategoryExist = await this.categoryService.isExists(updateCourseDto.categoryId);
+      }
+
+      if (doesUserExist && doesCategoryExist) {
+        await this.courseRepository.updateOne(id, updateCourseDto);
+      }
+    } catch (error) {
+      throw error;
     }
   }
 }

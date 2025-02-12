@@ -13,30 +13,30 @@ export class UsersService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const existUser = await this.userRepository.findUserByEmail(createUserDto.email);
+  async create(createUserDto: CreateUserDto): Promise<void> {
+    try {
+      const existUser = await this.userRepository.findUserByEmail(createUserDto.email);
 
-    if (existUser) throw new BadRequestException('This email already exist');
+      if (existUser) throw new BadRequestException('This email already exist');
 
-    await this.userRepository.createUser({
-      firstName: createUserDto.firstName,
-      lastName: createUserDto.lastName,
-      email: createUserDto.email,
-      age: createUserDto.age,
-      password: await argon2.hash(createUserDto.password),
-      roleId: createUserDto.roleId,
-    });
+      await this.userRepository.createUser({
+        firstName: createUserDto.firstName,
+        lastName: createUserDto.lastName,
+        email: createUserDto.email,
+        age: createUserDto.age,
+        password: await argon2.hash(createUserDto.password),
+        roleId: createUserDto.roleId,
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findOne(email: string) {
     return this.userRepository.findUserByEmail(email);
   }
 
-  async validateTeacher(teacherId: string): Promise<void> {
-    const teacher = await this.userRepository.findOne({ where: { id: teacherId } });
-
-    if (!teacher) {
-      throw new NotFoundException('Teacher not found');
-    }
+  async isExists(userId: string): Promise<boolean> {
+    return this.userRepository.isExists(userId);
   }
 }

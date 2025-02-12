@@ -33,4 +33,16 @@ export class UserRepository extends Repository<User> {
       throw new BadRequestException(`Error finding user: ${error.message}`);
     }
   }
+
+  async isExists(userId: string): Promise<boolean> {
+    try {
+      return await this.exists({
+        where: {
+          id: userId,
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(`Error finding user: ${error.message}`);
+    }
+  }
 }
