@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 
 import { CreateUserDto } from './dto/create-users.dto';
-import { User } from './entity/users.entity';
 import { UserRepository } from './users.repository';
 
 @Injectable()
@@ -34,6 +32,6 @@ export class UsersService {
   }
 
   async isExists(userId: string): Promise<boolean> {
-    return await this.userRepository.isExists(userId);
+    return this.userRepository.isExists(userId);
   }
 }

@@ -1,10 +1,7 @@
-import { CategoriesService } from '@modules/categories/categories.service';
-import { Category } from '@modules/categories/entities/category.entity';
-import { User } from '@modules/users/entity/users.entity';
-import { UsersService } from '@modules/users/users.service';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+
+import { CategoriesService } from '@modules/categories/categories.service';
+import { UsersService } from '@modules/users/users.service';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
@@ -20,22 +17,20 @@ export class CoursesService {
   ) {}
 
   async createCourse(createCourseDto: CreateCourseDto): Promise<void> {
-    try {
-      const existCourse = await this.courseRepository.findOneByTitle(createCourseDto.title);
+    const existCourse = await this.courseRepository.findOneByTitle(createCourseDto.title);
 
-      if (existCourse) throw new BadRequestException('This course name already exists!');
+    if (existCourse) throw new BadRequestException('This course name already exists!');
 
-      const teacherExists = await this.usersService.isExists(createCourseDto.teacherId);
-      const categoryExists = await this.categoryService.isExists(createCourseDto.categoryId);
+    const teacherExists = await this.usersService.isExists(createCourseDto.teacherId);
+    const categoryExists = await this.categoryService.isExists(createCourseDto.categoryId);
 
-      if (teacherExists && categoryExists) {
-        await this.courseRepository.createCourse(createCourseDto);
-      }
+    if (teacherExists && categoryExists) {
+      await this.courseRepository.createCourse(createCourseDto);
 
-      throw new BadRequestException('Create course exception');
-    } catch (error) {
-      throw error;
+      return;
     }
+
+    throw new BadRequestException('Create course exception');
   }
 
   async findAllCourses(): Promise<Course[]> {
