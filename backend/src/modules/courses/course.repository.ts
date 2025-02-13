@@ -51,4 +51,12 @@ export class CourseRepository {
       throw new BadRequestException(`Failed to update course: ${error.message}`);
     }
   }
+
+  async softDeleteCourse(id: string): Promise<void> {
+    try {
+      await this.courseRepository.softDelete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to soft delete course: ${error.message}`);
+    }
+  }
 }
