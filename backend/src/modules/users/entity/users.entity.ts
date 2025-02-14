@@ -93,8 +93,11 @@ export class User {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => Role, (role) => role.id)
+  @ManyToOne(() => Role, { eager: true })
   @JoinColumn({ name: 'role_id' })
+  role: Role;
+
+  @Column({ name: 'role_id' })
   roleId: string;
 
   @OneToOne(() => Favorites, (favorites) => favorites.id)
