@@ -14,6 +14,8 @@ export class LessonsController {
   @Post()
   @Permissions(PERMISSIONS.CREATE_LESSON)
   @HttpCode(HttpStatus.CREATED)
+  @UseGuards(PermissionGuard)
+  @Permissions(PERMISSIONS.CREATE_LESSON)
   async createLesson(@Body() createLessonDto: CreateLessonDto): Promise<void> {
     return this.lessonsService.createLesson(createLessonDto);
   }
