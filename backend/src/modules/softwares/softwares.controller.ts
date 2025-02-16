@@ -7,11 +7,11 @@ import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
 @Controller('softwares')
+@UseGuards(PermissionGuard)
 export class SoftwaresController {
   constructor(private readonly softwaresService: SoftwaresService) {}
 
   @Post()
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.CREATE_SOFTWARE)
   @HttpCode(HttpStatus.CREATED)
   async createSoftware(@Body() createSoftwareDto: CreateSoftwareDto): Promise<void> {

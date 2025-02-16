@@ -14,6 +14,6 @@ export const SYSTEM_ROLES: { [key: string]: Roles } = {
   },
   USER: {
     name: 'user',
-    description: 'The Гser role has limited access.',
+    description: 'The User role has limited access.',
   },
 };

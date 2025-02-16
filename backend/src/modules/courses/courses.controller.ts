@@ -10,11 +10,11 @@ import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
 @Controller('courses')
+@UseGuards(PermissionGuard)
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.CREATE_COURSE)
   @HttpCode(HttpStatus.CREATED)
   async createCourse(@Body() createCourseDto: CreateCourseDto): Promise<void> {
@@ -22,21 +22,18 @@ export class CoursesController {
   }
 
   @Get()
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.VIEW_COURSES)
   async getAllCourses(): Promise<Course[]> {
     return this.coursesService.findAllCourses();
   }
 
   @Get(':id')
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.VIEW_COURSES)
   async getCourseById(@Param('id') id: string): Promise<Course> {
     return this.coursesService.findCourseById(id);
   }
 
   @Patch(':id')
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.UPDATE_COURSE)
   @HttpCode(HttpStatus.NO_CONTENT)
   async updateCourse(@Param() { id }: CourseIdParamDto, @Body() updateCourseDto: UpdateCourseDto): Promise<void> {

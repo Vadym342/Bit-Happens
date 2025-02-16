@@ -7,11 +7,11 @@ import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
 @Controller('categories')
+@UseGuards(PermissionGuard)
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  @UseGuards(PermissionGuard)
   @Permissions(PERMISSIONS.CREATE_CATEGORY)
   @HttpCode(HttpStatus.CREATED)
   async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<void> {
