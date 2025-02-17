@@ -76,16 +76,12 @@ export class CoursesService {
   }
 
   async deleteCourse(id: string): Promise<void> {
-    const courseExists = await this.courseRepository.findOneById(id);
+    const doesCourseExist = await this.courseRepository.isExists(id);
 
-    if (!courseExists) {
+    if (!doesCourseExist) {
       throw new NotFoundException('Course not found');
     }
 
-    try {
-      await this.courseRepository.softDeleteCourse(id);
-    } catch (error) {
-      throw error;
-    }
+    await this.courseRepository.softDeleteCourse(id);
   }
 }
