@@ -5,7 +5,7 @@ import { CourseIdParamDto } from './dtos/course-id-param.dto';
 import { CreateCourseDto } from './dtos/create-courses.dto';
 import { UpdateCourseDto } from './dtos/update-courses.dto';
 import { Course } from './entities/course.entity';
-import { PermissionGuard } from '@modules/auth/roles/permission.guards';
+import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
@@ -22,13 +22,13 @@ export class CoursesController {
   }
 
   @Get()
-  @Permissions(PERMISSIONS.VIEW_COURSES)
+  @Permissions(PERMISSIONS.VIEW_ALL_COURSES)
   async getAllCourses(): Promise<Course[]> {
     return this.coursesService.findAllCourses();
   }
 
   @Get(':id')
-  @Permissions(PERMISSIONS.VIEW_COURSES)
+  @Permissions(PERMISSIONS.VIEW_ONE_COURSE)
   async getCourseById(@Param('id') id: string): Promise<Course> {
     return this.coursesService.findCourseById(id);
   }

@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs
 
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dtos/create-categories.dto';
-import { PermissionGuard } from '@modules/auth/roles/permission.guards';
+import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 

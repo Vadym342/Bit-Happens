@@ -3,8 +3,8 @@ import { Reflector } from '@nestjs/core';
 import { PERMISSIONS_KEY } from '@modules/auth/decorators/permissions.decorator';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '@modules/users/users.service';
-import { ROLE_PERMISSIONS_MAP } from './rolesPermissionsMap';
-import { PermissionsType } from './permissions';
+import { ROLE_PERMISSIONS_MAP } from '../roles/rolesPermissionsMap';
+import { PermissionsType } from '../roles/permissions';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
