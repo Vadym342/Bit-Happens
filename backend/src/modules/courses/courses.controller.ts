@@ -41,6 +41,7 @@ export class CoursesController {
   }
 
   @Delete(':id')
+  @Permissions(PERMISSIONS.DELETE_COURSE)
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteCourse(@Param() { id }: CourseIdParamDto): Promise<void> {
     await this.coursesService.deleteCourse(id);
