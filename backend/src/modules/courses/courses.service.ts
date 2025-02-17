@@ -1,7 +1,6 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-
 import { CategoriesService } from '@modules/categories/categories.service';
 import { UsersService } from '@modules/users/users.service';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
@@ -74,5 +73,15 @@ export class CoursesService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async deleteCourse(id: string): Promise<void> {
+    const doesCourseExist = await this.courseRepository.isExists(id);
+
+    if (!doesCourseExist) {
+      throw new NotFoundException('Course not found');
+    }
+
+    await this.courseRepository.softDeleteCourse(id);
   }
 }
