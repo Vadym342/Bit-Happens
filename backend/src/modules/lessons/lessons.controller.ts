@@ -18,4 +18,9 @@ export class LessonsController {
   async getLessonById(@Param('id') id: string): Promise<Lesson> {
     return this.lessonsService.findLessonById(id);
   }
+
+  @Get()
+  async getAllLessons(): Promise<Lesson[]> {
+    return this.lessonsService.findAllLessons();
+  }
 }
