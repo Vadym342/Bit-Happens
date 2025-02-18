@@ -35,4 +35,14 @@ export class LessonsService {
   async findAllLessons(): Promise<Lesson[]> {
     return this.lessonRepository.findAll();
   }
+
+  async deleteLesson(id: string): Promise<void> {
+    const doesLessonExist = await this.lessonRepository.isExists(id);
+
+    if (!doesLessonExist) {
+      throw new NotFoundException('Lesson not found');
+    }
+
+    await this.lessonRepository.softDeleteLesson(id);
+  }
 }
