@@ -1,6 +1,7 @@
-import { Controller, Post, HttpCode, HttpStatus, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, UseGuards } from '@nestjs/common';
 
 import { CreateLessonDto } from './dtos/create-lessons.dto';
+import { Lesson } from './entities/lessons.entity';
 import { LessonsService } from './lessons.service';
 import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
@@ -18,5 +19,10 @@ export class LessonsController {
   @Permissions(PERMISSIONS.CREATE_LESSON)
   async createLesson(@Body() createLessonDto: CreateLessonDto): Promise<void> {
     return this.lessonsService.createLesson(createLessonDto);
+  }
+
+  @Get(':id')
+  async getLessonById(@Param('id') id: string): Promise<Lesson> {
+    return this.lessonsService.findLessonById(id);
   }
 }
