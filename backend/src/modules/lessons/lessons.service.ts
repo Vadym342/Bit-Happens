@@ -1,6 +1,7 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 
 import { CreateLessonDto } from './dtos/create-lessons.dto';
+import { Lesson } from './entities/lessons.entity';
 import { LessonRepository } from './lesson.repository';
 
 @Injectable()
@@ -17,5 +18,17 @@ export class LessonsService {
     if (existCategory) throw new BadRequestException('This lesson title already exists!');
 
     await this.lessonRepository.createLesson(createLessonDto);
+  }
+
+  async findLessonById(id: string): Promise<Lesson> {
+    try {
+      const lesson = await this.lessonRepository.findOneById(id);
+
+      if (!lesson) throw new NotFoundException('Lesson not found');
+
+      return lesson;
+    } catch (error) {
+      throw error;
+    }
   }
 }

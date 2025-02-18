@@ -10,5 +10,6 @@ import { LessonsService } from './lessons.service';
   imports: [TypeOrmModule.forFeature([Lesson])],
   controllers: [LessonsController],
   providers: [LessonsService, LessonRepository],
+  exports: [LessonsService],
 })
 export class LessonsModule {}
