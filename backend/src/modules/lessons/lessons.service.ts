@@ -31,4 +31,8 @@ export class LessonsService {
       throw error;
     }
   }
+
+  async findAllLessons(): Promise<Lesson[]> {
+    return this.lessonRepository.findAll();
+  }
 }

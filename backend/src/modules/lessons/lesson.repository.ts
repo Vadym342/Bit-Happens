@@ -37,4 +37,12 @@ export class LessonRepository extends Repository<Lesson> {
       throw new BadRequestException(`Error fetching lesson: ${error.message}`);
     }
   }
+
+  async findAll(): Promise<Lesson[]> {
+    try {
+      return await this.lessonRepository.find();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching lessons: ${error.message}`);
+    }
+  }
 }
