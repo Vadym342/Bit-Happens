@@ -16,7 +16,7 @@ export class LessonsController {
   }
 
   @Get(':id')
-  async getLessonById(@Param('id') id: string): Promise<Lesson> {
+  async getLessonById(@Param() { id }: LessonIdParamDto): Promise<Lesson> {
     return this.lessonsService.findLessonById(id);
   }
 

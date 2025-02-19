@@ -22,7 +22,7 @@ export class CoursesController {
   }
 
   @Get(':id')
-  async getCourseById(@Param('id') id: string): Promise<Course> {
+  async getCourseById(@Param() { id }: CourseIdParamDto): Promise<Course> {
     return this.coursesService.findCourseById(id);
   }
 
