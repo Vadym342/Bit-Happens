@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { User } from './entity/users.entity';
+import { UserRepository } from './user.repository';
 import { UsersController } from './users.controller';
-import { UserRepository } from './users.repository';
 import { UsersService } from './users.service';
 
 @Module({
@@ -22,6 +21,6 @@ import { UsersService } from './users.service';
   ],
   controllers: [UsersController],
   providers: [UsersService, UserRepository],
-  exports: [UsersService],
+  exports: [UsersService, UserRepository],
 })
 export class UsersModule {}

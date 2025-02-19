@@ -45,4 +45,16 @@ export class UserRepository extends Repository<User> {
       throw new BadRequestException(`Error finding user: ${error.message}`);
     }
   }
+
+  async findUserById(id: string): Promise<User> {
+    try {
+      return await this.findOne({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(`Error finding user: ${error.message}`);
+    }
+  }
 }

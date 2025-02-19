@@ -1,3 +1,9 @@
+import { Course } from '@modules/courses/entities/course.entity';
+import { Favorites } from '@modules/favorites/favorites.entity';
+import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
+import { Role } from '@modules/roles/roles.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { Wishlist } from '@modules/wishlists/wishlists.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,13 +16,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-import { Course } from '@modules/courses/entities/course.entity';
-import { Favorites } from '@modules/favorites/favorites.entity';
-import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
-import { Role } from '@modules/role/role.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
-import { Wishlist } from '@modules/wishlists/wishlists.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -94,8 +93,11 @@ export class User {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => Role, (role) => role.id)
+  @ManyToOne(() => Role, { eager: true })
   @JoinColumn({ name: 'role_id' })
+  role: Role;
+
+  @Column({ name: 'role_id' })
   roleId: string;
 
   @OneToOne(() => Favorites, (favorites) => favorites.id)
