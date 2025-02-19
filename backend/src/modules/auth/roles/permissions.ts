@@ -36,6 +36,14 @@ export const PERMISSIONS: { [key: string]: PermissionsType } = {
     name: 'delete:lesson',
     description: 'Delete an existing lesson.',
   },
+  VIEW_ONE_LESSON: {
+    name: 'view:one:lesson',
+    description: 'View one lesson.',
+  },
+  VIEW_ALL_LESSONS: {
+    name: 'view:all:lessons',
+    description: 'View all lessons.',
+  },
   CREATE_USER: {
     name: 'create:user',
     description: 'Create a new user.',

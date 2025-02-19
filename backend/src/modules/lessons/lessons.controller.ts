@@ -21,11 +21,13 @@ export class LessonsController {
   }
 
   @Get(':id')
+  @Permissions(PERMISSIONS.VIEW_ONE_LESSON)
   async getLessonById(@Param('id') id: string): Promise<Lesson> {
     return this.lessonsService.findLessonById(id);
   }
 
   @Get()
+  @Permissions(PERMISSIONS.VIEW_ALL_LESSONS)
   async getAllLessons(): Promise<Lesson[]> {
     return this.lessonsService.findAllLessons();
   }
