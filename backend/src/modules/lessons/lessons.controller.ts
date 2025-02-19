@@ -1,6 +1,7 @@
-import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, Delete } from '@nestjs/common';
 
 import { CreateLessonDto } from './dtos/create-lessons.dto';
+import { LessonIdParamDto } from './dtos/lesson-id-param.dto';
 import { Lesson } from './entities/lessons.entity';
 import { LessonsService } from './lessons.service';
 import { PermissionGuard } from '@modules/auth/guards/permission.guard';
@@ -20,8 +21,7 @@ export class LessonsController {
   }
 
   @Get(':id')
-  @Permissions(PERMISSIONS.VIEW_ONE_LESSON)
-  async getLessonById(@Param('id') id: string): Promise<Lesson> {
+  async getLessonById(@Param() { id }: LessonIdParamDto): Promise<Lesson> {
     return this.lessonsService.findLessonById(id);
   }
 
@@ -29,5 +29,11 @@ export class LessonsController {
   @Permissions(PERMISSIONS.VIEW_ALL_LESSONS)
   async getAllLessons(): Promise<Lesson[]> {
     return this.lessonsService.findAllLessons();
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteLesson(@Param() { id }: LessonIdParamDto): Promise<void> {
+    await this.lessonsService.deleteLesson(id);
   }
 }
