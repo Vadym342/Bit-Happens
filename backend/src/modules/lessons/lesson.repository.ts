@@ -45,4 +45,20 @@ export class LessonRepository extends Repository<Lesson> {
       throw new BadRequestException(`Error fetching lessons: ${error.message}`);
     }
   }
+
+  async softDeleteLesson(id: string): Promise<void> {
+    try {
+      await this.lessonRepository.softDelete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to soft delete lesson: ${error.message}`);
+    }
+  }
+
+  async isExists(id: string): Promise<boolean> {
+    try {
+      return await this.lessonRepository.exists({ where: { id } });
+    } catch (error) {
+      throw new BadRequestException(`Error finding lesson: ${error.message}`);
+    }
+  }
 }
