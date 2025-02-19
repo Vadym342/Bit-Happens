@@ -4,7 +4,6 @@ import { CreateLessonDto } from './dtos/create-lessons.dto';
 import { Lesson } from './entities/lessons.entity';
 import { LessonsService } from './lessons.service';
 import { PermissionGuard } from '@modules/auth/guards/permission.guard';
-import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
