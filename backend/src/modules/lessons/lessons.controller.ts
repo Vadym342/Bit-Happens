@@ -1,4 +1,4 @@
-import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, Delete, UseGuards } from '@nestjs/common';
 
 import { CreateLessonDto } from './dtos/create-lessons.dto';
 import { LessonIdParamDto } from './dtos/lesson-id-param.dto';
@@ -33,6 +33,7 @@ export class LessonsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @Permissions(PERMISSIONS.DELETE_LESSON)
   async deleteLesson(@Param() { id }: LessonIdParamDto): Promise<void> {
     await this.lessonsService.deleteLesson(id);
   }
