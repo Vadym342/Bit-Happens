@@ -57,4 +57,12 @@ export class UserRepository extends Repository<User> {
       throw new BadRequestException(`Error finding user: ${error.message}`);
     }
   }
+
+  async findAllUsers(): Promise<User[]> {
+    try {
+      return await this.find();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching users: ${error.message}`);
+    }
+  }
 }

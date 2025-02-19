@@ -20,20 +20,21 @@ export class LessonsController {
     return this.lessonsService.createLesson(createLessonDto);
   }
 
-  @Get(':id')
-  async getLessonById(@Param() { id }: LessonIdParamDto): Promise<Lesson> {
-    return this.lessonsService.findLessonById(id);
-  }
-
   @Get()
   @Permissions(PERMISSIONS.VIEW_ALL_LESSONS)
   async getAllLessons(): Promise<Lesson[]> {
     return this.lessonsService.findAllLessons();
   }
 
+  @Get(':id')
+  @Permissions(PERMISSIONS.VIEW_ONE_LESSON)
+  async getLessonById(@Param() { id }: LessonIdParamDto): Promise<Lesson> {
+    return this.lessonsService.findLessonById(id);
+  }
+
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
   @Permissions(PERMISSIONS.DELETE_LESSON)
+  @HttpCode(HttpStatus.NO_CONTENT)
   async deleteLesson(@Param() { id }: LessonIdParamDto): Promise<void> {
     await this.lessonsService.deleteLesson(id);
   }
