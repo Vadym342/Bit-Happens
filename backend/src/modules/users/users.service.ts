@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-users.dto';
 import * as argon2 from 'argon2';
 import { UserRepository } from './user.repository';
+import { User } from './entity/users.entity';
 
 @Injectable()
 export class UsersService {
@@ -26,7 +27,7 @@ export class UsersService {
     }
   }
 
-  async findOne(email: string) {
+  async findOne(email: string): Promise<User> {
     return this.userRepository.findUserByEmail(email);
   }
 
@@ -34,7 +35,11 @@ export class UsersService {
     return this.userRepository.isExists(userId);
   }
 
-  async findUserById(id: string) {
+  async findUserById(id: string): Promise<User> {
     return this.userRepository.findUserById(id);
+  }
+
+  async findAll(): Promise<User[]> {
+    return this.userRepository.findAllUsers();
   }
 }
