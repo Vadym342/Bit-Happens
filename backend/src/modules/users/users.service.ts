@@ -1,8 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-users.dto';
 import * as argon2 from 'argon2';
-import { UserRepository } from './user.repository';
+
+import { CreateUserDto } from './dto/create-users.dto';
 import { User } from './entity/users.entity';
+import { UserRepository } from './user.repository';
 import { UpdateUserDto } from './dto/update-users.dto';
 
 @Injectable()

@@ -1,12 +1,13 @@
 import { Controller, Post, HttpCode, HttpStatus, Body, Get, Param, Delete, UseGuards } from '@nestjs/common';
 
+import { Permissions } from '@modules/auth/decorators/permissions.decorator';
+import { PermissionGuard } from '@modules/auth/guards/permission.guard';
+import { PERMISSIONS } from '@modules/auth/roles/permissions';
+
 import { CreateLessonDto } from './dtos/create-lessons.dto';
 import { LessonIdParamDto } from './dtos/lesson-id-param.dto';
 import { Lesson } from './entities/lessons.entity';
 import { LessonsService } from './lessons.service';
-import { PermissionGuard } from '@modules/auth/guards/permission.guard';
-import { Permissions } from '@modules/auth/decorators/permissions.decorator';
-import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
 @Controller('lessons')
 @UseGuards(PermissionGuard)
