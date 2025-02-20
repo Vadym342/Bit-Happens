@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { UsersModule } from '@modules/users/users.module';
 
 import { Lesson } from './entities/lessons.entity';
 import { LessonRepository } from './lesson.repository';
 import { LessonsController } from './lessons.controller';
 import { LessonsService } from './lessons.service';
-import { UsersModule } from '@modules/users/users.module';
-import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [UsersModule, TypeOrmModule.forFeature([Lesson])],
