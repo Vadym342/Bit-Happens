@@ -22,6 +22,14 @@ export class CategoryRepository extends Repository<Category> {
     }
   }
 
+  async findOneById(categoryId: string): Promise<Category | null> {
+    try {
+      return await this.findOne({ where: { id: categoryId } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching category: ${error.message}`);
+    }
+  }
+
   async isExists(categoryId: string): Promise<boolean> {
     try {
       return await this.exists({
