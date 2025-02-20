@@ -1,10 +1,11 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 
+import { Permissions } from '@modules/auth/decorators/permissions.decorator';
+import { PermissionGuard } from '@modules/auth/guards/permission.guard';
+import { PERMISSIONS } from '@modules/auth/roles/permissions';
+
 import { CreateSoftwareDto } from './dtos/create-softwares.dto';
 import { SoftwaresService } from './softwares.service';
-import { PermissionGuard } from '@modules/auth/guards/permission.guard';
-import { Permissions } from '@modules/auth/decorators/permissions.decorator';
-import { PERMISSIONS } from '@modules/auth/roles/permissions';
 
 @Controller('softwares')
 @UseGuards(PermissionGuard)
