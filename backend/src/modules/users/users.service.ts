@@ -1,8 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-users.dto';
 import * as argon2 from 'argon2';
 import { UserRepository } from './user.repository';
 import { User } from './entity/users.entity';
+import { UpdateUserDto } from './dto/update-users.dto';
 
 @Injectable()
 export class UsersService {
@@ -41,5 +42,19 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     return this.userRepository.findAllUsers();
+  }
+
+  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<void> {
+    try {
+      const user = await this.userRepository.findUserById(id);
+
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+
+      await this.userRepository.updateOne(id, updateUserDto);
+    } catch (error) {
+      throw error;
+    }
   }
 }

@@ -65,4 +65,12 @@ export class UserRepository extends Repository<User> {
       throw new BadRequestException(`Error fetching users: ${error.message}`);
     }
   }
+
+  async updateOne(id: string, updateData: Partial<User>): Promise<void> {
+    try {
+      await this.update(id, updateData);
+    } catch (error) {
+      throw new BadRequestException(`Failed to update user: ${error.message}`);
+    }
+  }
 }
