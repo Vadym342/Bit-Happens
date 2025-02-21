@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: center; /* Выравнивание по центру */
+  justify-content: center;
 }
 
 .signup-btn {
