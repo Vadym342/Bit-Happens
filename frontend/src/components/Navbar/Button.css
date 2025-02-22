@@ -1,0 +1,46 @@
+:root {
+  --primary: #ffa041;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.signup-btn {
+  padding: 5px 20px;
+  border-radius: 25px;
+  border: 2px solid #ffa041;
+  background-color: transparent;
+  color: #ffa041;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #ffa041;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login-btn {
+  padding: 10px 20px 10px 0px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.login-btn:hover {
+  color: #ffa041;
+}

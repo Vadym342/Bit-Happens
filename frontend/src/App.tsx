@@ -1,10 +1,17 @@
-import './App.css';
+import React from 'react';
 
+import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Navbar from './components/Navbar/Navbar';
+import AppRoutes from './routing/RouterApp';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-red-500">Hello world!</h1>
-    </>
+    <Router>
+      <Navbar />
+      <AppRoutes />
+    </Router>
   );
 }
 
