@@ -27,6 +27,7 @@ export class UserRepository extends Repository<User> {
       return await this.findOne({
         where: {
           email: email,
+          deletedAt: null,
         },
       });
     } catch (error) {
@@ -39,6 +40,7 @@ export class UserRepository extends Repository<User> {
       return await this.exists({
         where: {
           id: userId,
+          deletedAt: null,
         },
       });
     } catch (error) {
@@ -51,6 +53,7 @@ export class UserRepository extends Repository<User> {
       return await this.findOne({
         where: {
           id: id,
+          deletedAt: null,
         },
       });
     } catch (error) {
@@ -60,7 +63,11 @@ export class UserRepository extends Repository<User> {
 
   async findAllUsers(): Promise<User[]> {
     try {
-      return await this.find();
+      return await this.find({
+        where: {
+          deletedAt: null,
+        },
+      });
     } catch (error) {
       throw new BadRequestException(`Error fetching users: ${error.message}`);
     }
@@ -71,6 +78,14 @@ export class UserRepository extends Repository<User> {
       await this.update(id, updateData);
     } catch (error) {
       throw new BadRequestException(`Failed to update user: ${error.message}`);
+    }
+  }
+
+  async deleteOne(id: string): Promise<void> {
+    try {
+      await this.softDelete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to delete user: ${error.message}`);
     }
   }
 }
