@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
@@ -74,7 +74,17 @@ const reviews: Review[] = [
 ];
 
 const Reviews: React.FC = () => {
-  const [sliderRef] = useKeenSlider({ loop: true, mode: 'snap', slides: { perView: 1 } });
+  const [sliderRef, instanceRef] = useKeenSlider({ loop: true, mode: 'snap', slides: { perView: 1 } });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (instanceRef.current) {
+        instanceRef.current.next();
+      }
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, [instanceRef]);
 
   return (
     <div className="review-section">

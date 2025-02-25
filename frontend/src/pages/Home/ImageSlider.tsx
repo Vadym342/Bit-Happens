@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ArrowBigLeft, ArrowBigRight, Circle, CircleDot } from 'lucide-react';
 import './image-slider.css';
@@ -26,6 +26,12 @@ export function ImageSlider({ images }: ImageSliderProps) {
       return index - 1;
     });
   }
+
+  useEffect(() => {
+    const interval = setInterval(showNextImage, 10000);
+
+    return () => clearInterval(interval);
+  }, [imageIndex]);
 
   return (
     <section aria-label="Image Slider" style={{ width: '100%', height: '100%', position: 'relative' }}>
