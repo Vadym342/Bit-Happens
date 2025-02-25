@@ -1,0 +1,70 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.home-image-slider {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  top: 0;
+  padding: 0;
+}
+
+.flash-deals-title,
+.recommend-title,
+.game-art-title {
+  display: flex;
+  font-size: 2.5rem;
+  gap: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #333;
+  text-align: left;
+  padding-left: 80px;
+}
+
+.zap-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffa041;
+  margin-top: 20px;
+}
+
+.practical-appealing-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  color: #ffa041;
+  text-align: center;
+}
+
+.lecturers-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.fluxion-is {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  color: grey;
+  text-align: center;
+  padding-left: 0px;
+}
+
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
