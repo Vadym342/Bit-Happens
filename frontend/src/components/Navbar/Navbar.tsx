@@ -31,7 +31,7 @@ function Navbar() {
   };
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar fixed top-0 left-0 w-full bg-white shadow-md z-50">
         <Link to="/" className="navbar-logo">
           FLUXION <i className="fab fa-firstdraft" />
         </Link>
