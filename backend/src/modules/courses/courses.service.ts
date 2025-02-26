@@ -1,7 +1,6 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-
 import { CategoriesService } from '@modules/categories/categories.service';
 import { UsersService } from '@modules/users/users.service';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { CourseRepository } from './course.repository';
 import { CreateCourseDto } from './dtos/create-courses.dto';
