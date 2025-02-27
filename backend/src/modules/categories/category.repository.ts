@@ -41,4 +41,12 @@ export class CategoryRepository extends Repository<Category> {
       throw new BadRequestException(`Error finding category: ${error.message}`);
     }
   }
+
+  async findOneByTitle(title: string): Promise<Category | null> {
+    try {
+      return await this.findOne({ where: { name: title } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching category: ${error.message}`);
+    }
+  }
 }
