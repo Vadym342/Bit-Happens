@@ -1,10 +1,10 @@
 import React from 'react';
 
-import NamelessSamurai from '../../assets/NamelessSamurai.jpg';
-import VagrantKnight from '../../assets/VagrantKnight.jpg';
-import FemaleBust from '../../assets/FemaleBust.jpg';
-import SciFiEnvironment from '../../assets/SciFiEnvironment.jpg';
-import MagicalClassroom from '../../assets/MagicalClassroom.jpg';
+import NamelessSamurai from '../../../assets/NamelessSamurai.jpg';
+import VagrantKnight from '../../../assets/VagrantKnight.jpg';
+import FemaleBust from '../../../assets/FemaleBust.jpg';
+import SciFiEnvironment from '../../../assets/SciFiEnvironment.jpg';
+import MagicalClassroom from '../../../assets/MagicalClassroom.jpg';
 
 import { ImageSlider } from './ImageSlider';
 

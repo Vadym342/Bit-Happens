@@ -4,11 +4,11 @@ import './Home.css';
 import './reviews.css';
 import { Zap } from 'lucide-react';
 
-import ProductCard from '../../shared/components/card';
-import { coursesData } from '../../data/coursesData';
+import ProductCard from '../../../shared/components/card/card';
+import { coursesData } from '../../../data/coursesData';
 
 import Reviews from './Reviews';
-import '../../shared/components/card.css';
+import '../../../shared/components/card/card.css';
 import CategoriesBar from './CategoriesBar';
 import './categories-bar.css';
 import ImageSliderSettings from './ImageSliderSettings';

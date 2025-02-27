@@ -10,22 +10,16 @@ interface ImageSliderProps {
   }[];
 }
 
-export function ImageSlider({ images }: ImageSliderProps) {
-  const [imageIndex, setImageIndex] = useState(0);
+export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
+  const [imageIndex, setImageIndex] = useState(images.length > 0 ? 0 : -1);
 
-  function showNextImage() {
-    setImageIndex((index) => {
-      if (index === images.length - 1) return 0;
-      return index + 1;
-    });
-  }
+  const showNextImage = () => {
+    setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
+  };
 
-  function showPrevImage() {
-    setImageIndex((index) => {
-      if (index === 0) return images.length - 1;
-      return index - 1;
-    });
-  }
+  const showPrevImage = () => {
+    setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
+  };
 
   useEffect(() => {
     const interval = setInterval(showNextImage, 10000);
@@ -87,4 +81,4 @@ export function ImageSlider({ images }: ImageSliderProps) {
       <div id="after-image-slider-controls" />
     </section>
   );
-}
+};

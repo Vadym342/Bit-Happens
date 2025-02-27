@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import './reviews.css';
+
 interface Review {
   name: string;
   role: string;
