@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Courses from '../pages/Courses/Courses';
 import ContactUs from '../pages/ContactUs/ContactUs';
 import SignUp from '../pages/SignUp/SignUp';
-import Home from '../pages/Home/Home';
+import Home from '../pages/Home/components/Home';
 import GameArt from '../pages/GameArt/GameArt';
 import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
