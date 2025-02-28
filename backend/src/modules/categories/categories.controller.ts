@@ -24,4 +24,9 @@ export class CategoriesController {
   async getCategoryById(@Param() { id }: CategoryIdParamDto): Promise<Category> {
     return this.categoriesService.getCategoryById(id);
   }
+
+  @Get('title/:title')
+  async getCategoryByTitle(@Param('title') title: string): Promise<Category> {
+    return this.categoriesService.getCategoryByTitle(title);
+  }
 }

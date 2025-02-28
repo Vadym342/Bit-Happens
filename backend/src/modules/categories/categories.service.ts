@@ -34,6 +34,16 @@ export class CategoriesService {
     return category;
   }
 
+  async getCategoryByTitle(title: string): Promise<Category> {
+    const category = await this.categoryRepository.findOneByTitle(title);
+
+    if (!category) {
+      throw new NotFoundException(`Category with title "${title}" not found`);
+    }
+
+    return category;
+  }
+
   async isExists(categoryId: string): Promise<boolean> {
     return this.categoryRepository.isExists(categoryId);
   }
