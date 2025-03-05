@@ -34,6 +34,14 @@ export class CategoriesService {
     return category;
   }
 
+  async findAllCategories(): Promise<Category[]> {
+    try {
+      return await this.categoryRepository.findAllCategories();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching categories: ${error.message}`);
+    }
+  }
+
   async getCategoryByTitle(title: string): Promise<Category> {
     const category = await this.categoryRepository.findOneByTitle(title);
 
