@@ -20,6 +20,12 @@ export class CategoriesController {
     return this.categoriesService.createCategory(createCategoryDto);
   }
 
+  @Get()
+  @Permissions(PERMISSIONS.VIEW_ALL_CATEGORIES)
+  async getAllCategories(): Promise<Category[]> {
+    return this.categoriesService.findAllCategories();
+  }
+
   @Get(':id')
   async getCategoryById(@Param() { id }: CategoryIdParamDto): Promise<Category> {
     return this.categoriesService.getCategoryById(id);

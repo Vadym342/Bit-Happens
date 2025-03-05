@@ -49,4 +49,12 @@ export class CategoryRepository extends Repository<Category> {
       throw new BadRequestException(`Error fetching category: ${error.message}`);
     }
   }
+
+  async findAllCategories(): Promise<Category[]> {
+    try {
+      return await this.find();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching categories: ${error.message}`);
+    }
+  }
 }
