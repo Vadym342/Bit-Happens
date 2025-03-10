@@ -1,11 +1,12 @@
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
-import { Controller, Get, Param, Body, Post, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
+import { Controller, Get, Put, Param, ParseUUIDPipe, Body, Post, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
 
 import { CategoriesService } from './categories.service';
 import { CategoryIdParamDto } from './dtos/categories-id-param.dto';
 import { CreateCategoryDto } from './dtos/create-categories.dto';
+import { UpdateCategoryDto } from './dtos/update-category.dto';
 import { Category } from './entities/category.entity';
 
 @Controller('categories')
@@ -34,5 +35,10 @@ export class CategoriesController {
   @Get('title/:title')
   async getCategoryByTitle(@Param('title') title: string): Promise<Category> {
     return this.categoriesService.getCategoryByTitle(title);
+  }
+
+  @Put(':id')
+  async updateCategory(@Param('id', ParseUUIDPipe) id: string, @Body() updateCategoryDto: UpdateCategoryDto): Promise<Category> {
+    return this.categoriesService.updateCategory(id, updateCategoryDto);
   }
 }
