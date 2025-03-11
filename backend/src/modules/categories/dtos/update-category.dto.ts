@@ -1,13 +1,13 @@
 import { IsOptional, IsString, Length } from 'class-validator';
 
 export class UpdateCategoryDto {
-  @IsOptional()
   @IsString()
   @Length(3, 50)
+  @IsOptional()
   name?: string;
 
-  @IsOptional()
   @IsString()
   @Length(5, 100)
+  @IsOptional()
   description?: string;
 }
