@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -59,10 +59,10 @@ export class CategoryRepository extends Repository<Category> {
   }
 
   async deleteCategory(id: string): Promise<void> {
-    const result = await this.delete(id);
-
-    if (result.affected === 0) {
-      throw new NotFoundException(`Category with ID ${id} not found`);
+    try {
+      await this.delete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to delete category: ${error.message}`);
     }
   }
 }
