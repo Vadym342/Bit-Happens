@@ -69,6 +69,20 @@ export class CategoriesService {
     }
   }
 
+  async deleteCategory(id: string): Promise<void> {
+    try {
+      const category = await this.categoryRepository.findOne({ where: { id } });
+
+      if (!category) {
+        throw new NotFoundException(`Category with ID ${id} not found`);
+      }
+
+      await this.categoryRepository.delete(id);
+    } catch (error) {
+      throw new BadRequestException(`Error deleting category: ${error.message}`);
+    }
+  }
+
   async isExists(categoryId: string): Promise<boolean> {
     return this.categoryRepository.isExists(categoryId);
   }

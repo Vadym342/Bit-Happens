@@ -57,4 +57,12 @@ export class CategoryRepository extends Repository<Category> {
       throw new BadRequestException(`Error fetching categories: ${error.message}`);
     }
   }
+
+  async deleteCategory(id: string): Promise<void> {
+    try {
+      await this.delete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to delete category: ${error.message}`);
+    }
+  }
 }
