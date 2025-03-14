@@ -1,8 +1,6 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from '@nestjs/common';
-
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
-import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 
 import { CoursesService } from './courses.service';
 import { CourseIdParamDto } from './dtos/course-id-param.dto';
@@ -11,12 +9,12 @@ import { UpdateCourseDto } from './dtos/update-courses.dto';
 import { Course } from './entities/course.entity';
 
 @Controller('courses')
-@UseGuards(PermissionGuard)
+// @UseGuards(PermissionGuard)
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
-  @Permissions(PERMISSIONS.CREATE_COURSE)
+  // @Permissions(PERMISSIONS.CREATE_COURSE)
   @HttpCode(HttpStatus.CREATED)
   async createCourse(@Body() createCourseDto: CreateCourseDto): Promise<void> {
     return this.coursesService.createCourse(createCourseDto);
