@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './Home.css';
 import './reviews.css';
 import { Zap } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ProductCard from '../../../shared/components/card/card';
 import { coursesData } from '../../../data/coursesData';
+import { changeValue, fetchCourses } from '../../../redux/slices/coursesSlice';
 
 import Reviews from './Reviews';
 import '../../../shared/components/card/card.css';
@@ -14,6 +16,21 @@ import './categories-bar.css';
 import ImageSliderSettings from './ImageSliderSettings';
 import { LecturerButton } from './LecturerButton';
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const { courses } = useSelector((store: any) => {
+    return store.courses;
+  });
+  const getCourses = () => {
+    try {
+      return dispatch(fetchCourses());
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, []);
   return (
     <div className="home-container">
       <div className="home-image-slider">

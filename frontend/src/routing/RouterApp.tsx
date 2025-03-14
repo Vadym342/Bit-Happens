@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import Courses from '../pages/Courses/Courses';
 import ContactUs from '../pages/ContactUs/ContactUs';
@@ -9,6 +10,7 @@ import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
 import GraphicDesign from '../pages/GraphicDesign/GraphicDesign';
 import Cart from '../pages/Cart/Cart';
+import store from '../redux/store';
 
 import ProtectedRoutes from './ProtectedRoutes';
 
