@@ -1,0 +1,74 @@
+.review-section {
+  background: #f9f9f9;
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.review-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.slide {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 1rem;
+  flex: 0 0 auto;
+  transition: transform 0.3s ease;
+  max-width: 300px;
+}
+
+.slide:hover {
+  transform: translateY(-5px);
+}
+
+.review-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.review-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.review-role {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.review-text {
+  margin-top: 1rem;
+  color: #34495e;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .review-title {
+    font-size: 2rem;
+  }
+
+  .slide {
+    padding: 1.5rem;
+    max-width: 270px;
+  }
+
+  .review-image {
+    width: 60px;
+    height: 60px;
+  }
+}

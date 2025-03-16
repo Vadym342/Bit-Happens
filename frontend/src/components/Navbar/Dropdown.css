@@ -5,6 +5,7 @@
   list-style: none;
   text-align: start;
   box-shadow: 0px 1px 10px rgb(7, 21, 32);
+  z-index: 999;
 }
 
 .dropdown-menu li {

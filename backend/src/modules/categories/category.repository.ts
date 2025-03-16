@@ -22,6 +22,14 @@ export class CategoryRepository extends Repository<Category> {
     }
   }
 
+  async findOneById(categoryId: string): Promise<Category | null> {
+    try {
+      return await this.findOne({ where: { id: categoryId } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching category: ${error.message}`);
+    }
+  }
+
   async isExists(categoryId: string): Promise<boolean> {
     try {
       return await this.exists({
@@ -31,6 +39,30 @@ export class CategoryRepository extends Repository<Category> {
       });
     } catch (error) {
       throw new BadRequestException(`Error finding category: ${error.message}`);
+    }
+  }
+
+  async findOneByTitle(title: string): Promise<Category | null> {
+    try {
+      return await this.findOne({ where: { name: title } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching category: ${error.message}`);
+    }
+  }
+
+  async findAllCategories(): Promise<Category[]> {
+    try {
+      return await this.find();
+    } catch (error) {
+      throw new BadRequestException(`Error fetching categories: ${error.message}`);
+    }
+  }
+
+  async deleteCategory(id: string): Promise<void> {
+    try {
+      await this.delete(id);
+    } catch (error) {
+      throw new BadRequestException(`Failed to delete category: ${error.message}`);
     }
   }
 }

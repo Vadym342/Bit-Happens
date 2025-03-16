@@ -1,10 +1,12 @@
 import { CanActivate, ExecutionContext, Injectable, BadRequestException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PERMISSIONS_KEY } from '@modules/auth/decorators/permissions.decorator';
 import { JwtService } from '@nestjs/jwt';
+
+import { PERMISSIONS_KEY } from '@modules/auth/decorators/permissions.decorator';
 import { UsersService } from '@modules/users/users.service';
-import { ROLE_PERMISSIONS_MAP } from '../roles/rolesPermissionsMap';
+
 import { PermissionsType } from '../roles/permissions';
+import { ROLE_PERMISSIONS_MAP } from '../roles/rolesPermissionsMap';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
