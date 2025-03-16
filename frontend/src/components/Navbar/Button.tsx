@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Button.css';
-import { Link } from 'react-router-dom';
+import Modal from '../ModalForm/Modal';
 
 export function Button() {
+  const [modalActive, setModalActive] = useState(false);
+  const [signUp, setIsSignUp] = useState(true);
   return (
-    <div className="button-container">
-      <Link to="/login">
-        <button className="login-btn">Log in</button>
-      </Link>
-      <Link to="/sign-up">
-        <button className="signup-btn">Sign Up</button>
-      </Link>
+    <div>
+      <div className="button-container">
+        <button
+          className="login-btn"
+          onClick={() => {
+            setIsSignUp(false);
+            setModalActive(true);
+          }}
+        >
+          Log in
+        </button>
+        <button
+          className="signup-btn"
+          onClick={() => {
+            setIsSignUp(true);
+            setModalActive(true);
+          }}
+        >
+          Sign Up
+        </button>
+      </div>
+      <Modal active={modalActive} setActive={setModalActive} isSignUp={signUp} />
     </div>
   );
 }
