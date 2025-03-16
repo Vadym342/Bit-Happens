@@ -23,7 +23,7 @@ export class CreateUserDto {
   @IsString()
   password!: string;
 
-  @IsUUID()
+  @IsString()
   roleId!: string;
 
   @IsUUID()

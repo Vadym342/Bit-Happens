@@ -4,6 +4,7 @@ import * as argon2 from 'argon2';
 import { UserRepository } from './user.repository';
 import { User } from './entity/users.entity';
 import { UpdateUserDto } from './dto/update-users.dto';
+import { ROLE_MAP } from './enums/users.enum';
 
 @Injectable()
 export class UsersService {
@@ -21,7 +22,7 @@ export class UsersService {
         email: createUserDto.email,
         age: createUserDto.age,
         password: await argon2.hash(createUserDto.password),
-        roleId: createUserDto.roleId,
+        roleId: (createUserDto.roleId = ROLE_MAP[createUserDto.roleId]),
       });
     } catch (error) {
       throw error;

@@ -14,7 +14,6 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @Permissions(PERMISSIONS.CREATE_USERS)
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
