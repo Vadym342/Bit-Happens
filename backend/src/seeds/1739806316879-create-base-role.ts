@@ -1,18 +1,31 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import { seedRoles } from './constants/seed.constants';
 
 export class CreateBaseRole1739806316879 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    const mappedRoles = seedRoles
+      .map((role) => {
+        return `('${role.id}', '${role.name}', '${role.description}', '${role.createdAt});`;
+      })
+      .join();
+
     await queryRunner.query(`
       INSERT INTO roles (id, name, description)
       VALUES
-      ('01ed41cf-e065-4ef9-b3c7-b47055808f0a', 'administrator', 'The Administrator role has full access to all system features and settings');
+      ${mappedRoles}
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    const rolesToDelete = seedRoles
+      .map((role) => {
+        return `'${role.id}'`;
+      })
+      .join();
+
     await queryRunner.query(`
       DELETE FROM roles 
-      WHERE id IN ('01ed41cf-e065-4ef9-b3c7-b47055808f0a');
+      WHERE id IN (${rolesToDelete});
     `);
   }
 }
