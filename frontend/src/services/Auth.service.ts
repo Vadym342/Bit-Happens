@@ -1,4 +1,4 @@
-import { Bounce, toast } from 'react-toastify';
+import { toastError, toastSuccess } from './toast.constants';
 
 export const loginUser = async (
   email: string,
@@ -14,34 +14,14 @@ export const loginUser = async (
     });
 
     if (!response.ok) {
-      toast.error('Login failed! Invalid email or password', {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
+      toastError('Login failed! Invalid email or password');
       throw new Error('Login failed!');
     }
 
     const responseData = await response.json();
     localStorage.setItem('token', responseData.token);
 
-    toast.success('Login successful!', {
-      position: 'top-right',
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-      transition: Bounce,
-    });
+    toastSuccess('Login successful!');
 
     setTimeout(() => {
       setIsModalOpen(false);
@@ -67,32 +47,12 @@ export const signupUser = async (data: any, setIsSignUp: (isSignUp: boolean) => 
     });
 
     if (!response.ok) {
-      toast.error('Sign up failed! This email is already in use.', {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
+      toastError('Sign up failed! This email is already in use.');
       throw new Error('Signup failed!');
     }
 
     if (response.ok) {
-      toast.success('Signup successfully!', {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
+      toastSuccess('Signup successfully!');
     }
 
     setIsSignUp(false);

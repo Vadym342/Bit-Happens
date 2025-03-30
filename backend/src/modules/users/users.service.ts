@@ -17,13 +17,19 @@ export class UsersService {
 
       if (existUser) throw new BadRequestException('This email already exist');
 
+      const roleUuid = ROLE_MAP[createUserDto.roleId];
+
+      if (!roleUuid) {
+        throw new BadRequestException('Invalid roleId provided');
+      }
+
       await this.userRepository.createUser({
         firstName: createUserDto.firstName,
         lastName: createUserDto.lastName,
         email: createUserDto.email,
         age: createUserDto.age,
         password: await argon2.hash(createUserDto.password),
-        roleId: (createUserDto.roleId = ROLE_MAP[createUserDto.roleId]),
+        roleId: roleUuid,
       });
     } catch (error) {
       throw error;
