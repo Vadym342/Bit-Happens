@@ -1,4 +1,4 @@
-import { IsEmail, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 import { ROLE_MAP } from '../enums/users.enum';
 import { Transform } from 'class-transformer';
 export class CreateUserDto {
@@ -25,6 +25,7 @@ export class CreateUserDto {
   password!: string;
 
   @Transform(({ value }) => ROLE_MAP[value] || value)
+  @IsEnum(ROLE_MAP, { message: 'Invalid role' })
   roleId!: string;
 
   @IsUUID()
