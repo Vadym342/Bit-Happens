@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-users.dto';
 import { User } from './entity/users.entity';
 import { UserRepository } from './user.repository';
 import { UpdateUserDto } from './dto/update-users.dto';
+import { ROLE_MAP } from './enums/users.enum';
 
 @Injectable()
 export class UsersService {
@@ -16,13 +17,19 @@ export class UsersService {
 
       if (existUser) throw new BadRequestException('This email already exist');
 
+      const roleUuid = ROLE_MAP[createUserDto.roleId];
+
+      if (!roleUuid) {
+        throw new BadRequestException('Invalid roleId provided');
+      }
+
       await this.userRepository.createUser({
         firstName: createUserDto.firstName,
         lastName: createUserDto.lastName,
         email: createUserDto.email,
         age: createUserDto.age,
         password: await argon2.hash(createUserDto.password),
-        roleId: createUserDto.roleId,
+        roleId: roleUuid,
       });
     } catch (error) {
       throw error;

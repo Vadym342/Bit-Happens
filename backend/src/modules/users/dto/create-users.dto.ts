@@ -1,5 +1,6 @@
-import { IsEmail, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
-
+import { IsEmail, IsEnum, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
+import { ROLE_MAP } from '../enums/users.enum';
+import { Transform } from 'class-transformer';
 export class CreateUserDto {
   @MaxLength(100, { message: 'First name must be less then 100 symbols' })
   @MinLength(2, { message: 'First name must be more then 2 symbols' })
@@ -23,7 +24,8 @@ export class CreateUserDto {
   @IsString()
   password!: string;
 
-  @IsUUID()
+  @Transform(({ value }) => ROLE_MAP[value] || value)
+  @IsEnum(ROLE_MAP, { message: 'Invalid role' })
   roleId!: string;
 
   @IsUUID()

@@ -8,7 +8,6 @@ import GameArt from '../pages/GameArt/GameArt';
 import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
 import GraphicDesign from '../pages/GraphicDesign/GraphicDesign';
-import Login from '../pages/Login/Login';
 import Cart from '../pages/Cart/Cart';
 
 import ProtectedRoutes from './ProtectedRoutes';
@@ -19,8 +18,6 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/courses" element={<Courses />} />
       <Route path="/contact-us" element={<ContactUs />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart />} />
 
       <Route element={<ProtectedRoutes />}>

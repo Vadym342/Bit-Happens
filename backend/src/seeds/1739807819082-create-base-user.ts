@@ -1,18 +1,31 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import { seedUser } from './constants/seed.constants';
 
 export class CreateBaseUser1739807819082 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    const mappedUser = seedUser
+      .map((user) => {
+        return `('${user.id}', '${user.firstName}', '${user.lastName}', '${user.email}', '${user.age}', '${user.password}', '${user.roleId}', '${user.createdAt}', '${user.password}',)`;
+      })
+      .join();
+
     await queryRunner.query(`
-      INSERT INTO users (first_name, last_name, email, age, password, role_id)
+      INSERT INTO users (first_name, last_name, email, age, password, role_id, created_at)
       VALUES
-      ('Admin Name', 'Admin LastName', 'admin@gmail.com', '19', '$argon2id$v=19$m=65536,t=3,p=4$zjYa4x4BV6rZg1JSWiuujg$vJa/uupjzGZBuBGnxJ3DeusbImJSuoaDOMNgI9MiMwo', '01ed41cf-e065-4ef9-b3c7-b47055808f0a');
+      ${mappedUser}
     `); //password: 111111
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    const userToDelete = seedUser
+      .map((user) => {
+        return `'${user.id}'`;
+      })
+      .join();
+
     await queryRunner.query(`
       DELETE FROM users 
-      WHERE email IN ('admin@gmail.com');
+      WHERE id IN (${userToDelete});
     `);
   }
 }
