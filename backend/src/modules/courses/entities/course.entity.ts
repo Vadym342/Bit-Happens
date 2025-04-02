@@ -1,3 +1,12 @@
+import { Category } from '@modules/categories/entities/category.entity';
+import { Discount } from '@modules/discounts/discounts.entity';
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import { Lesson } from '@modules/lessons/entities/lessons.entity';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { User } from '@modules/users/entity/users.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,16 +19,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-import { Category } from '@modules/categories/entities/category.entity';
-import { Discount } from '@modules/discounts/discounts.entity';
-import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
-import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
-import { Lesson } from '@modules/lessons/entities/lessons.entity';
-import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
-import { User } from '@modules/users/entity/users.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
-import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 
 @Entity({ name: 'courses' })
 export class Course {
@@ -60,7 +59,7 @@ export class Course {
   @Column({
     name: 'logo_image',
     type: 'varchar',
-    length: 50,
+    length: 1000,
     nullable: true,
   })
   logoImage: string;

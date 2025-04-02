@@ -1,28 +1,57 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const initialState = {
+export interface CourseState {
+  courses: [];
+  status: 'loading' | 'fulfilled' | null;
+  errors: string | null | undefined;
+}
+
+const initialState: CourseState = {
   courses: [],
   status: null,
   errors: null,
 };
 
-export const fetchCourses = createAsyncThunk('course/fetchCourses', async () => {
-  try {
-    const response = await fetch('http://localhost:3000/courses', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+export const fetchCourses = createAsyncThunk('course/fetchCourses', () => {
+  return axios
+    .get('http://localhost:3000/courses')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      let errorMessage = '';
+      switch (error.status) {
+        case 500:
+          errorMessage = 'Unknown error occurred';
+          break;
+        case 401:
+          errorMessage = 'Unauthorized';
+          break;
+        case 404:
+          errorMessage = 'Not found';
+          break;
+        case 403:
+          errorMessage = 'Forbidden';
+          break;
+        case 400:
+          errorMessage = 'Bad request';
+          break;
+        case 503:
+          errorMessage = 'Service unavailable';
+          break;
+        case 504:
+          errorMessage = 'Gateway timeout';
+          break;
+        case 429:
+          errorMessage = 'Too many requests';
+          break;
+        default:
+          break;
+      }
+      console.error(error);
+      throw new Error(errorMessage);
     });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch courses');
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
 });
 
 const coursesSlice = createSlice({
@@ -40,12 +69,12 @@ const coursesSlice = createSlice({
         state.status = 'fulfilled';
       })
       .addCase(fetchCourses.rejected, (state, action) => {
-        state.status = 'error';
+        state.status = 'loading';
         state.errors = action.error.message;
+        console.log(action);
         console.error(action.error.message);
       });
   },
 });
 
 export default coursesSlice.reducer;
-// export const {  } = coursesSlice.actions;

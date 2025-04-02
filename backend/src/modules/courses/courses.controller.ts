@@ -14,7 +14,7 @@ export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
-  // @Permissions(PERMISSIONS.CREATE_COURSE)
+  @Permissions(PERMISSIONS.CREATE_COURSE)
   @HttpCode(HttpStatus.CREATED)
   async createCourse(@Body() createCourseDto: CreateCourseDto): Promise<void> {
     return this.coursesService.createCourse(createCourseDto);
