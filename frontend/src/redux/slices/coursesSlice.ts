@@ -15,7 +15,7 @@ const initialState: CourseState = {
 
 export const fetchCourses = createAsyncThunk('course/fetchCourses', () => {
   return axios
-    .get('http://localhost:3000/courses')
+    .get(`${process.env.APP_URL}/courses`)
     .then((response) => {
       return response.data;
     })
@@ -64,14 +64,12 @@ const coursesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchCourses.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.courses = action.payload;
         state.status = 'fulfilled';
       })
       .addCase(fetchCourses.rejected, (state, action) => {
         state.status = 'loading';
         state.errors = action.error.message;
-        console.log(action);
         console.error(action.error.message);
       });
   },

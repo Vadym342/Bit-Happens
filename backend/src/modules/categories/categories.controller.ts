@@ -1,6 +1,7 @@
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
+import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
-import { Controller, Get, Put, Param, Delete, ParseUUIDPipe, Body, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Put, Param, Delete, ParseUUIDPipe, Body, Post, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
 
 import { CategoriesService } from './categories.service';
 import { CategoryIdParamDto } from './dtos/categories-id-param.dto';
@@ -9,7 +10,7 @@ import { UpdateCategoryDto } from './dtos/update-category.dto';
 import { Category } from './entities/category.entity';
 
 @Controller('categories')
-// @UseGuards(PermissionGuard)
+@UseGuards(PermissionGuard)
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
