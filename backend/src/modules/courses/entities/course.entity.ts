@@ -52,7 +52,7 @@ export class Course {
   @Column({
     name: 'rating',
     type: 'real',
-    nullable: false,
+    nullable: true,
   })
   rating: number;
 
@@ -60,7 +60,7 @@ export class Course {
     name: 'logo_image',
     type: 'varchar',
     length: 1000,
-    nullable: true,
+    nullable: false,
   })
   logoImage: string;
 

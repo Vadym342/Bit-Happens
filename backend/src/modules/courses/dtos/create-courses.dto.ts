@@ -19,7 +19,7 @@ export class CreateCourseDto {
 
   @IsString()
   @IsOptional()
-  logoImage?: string;
+  logoImage!: string;
 
   @IsNumber()
   price!: number;
