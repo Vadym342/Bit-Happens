@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { Course } from '../../shared/types/types';
+
 export interface CourseState {
-  courses: [];
+  courses: Course[];
   status: 'loading' | 'fulfilled' | null;
   errors: string | null | undefined;
 }

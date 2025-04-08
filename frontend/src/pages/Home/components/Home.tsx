@@ -25,6 +25,10 @@ const Home: React.FC = () => {
     void dispatch(fetchCourses());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log('Все курсы:', courses);
+  }, [courses]);
+
   return (
     <div className="home-container">
       <div className="home-image-slider">
@@ -37,42 +41,50 @@ const Home: React.FC = () => {
       </h2>
       <div className="cards-container">
         {status === 'loading'
-          ? [...Array(4)].map((_, index) => <ProductCard key={index} isLoading={true} title="" description="" price="" />)
+          ? [...Array(4)].map((_, index) => (
+              <ProductCard key={index} isLoading={true} title="" description="" price="" categoryId="" teacherId="" />
+            ))
           : courses
               .slice(0, 4)
-              .map((product: any, index: number) => (
+              .map((product, index: number) => (
                 <ProductCard
                   key={index}
                   title={product.title}
                   description={product.description}
-                  price={product.price}
+                  price={product.price.toString()}
                   logoImage={product.logoImage}
+                  categoryId={product.categoryId}
+                  teacherId={product.teacherId}
                 />
               ))}
       </div>
 
       <h2 className="recommend-title">Recommend</h2>
       <div className="cards-container">
-        {courses.slice(4, 12).map((product: any, index: number) => (
+        {courses.slice(4, 12).map((product, index: number) => (
           <ProductCard
             key={index}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price}
+            price={product.price.toString()}
+            categoryId={product.categoryId}
+            teacherId={product.teacherId}
           />
         ))}
       </div>
 
       <h2 className="game-art-title">Game Art</h2>
       <div className="cards-container">
-        {courses.slice(12, 16).map((product: any, index: number) => (
+        {courses.slice(12, 16).map((product, index: number) => (
           <ProductCard
             key={index}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price}
+            price={product.price.toString()}
+            categoryId={product.categoryId}
+            teacherId={product.teacherId}
           />
         ))}
       </div>

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import courses from './slices/coursesSlice';
+import categories from './slices/categoriesSlice';
 
 const store = configureStore({
   reducer: {
     courses,
+    categories,
   },
 });
 

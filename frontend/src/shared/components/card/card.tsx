@@ -8,6 +8,8 @@ interface ProductCardProps {
   price: string;
   logoImage?: string;
   isLoading?: boolean;
+  categoryId: string;
+  teacherId: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ title, description, price, logoImage, isLoading }) => {
