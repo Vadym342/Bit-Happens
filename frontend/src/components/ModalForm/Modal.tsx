@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
 import './modal.css';
+import { ToastContainer } from 'react-toastify';
+
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
-import { ToastContainer } from 'react-toastify';
 
 interface ModalProps {
   active: boolean;
@@ -28,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ active, setActive, isSignUp }) => {
             {signUp ? (
               <SignUpForm setIsSignUp={setIsSignUp} />
             ) : (
-              <LoginForm setIsSignUp={setIsSignUp} setIsModalOpen={setActive} /> // ✅ Pass setActive to LoginForm
+              <LoginForm setIsSignUp={setIsSignUp} setIsModalOpen={setActive} />
             )}
           </div>
           <div className="modal-image">

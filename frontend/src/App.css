@@ -9,12 +9,11 @@
 .courses,
 .products,
 .contact-us,
-.sign-up,
 .game-art,
 .cg-vfx,
 .it-software,
 .graphic-design,
-.login,
+.course-info,
 .cart {
   display: flex;
   height: 90vh;

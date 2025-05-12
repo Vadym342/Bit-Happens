@@ -2,13 +2,13 @@ import { Routes, Route } from 'react-router-dom';
 
 import Courses from '../pages/Courses/Courses';
 import ContactUs from '../pages/ContactUs/ContactUs';
-import SignUp from '../pages/SignUp/SignUp';
 import Home from '../pages/Home/components/Home';
 import GameArt from '../pages/GameArt/GameArt';
 import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
 import GraphicDesign from '../pages/GraphicDesign/GraphicDesign';
 import Cart from '../pages/Cart/Cart';
+import CourseInfo from '../pages/CourseInfo/components/CourseInfo';
 
 import ProtectedRoutes from './ProtectedRoutes';
 
@@ -19,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/courses" element={<Courses />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/course-info" element={<CourseInfo />} />
 
       <Route element={<ProtectedRoutes />}>
         <Route path="/game-art" element={<GameArt />} />
