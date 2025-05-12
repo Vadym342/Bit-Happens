@@ -1,3 +1,12 @@
+import { Category } from '@modules/categories/entities/category.entity';
+import { Discount } from '@modules/discounts/discounts.entity';
+import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
+import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
+import { Lesson } from '@modules/lessons/entities/lessons.entity';
+import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
+import { User } from '@modules/users/entity/users.entity';
+import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,16 +19,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-import { Category } from '@modules/categories/entities/category.entity';
-import { Discount } from '@modules/discounts/discounts.entity';
-import { FavoritesCourses } from '@modules/favoritesCourses/favoritesCourses.entity';
-import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/learningHistoriesCourses.entity';
-import { Lesson } from '@modules/lessons/entities/lessons.entity';
-import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
-import { User } from '@modules/users/entity/users.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
-import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 
 @Entity({ name: 'courses' })
 export class Course {
@@ -53,15 +52,15 @@ export class Course {
   @Column({
     name: 'rating',
     type: 'real',
-    nullable: false,
+    nullable: true,
   })
   rating: number;
 
   @Column({
     name: 'logo_image',
     type: 'varchar',
-    length: 50,
-    nullable: true,
+    length: 1000,
+    nullable: false,
   })
   logoImage: string;
 
@@ -71,6 +70,12 @@ export class Course {
     nullable: false,
   })
   price: number;
+
+  @Column({ name: 'category_id' })
+  categoryId: string;
+
+  @Column({ name: 'teacher_id' })
+  teacherId: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -93,16 +98,16 @@ export class Course {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => Category, (category) => category.id)
+  @ManyToOne(() => Category, (category) => category.courses)
   @JoinColumn({ name: 'category_id' })
-  categoryId: string;
+  category: Category[];
 
   @OneToMany(() => Lesson, (lesson) => lesson.id)
   lessons: Lesson[];
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.courses)
   @JoinColumn({ name: 'teacher_id' })
-  teacherId: string;
+  teacher: User[];
 
   @OneToOne(() => Discount, (discount) => discount.id)
   discount: number;

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import Courses from '../pages/Courses/Courses';
+import Courses from '../pages/Courses/components/Courses';
 import ContactUs from '../pages/ContactUs/ContactUs';
 import SignUp from '../pages/SignUp/SignUp';
 import Home from '../pages/Home/components/Home';
@@ -9,6 +10,7 @@ import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
 import GraphicDesign from '../pages/GraphicDesign/GraphicDesign';
 import Cart from '../pages/Cart/Cart';
+import store from '../redux/store';
 
 import ProtectedRoutes from './ProtectedRoutes';
 

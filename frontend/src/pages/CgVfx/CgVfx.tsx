@@ -3,7 +3,7 @@ import '../../App.css';
 export default function CgVfx() {
   return (
     <>
-      <h1 className="cg-vfx">CG | VFX</h1>
+      <h1 className="CgVfx">CgVfx</h1>
     </>
   );
 }

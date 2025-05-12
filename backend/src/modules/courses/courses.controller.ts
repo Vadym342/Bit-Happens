@@ -1,8 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from '@nestjs/common';
-
 import { Permissions } from '@modules/auth/decorators/permissions.decorator';
 import { PermissionGuard } from '@modules/auth/guards/permission.guard';
 import { PERMISSIONS } from '@modules/auth/roles/permissions';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from '@nestjs/common';
 
 import { CoursesService } from './courses.service';
 import { CourseIdParamDto } from './dtos/course-id-param.dto';
@@ -23,7 +22,6 @@ export class CoursesController {
   }
 
   @Get()
-  @Permissions(PERMISSIONS.VIEW_ALL_COURSES)
   async getAllCourses(): Promise<Course[]> {
     return this.coursesService.findAllCourses();
   }

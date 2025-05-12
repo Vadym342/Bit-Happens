@@ -10,7 +10,7 @@ export class CreateTableCourses1737200576518 implements MigrationInterface {
         description VARCHAR(150) NOT NULL,
         content TEXT NOT NULL,
         rating REAL NULL,
-        logo_image VARCHAR(50) NULL,
+        logo_image VARCHAR(1000) NOT NULL,
         price MONEY NOT NULL,
         category_id UUID NOT NULL,
         created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,

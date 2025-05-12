@@ -1,16 +1,17 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+
 import { seedRoles } from './constants/seed.constants';
 
 export class CreateBaseRole1739806316879 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const mappedRoles = seedRoles
       .map((role) => {
-        return `('${role.id}', '${role.name}', '${role.description}', '${role.createdAt});`;
+        return `('${role.id}', '${role.name}', '${role.description}', '${role.createdAt.toISOString()}')`;
       })
       .join();
 
     await queryRunner.query(`
-      INSERT INTO roles (id, name, description)
+      INSERT INTO roles (id, name, description, created_at)
       VALUES
       ${mappedRoles}
     `);
