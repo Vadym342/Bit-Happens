@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 0px;
+  padding-top: 80px;
 }
 
 .home-image-slider {
@@ -11,6 +11,16 @@
   position: relative;
   top: 0;
   padding: 0;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .flash-deals-title,

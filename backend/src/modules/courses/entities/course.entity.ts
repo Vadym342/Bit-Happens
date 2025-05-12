@@ -71,6 +71,12 @@ export class Course {
   })
   price: number;
 
+  @Column({ name: 'category_id' })
+  categoryId: string;
+
+  @Column({ name: 'teacher_id' })
+  teacherId: string;
+
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
@@ -92,16 +98,16 @@ export class Course {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => Category, (category) => category.id)
+  @ManyToOne(() => Category, (category) => category.courses)
   @JoinColumn({ name: 'category_id' })
-  categoryId: string;
+  category: Category[];
 
   @OneToMany(() => Lesson, (lesson) => lesson.id)
   lessons: Lesson[];
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.courses)
   @JoinColumn({ name: 'teacher_id' })
-  teacherId: string;
+  teacher: User[];
 
   @OneToOne(() => Discount, (discount) => discount.id)
   discount: number;
