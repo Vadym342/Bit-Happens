@@ -22,7 +22,6 @@ export class CategoriesController {
   }
 
   @Get()
-  @Permissions(PERMISSIONS.VIEW_ALL_CATEGORIES)
   async getAllCategories(): Promise<Category[]> {
     return this.categoriesService.findAllCategories();
   }
