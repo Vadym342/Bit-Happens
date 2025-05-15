@@ -183,6 +183,7 @@ const Courses: React.FC = () => {
               paginatedCourses.map((product, index: number) => (
                 <ProductCard
                   key={index}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
                   logoImage={product.logoImage}

@@ -42,13 +42,14 @@ const Home: React.FC = () => {
       <div className="cards-container">
         {status === 'loading'
           ? [...Array(4)].map((_, index) => (
-              <ProductCard key={index} isLoading={true} title="" description="" price="" categoryId="" teacherId="" />
+              <ProductCard key={index} id="" isLoading={true} title="" description="" price="" categoryId="" teacherId="" />
             ))
           : courses
               .slice(0, 4)
               .map((product, index: number) => (
                 <ProductCard
                   key={index}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
                   price={product.price.toString()}
@@ -64,6 +65,7 @@ const Home: React.FC = () => {
         {courses.slice(4, 12).map((product, index: number) => (
           <ProductCard
             key={index}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
@@ -79,6 +81,7 @@ const Home: React.FC = () => {
         {courses.slice(12, 16).map((product, index: number) => (
           <ProductCard
             key={index}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}

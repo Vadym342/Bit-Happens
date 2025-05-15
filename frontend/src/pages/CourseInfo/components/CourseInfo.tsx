@@ -1,26 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CourseInfo.css';
+import { useLocation, useParams } from 'react-router-dom';
 import { SlActionRedo } from 'react-icons/sl';
 import CourseTabs from './CourseTabs';
+import { fetchCategoryName, fetchTeacherName } from '../../../services/service';
+import { toastSuccess } from '../../../services/toast.constants';
+import { ToastContainer } from 'react-toastify';
 
 export default function CourseInfo() {
+  const { id } = useParams();
+  const location = useLocation();
+  const { title, description, price, logoImage, categoryId, teacherId, lessons = 'N/A' } = location.state || {};
+
+  const [categoryName, setCategoryName] = useState('');
+  const [teacherName, setTeacherName] = useState('');
+
+  useEffect(() => {
+    if (categoryId) {
+      fetchCategoryName(categoryId).then((name) => {
+        if (name) setCategoryName(name);
+      });
+    }
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (teacherId) {
+      fetchTeacherName(teacherId).then((name) => {
+        if (name) setTeacherName(name);
+      });
+    }
+  }, [teacherId]);
+
+  const handleShare = () => {
+    console.log('Share clicked');
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        toastSuccess('Copy link successful!');
+      })
+      .catch((err) => {
+        console.error('Something went wrong', err);
+      });
+  };
+
   return (
     <div>
       <div className="course-info-header">
         <section className="course-banner">
-          <h1>Stylized Texturing for Video Games with Blender</h1>
+          <h1>{title}</h1>
           <div className="course-details">
-            <p className="course-details-info">Category: </p>
-            <p className="course-details-info">Lecturer: </p>
-            <p className="course-details-info">Lessons: </p>
+            <p className="course-details-info">Category: {categoryName}</p>
+            <p className="course-details-info">Lecturer: {teacherName}</p>
+            <p className="course-details-info">Lessons: {lessons}</p>
           </div>
 
           <aside className="sidebar">
             <div>
-              <img src="https://imgwf.yiihuu.com/upimg/global/mnt1/album/2023/12/02/1701481617.jpg" alt="Course Image" />
+              <img src={logoImage} alt="Course" />
             </div>
             <div className="sidebar-content">
-              <h3>$49.99</h3>
+              <h3>${price}</h3>
               <button className="buy-btn">Buy Now</button>
               <button className="wishlist-btn">Add to cart</button>
               <h4>Course Details:</h4>
@@ -39,7 +78,7 @@ export default function CourseInfo() {
                 </li>
               </ul>
 
-              <div className="share-text">
+              <div className="share-text" onClick={handleShare} style={{ cursor: 'pointer' }}>
                 <SlActionRedo className="share-icon" />
                 <h4>Share</h4>
               </div>
@@ -53,28 +92,11 @@ export default function CourseInfo() {
         <div className="main-content">
           <div className="overview-section">
             <h1>Course Overview</h1>
-
-            <p>
-              Learn everything you need to create stylized textures and materials with the Blender tools In this course you will
-              learn the complete workflow for creating stylized materials and textures for your models using the Blender tools.
-              What we will see in the course: Fundamentals -How Blender's texture paint mode works -How Blender's node editor
-              works Project 1: Mushroom Diorama -Basic modeling and UV unwrapping -Blocking y color gradients -Hand-painted
-              texturing to refine and detail -How to export the final texture maps -Lighting and rendering with Marmoset Toolbag
-              Project 2: Mystery Diorama -Baking the base maps with Marmoset Toolbag -Stylized procedural texturing with Blender's
-              shader editor -Custom texture projection with the stencil tool -Creation of the emissive and transparency channel
-              -How to export the final texture maps -Lighting and rendering with Marmoset Toolbag Project 3: Chest of the golden
-              sun -Baking the base maps with Marmoset Toolbag -Stylized procedural texturing with Blender's shader editor
-              -Creation of the metalness and roughness channel -How to export the final texture maps -Lighting and rendering with
-              Marmoset Toolbag Project 4:  Character (Kiuby girl) -Baking the base maps with Marmoset Toolbag -Procedural color
-              blocking for all the materials -Procedural texturing of organic materials (hair, skin, fur) -Procedural texturing
-              with patterns for the fabric -Procedural texturing of armor, wood y metallic objects -Hand-painted texturing for the
-              details of the face and other parts of the skin -Final maps exporting -Lighting and rendering with Marmoset Toolbag
-              Final talking and recommendations We will talk a little about how to study references and face texturing challenges
-              on your own
-            </p>
+            <p>{description}</p>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

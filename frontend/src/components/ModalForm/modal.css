@@ -24,7 +24,6 @@
   background-color: white;
   transform: scale(0.5);
   transition: 0.4s all;
-  height: 47vh;
   width: 40vw;
   box-shadow: 0px 2px 16px rgb(7, 21, 32);
 }
@@ -178,7 +177,6 @@
 
 @media screen and (max-width: 960px) {
   .modal__content {
-    height: 41vh;
     width: 50vw;
     padding: 16px;
     flex-direction: column;

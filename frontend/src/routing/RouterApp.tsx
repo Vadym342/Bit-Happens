@@ -21,8 +21,7 @@ const AppRoutes = () => {
       <Route path="/courses" element={<Courses />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/course-info" element={<CourseInfo />} />
-
+      <Route path="/course-info/:id" element={<CourseInfo />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/game-art" element={<GameArt />} />
         <Route path="/cg-vfx" element={<CgVfx />} />
