@@ -1,0 +1,40 @@
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.hero {
+  background: url('./assets/hero.jpg') center/cover no-repeat;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.instructors,
+.ourDream,
+.testimonials,
+.contact {
+  margin: 60px 0;
+}
+
+.instructorList,
+.testimonialList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.instructorCard,
+.testimonialCard {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1 1 200px;
+}
+
+.instructorCard img {
+  width: 100%;
+  border-radius: 50%;
+}
