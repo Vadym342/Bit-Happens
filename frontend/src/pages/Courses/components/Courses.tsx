@@ -49,6 +49,10 @@ const Courses: React.FC = () => {
     setCurrentPage(1);
   }, [location.search, isCategoriesLoaded]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const updateQueryParams = (params: Record<string, string | undefined>) => {
     const searchParams = new URLSearchParams(location.search);
 
@@ -187,7 +191,7 @@ const Courses: React.FC = () => {
                   title={product.title}
                   description={product.description}
                   logoImage={product.logoImage}
-                  price={product.price.toString()}
+                  price={product.price}
                   categoryId={product.categoryId}
                   teacherId={product.teacherId}
                 />

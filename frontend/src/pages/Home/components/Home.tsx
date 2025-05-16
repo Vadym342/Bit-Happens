@@ -29,6 +29,10 @@ const Home: React.FC = () => {
     console.log('Все курсы:', courses);
   }, [courses]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="home-container">
       <div className="home-image-slider">
@@ -50,9 +54,10 @@ const Home: React.FC = () => {
                 <ProductCard
                   key={index}
                   id={product.id}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
-                  price={product.price.toString()}
+                  price={Number(product.price)}
                   logoImage={product.logoImage}
                   categoryId={product.categoryId}
                   teacherId={product.teacherId}
@@ -66,10 +71,11 @@ const Home: React.FC = () => {
           <ProductCard
             key={index}
             id={product.id}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price.toString()}
+            price={product.price}
             categoryId={product.categoryId}
             teacherId={product.teacherId}
           />
@@ -82,10 +88,11 @@ const Home: React.FC = () => {
           <ProductCard
             key={index}
             id={product.id}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price.toString()}
+            price={product.price}
             categoryId={product.categoryId}
             teacherId={product.teacherId}
           />
