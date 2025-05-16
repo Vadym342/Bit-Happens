@@ -8,11 +8,15 @@ import { removeFromCart, clearCart } from '../../redux/slices/cartSlice';
 import './cart.css';
 import { Link } from 'react-router-dom';
 
+import FakeCheckoutModal from '../Checkout/Components/CheckoutForm';
+
 const CartPage: React.FC = () => {
   const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
+
+  const [showModal, setShowModal] = React.useState(false);
 
   return (
     <div className="cart-page">
@@ -64,7 +68,10 @@ const CartPage: React.FC = () => {
               .
             </p>
 
-            <button className="checkout-button">Checkout</button>
+            <button className="checkout-button" onClick={() => setShowModal(true)}>
+              Checkout
+            </button>
+            {showModal && <FakeCheckoutModal onClose={() => setShowModal(false)} />}
           </div>
         </div>
       </div>
