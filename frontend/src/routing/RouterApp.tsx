@@ -8,8 +8,10 @@ import GameArt from '../pages/GameArt/GameArt';
 import CgVfx from '../pages/CgVfx/CgVfx';
 import ItSoftware from '../pages/ItSoftware/ItSoftware';
 import GraphicDesign from '../pages/GraphicDesign/GraphicDesign';
-import Cart from '../pages/Cart/Cart';
+import CartPage from '../pages/Cart/Cart';
 import store from '../redux/store';
+import BeATeacher from '../pages/BeLecturer/components/BeLecturer';
+import TermsOfUse from '../pages/TermsOfUse/TermsOfUse';
 import CourseInfo from '../pages/CourseInfo/components/CourseInfo';
 
 import ProtectedRoutes from './ProtectedRoutes';
@@ -20,6 +22,9 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/courses" element={<Courses />} />
       <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="/be-lecturer" element={<BeATeacher />} />
+      <Route path="/agree" element={<TermsOfUse />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/course-info" element={<CourseInfo />} />
 

@@ -13,3 +13,10 @@ export interface Course {
   categoryId: string;
   teacherId: string;
 }
+
+export interface CartItem {
+  id: string;
+  title: string;
+  price: number;
+  logoImage?: string;
+}

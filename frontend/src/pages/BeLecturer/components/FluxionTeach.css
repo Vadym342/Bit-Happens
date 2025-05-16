@@ -1,0 +1,127 @@
+.teach-container {
+  margin-top: 20px;
+  padding: 40px 20px;
+  background-color: #fff7f0;
+  color: #2c2c2c;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.start-button {
+  background: linear-gradient(to right, #ff7a18, #ffb347);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.hero-image img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}
+
+.benefits {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.benefit-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.benefit {
+  margin: 0 50px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.benefits h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.benefit p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.benefit img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.faq {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.faq h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.faq-item summary {
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.faq-item p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
