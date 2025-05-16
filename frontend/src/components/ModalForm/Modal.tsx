@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, useContext } from 'react';
 import './modal.css';
 import { ToastContainer } from 'react-toastify';
 
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
+import formImage from '../../assets/form-image.png';
+
+import { AuthContext } from '../../pages/Profile/AuthContext';
 
 interface ModalProps {
   active: boolean;
@@ -14,6 +16,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ active, setActive, isSignUp }) => {
   const [signUp, setIsSignUp] = useState(isSignUp);
+  const { login } = useContext(AuthContext);
 
   useEffect(() => {
     setIsSignUp(isSignUp);
@@ -30,11 +33,11 @@ const Modal: React.FC<ModalProps> = ({ active, setActive, isSignUp }) => {
             {signUp ? (
               <SignUpForm setIsSignUp={setIsSignUp} />
             ) : (
-              <LoginForm setIsSignUp={setIsSignUp} setIsModalOpen={setActive} />
+              <LoginForm setIsSignUp={setIsSignUp} setIsModalOpen={setActive} onLogin={login} />
             )}
           </div>
           <div className="modal-image">
-            <img src="src/assets/form-image.png" alt="Image" />
+            <img src={formImage} alt="Form illustration" />
           </div>
         </section>
       </div>

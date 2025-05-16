@@ -1,13 +1,12 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
 import { loginUser } from '../../services/Auth.service';
 
 interface LoginFormProps {
   setIsSignUp: (isSignUp: boolean) => void;
   setIsModalOpen: (isOpen: boolean) => void;
+  onLogin: (token: string) => void;
 }
 
 interface IFormInput {
@@ -15,7 +14,7 @@ interface IFormInput {
   password: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ setIsSignUp, setIsModalOpen }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ setIsSignUp, setIsModalOpen, onLogin }) => {
   const {
     register,
     handleSubmit,
@@ -26,7 +25,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setIsSignUp, setIsModalOpen }) =>
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      await loginUser(data.email, data.password, navigate, setIsModalOpen);
+      await loginUser(data.email, data.password, navigate, setIsModalOpen, onLogin);
     } catch (error) {
       console.error(error);
     }

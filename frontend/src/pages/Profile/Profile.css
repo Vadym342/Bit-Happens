@@ -1,0 +1,167 @@
+.profile {
+  background: #f5f5f5;
+  padding-top: 80px;
+  height: 100vh;
+}
+
+.profile-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-sidebar {
+  width: 250px;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.profile-avatar-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-id {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+.profile-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-nav li {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background 0.2s ease;
+}
+
+.profile-nav li:hover,
+.profile-nav li.active {
+  background-color: #ffa633;
+  color: white;
+}
+
+.profile-form-section {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-form-section h2 {
+  margin-bottom: 1rem;
+}
+
+.form-avatar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.cancel-btn,
+.done-btn {
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 43px;
+}
+
+.cancel-btn {
+  background: #f0f0f0;
+}
+
+.done-btn {
+  background: #ffa633;
+  color: white;
+}
+
+.form-avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.form-avatar a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+form input[type='text'],
+form select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.interest-item {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 0;
+}
+
+.interest-item:hover {
+  background-color: #fff2e0;
+}
+
+.interest-item input {
+  margin-right: 0.5rem;
+}

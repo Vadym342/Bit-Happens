@@ -1,0 +1,12 @@
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-right: 24px;
+}
+
+.user-icon:hover {
+  transform: scale(1.05);
+}
