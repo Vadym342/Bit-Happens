@@ -29,6 +29,10 @@ const Home: React.FC = () => {
     console.log('Все курсы:', courses);
   }, [courses]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="home-container">
       <div className="home-image-slider">
@@ -42,16 +46,17 @@ const Home: React.FC = () => {
       <div className="cards-container">
         {status === 'loading'
           ? [...Array(4)].map((_, index) => (
-              <ProductCard key={index} isLoading={true} title="" description="" price="" categoryId="" teacherId="" />
+              <ProductCard key={index} isLoading={true} id="" title="" description="" price="" categoryId="" teacherId="" />
             ))
           : courses
               .slice(0, 4)
               .map((product, index: number) => (
                 <ProductCard
                   key={index}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
-                  price={product.price.toString()}
+                  price={Number(product.price)}
                   logoImage={product.logoImage}
                   categoryId={product.categoryId}
                   teacherId={product.teacherId}
@@ -64,10 +69,11 @@ const Home: React.FC = () => {
         {courses.slice(4, 12).map((product, index: number) => (
           <ProductCard
             key={index}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price.toString()}
+            price={product.price}
             categoryId={product.categoryId}
             teacherId={product.teacherId}
           />
@@ -79,10 +85,11 @@ const Home: React.FC = () => {
         {courses.slice(12, 16).map((product, index: number) => (
           <ProductCard
             key={index}
+            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
-            price={product.price.toString()}
+            price={product.price}
             categoryId={product.categoryId}
             teacherId={product.teacherId}
           />

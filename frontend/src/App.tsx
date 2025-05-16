@@ -10,14 +10,20 @@ import AppRoutes from './routing/RouterApp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import store from './redux/store';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Provider store={store}>
-        <AppRoutes />
-      </Provider>
+      <div className="layout">
+        <Navbar />
+        <Provider store={store}>
+          <main className="main-content">
+            <AppRoutes />
+          </main>
+        </Provider>
+        <Footer />
+      </div>
     </Router>
   );
 }

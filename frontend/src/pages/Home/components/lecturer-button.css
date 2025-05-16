@@ -7,6 +7,7 @@
   font-size: 20px;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
+  margin-bottom: 28px;
 }
 
 .lecturer-btn:hover {
