@@ -4,7 +4,6 @@
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-right: 24px;
 }
 
 .user-icon:hover {

@@ -3,7 +3,6 @@ import ContentLoader from 'react-content-loader';
 import { Link } from 'react-router-dom';
 import './card.css';
 
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { addToCart } from '../../../redux/slices/cartSlice';
@@ -25,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   description,
   price,
   logoImage,
-  isLoading,
+  isLoading = false,
   categoryId,
   teacherId,
 }) => {
@@ -46,52 +45,31 @@ const ProductCard: React.FC<ProductCardProps> = ({
       }),
     );
   };
-
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  title,
-  description,
-  price,
-  logoImage,
-  isLoading = false,
-  categoryId,
-  teacherId,
-}) => {
   return (
-    <Link
-      to={`/course-info/${id}`}
-      state={{
-        id,
-        title,
-        description,
-        price,
-        logoImage,
-        categoryId,
-        teacherId,
-      }}
-      className="card"
-    >
-      <div className="card-img">
-        {isLoading ? (
-          <ContentLoader
-            speed={2}
-            width={260}
-            height={160}
-            viewBox="0 0 260 160"
-            backgroundColor="#ffcaa6"
-            foregroundColor="#ededed"
-          >
-            <rect x="0" y="0" rx="8" ry="8" width="260" height="160" />
-          </ContentLoader>
-        ) : (
-          <img src={logoImage || '/default-course.png'} alt={title} className="course-image" />
-        )}
-      </div>
+    <div className="card">
+      <Link to={`/course-info/${id}`} state={{ id, title, description, price, logoImage, categoryId, teacherId }}>
+        <div className="card-img">
+          {isLoading ? (
+            <ContentLoader
+              speed={2}
+              width={260}
+              height={160}
+              viewBox="0 0 260 160"
+              backgroundColor="#ffcaa6"
+              foregroundColor="#ededed"
+            >
+              <rect x="0" y="0" rx="8" ry="8" width="260" height="160" />
+            </ContentLoader>
+          ) : (
+            <img src={logoImage} alt={title} className="course-image" />
+          )}
+        </div>
 
-      <div className="card-info">
-        <p className="text-title">{title}</p>
-        <p className="text-body">{description}</p>
-      </div>
+        <div className="card-info">
+          <p className="text-title">{title}</p>
+          <p className="text-body">{description}</p>
+        </div>
+      </Link>
 
       <div className="card-footer">
         <span className="text-title">${price}</span>
@@ -103,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </svg>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

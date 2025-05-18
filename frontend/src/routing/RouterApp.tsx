@@ -16,6 +16,7 @@ import CourseInfo from '../pages/CourseInfo/components/CourseInfo';
 
 import ProtectedRoutes from './ProtectedRoutes';
 import Profile from '../pages/Profile/Profile';
+import Cart from '../pages/Cart/Cart';
 
 const AppRoutes = () => {
   return (

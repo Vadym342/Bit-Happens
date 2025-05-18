@@ -54,7 +54,6 @@ const Home: React.FC = () => {
                 <ProductCard
                   key={index}
                   id={product.id}
-                  id={product.id}
                   title={product.title}
                   description={product.description}
                   price={Number(product.price)}
@@ -71,7 +70,6 @@ const Home: React.FC = () => {
           <ProductCard
             key={index}
             id={product.id}
-            id={product.id}
             title={product.title}
             description={product.description}
             logoImage={product.logoImage}
@@ -87,7 +85,6 @@ const Home: React.FC = () => {
         {courses.slice(12, 16).map((product, index: number) => (
           <ProductCard
             key={index}
-            id={product.id}
             id={product.id}
             title={product.title}
             description={product.description}

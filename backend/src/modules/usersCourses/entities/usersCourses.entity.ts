@@ -12,7 +12,7 @@ import {
 import { Course } from '@modules/courses/entities/course.entity';
 import { User } from '@modules/users/entity/users.entity';
 
-@Entity({ name: 'usersCourses' })
+@Entity({ name: 'userscourses' })
 export class UserCourse {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
@@ -48,11 +48,17 @@ export class UserCourse {
   })
   deletedAt: Date | null;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.userCourses)
   @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @Column({ name: 'user_id' })
   userId: string;
 
-  @ManyToOne(() => Course, (course) => course.id)
+  @ManyToOne(() => Course, (course) => course.userCourses)
   @JoinColumn({ name: 'course_id' })
+  course: Course;
+
+  @Column({ name: 'course_id' })
   courseId: string;
 }

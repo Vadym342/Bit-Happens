@@ -35,7 +35,7 @@ export function Button() {
           ) : (
             <>
               <UserIcon></UserIcon>
-              <button className="login-btn" onClick={logout}>
+              <button className="logout-btn" onClick={logout}>
                 Logout
               </button>
             </>

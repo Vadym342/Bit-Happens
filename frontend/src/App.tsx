@@ -10,23 +10,22 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import store from './redux/store';
 import Footer from './components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-    <Router>
-      <div className="layout">
-        <Navbar />
-        <Provider store={store}>
+    <Provider store={store}>
+      <Router>
+        <div className="layout">
+          <Navbar />
           <main className="main-content">
             <AppRoutes />
           </main>
-        </Provider>
-        <Footer />
-      </div>
-      <Navbar />
-      <AppRoutes />
-      <ToastContainer />
-    </Router>
+          <Footer />
+        </div>
+        <ToastContainer />
+      </Router>
+    </Provider>
   );
 }
 

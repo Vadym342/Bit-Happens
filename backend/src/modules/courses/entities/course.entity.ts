@@ -5,7 +5,7 @@ import { LearningHistoriesCourses } from '@modules/learningHistoriesCourses/lear
 import { Lesson } from '@modules/lessons/entities/lessons.entity';
 import { SoftwareCourse } from '@modules/softwaresCourses/softwaresCourses.entity';
 import { User } from '@modules/users/entity/users.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { UserCourse } from '@modules/usersCourses/entities/usersCourses.entity';
 import { WishlistCourse } from '@modules/wishlistsCourses/wishlistsCourses.entity';
 import {
   Column,
@@ -124,6 +124,6 @@ export class Course {
   @OneToMany(() => FavoritesCourses, (favoritesCourses) => favoritesCourses.id)
   favoritesCourses: FavoritesCourses[];
 
-  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.course)
   userCourses: UserCourse[];
 }
