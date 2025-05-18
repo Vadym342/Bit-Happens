@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 import defaultAvatar from '../../assets/profile_default_photo.png';
 import './Profile.css';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="profile">
@@ -47,10 +51,8 @@ const Profile = () => {
             <label>Full name</label>
             <input type="text" placeholder={`${user?.firstName} ${user?.lastName}`} />
 
-            <label>Country/Region</label>
-            <select>
-              <option>Select Country</option>
-            </select>
+            <label>Email</label>
+            <input type="text" placeholder={`${user?.email}`} />
 
             <label>Choose your interest</label>
             <div className="interest-grid">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import { Link } from 'react-router-dom';
 import './card.css';
@@ -6,11 +6,13 @@ import './card.css';
 import { useDispatch } from 'react-redux';
 
 import { addToCart } from '../../../redux/slices/cartSlice';
+import { fetchTeacherName } from '../../../services/service';
 
 interface ProductCardProps {
   id: string;
   title: string;
   description: string;
+  content: string;
   price: number;
   logoImage?: string;
   isLoading?: boolean;
@@ -22,6 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   id,
   title,
   description,
+  content,
   price,
   logoImage,
   isLoading = false,
@@ -40,14 +43,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
         price: Number(price),
         logoImage,
         description,
+        content,
         categoryId,
         teacherId,
       }),
     );
   };
+
+  const [teacherName, setTeacherName] = useState('');
+
+  useEffect(() => {
+    if (teacherId) {
+      fetchTeacherName(teacherId).then((name) => {
+        if (name) setTeacherName(name);
+      });
+    }
+  }, [teacherId]);
+
   return (
     <div className="card">
-      <Link to={`/course-info/${id}`} state={{ id, title, description, price, logoImage, categoryId, teacherId }}>
+      <Link to={`/course-info/${id}`} state={{ id, title, description, content, price, logoImage, categoryId, teacherId }}>
         <div className="card-img">
           {isLoading ? (
             <ContentLoader
@@ -67,7 +82,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         <div className="card-info">
           <p className="text-title">{title}</p>
-          <p className="text-body">{description}</p>
+          <p className="text-body">{teacherName}</p>
         </div>
       </Link>
 

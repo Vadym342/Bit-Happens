@@ -114,7 +114,6 @@ const Courses: React.FC = () => {
               </div>
             </div>
           )}
-
           <div className="search-bar">
             <input
               type="text"
@@ -132,7 +131,6 @@ const Courses: React.FC = () => {
               }}
             />
           </div>
-
           <div className="filter-sidebar">
             <h3>Subjects</h3>
             {categories.map((category) => (
@@ -190,6 +188,7 @@ const Courses: React.FC = () => {
                   id={product.id}
                   title={product.title}
                   description={product.description}
+                  content={product.content}
                   logoImage={product.logoImage}
                   price={product.price}
                   categoryId={product.categoryId}
