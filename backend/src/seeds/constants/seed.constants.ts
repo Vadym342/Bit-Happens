@@ -1,5 +1,6 @@
 import { Category } from '@modules/categories/entities/category.entity';
 import { Course } from '@modules/courses/entities/course.entity';
+import { Lesson } from '@modules/lessons/entities/lessons.entity';
 import { Role } from '@modules/roles/roles.entity';
 import { User } from '@modules/users/entity/users.entity';
 
@@ -50,6 +51,22 @@ export const seedUser: Partial<User>[] = [
     updatedAt: null,
     deletedAt: null,
   },
+  {
+    id: '3df64a8a-dd47-4d3d-a021-38e536284f81',
+    firstName: 'Victory3D',
+    lastName: 'LLC',
+    email: 'victory@gmail.com',
+    age: 25,
+    password: '$argon2id$v=19$m=65536,t=3,p=4$zjYa4x4BV6rZg1JSWiuujg$vJa/uupjzGZBuBGnxJ3DeusbImJSuoaDOMNgI9MiMwo',
+    balance: 0,
+    roleId: '4a67bc7b-8605-47e3-94f4-9229af841fe4',
+    favoritesId: null,
+    learningHistoryId: null,
+    wishlistId: null,
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+  },
 ];
 
 export const seedCategory: Partial<Category>[] = [
@@ -86,15 +103,70 @@ export const seedCategory: Partial<Category>[] = [
     deletedAt: null,
   },
 ];
+
+export const seedLessons: Partial<Lesson>[] = [
+  {
+    id: '919c79d4-3559-46dd-ae51-b44480ef0191',
+    title: '00-Intro',
+    content: 'https://youtu.be/-_WLggsQ6lw',
+    description: 'description',
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+    courseId: 'c117ca80-3e66-4590-9539-758ae5d7c295',
+  },
+  {
+    id: '508807e5-5991-4922-9648-a0f19301dfee',
+    title: '01 Gather References',
+    content: 'https://youtu.be/rSDLcF7DXvM',
+    description: 'description',
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+    courseId: 'c117ca80-3e66-4590-9539-758ae5d7c295',
+  },
+  {
+    id: 'a6363a24-6ada-401a-975f-9d06222ae777',
+    title: '02 Sculpting Tools Overview',
+    content: 'https://youtu.be/OLYjizNrjk8',
+    description: 'description',
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+    courseId: 'c117ca80-3e66-4590-9539-758ae5d7c295',
+  },
+  {
+    id: '8ee986be-18df-4e07-87e2-2e7a30e4e07e',
+    title: '03 Head Basic Forms',
+    content: 'https://youtu.be/9_c_-7CNLVQ',
+    description: 'description',
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+    courseId: 'c117ca80-3e66-4590-9539-758ae5d7c295',
+  },
+  {
+    id: 'acb6bf14-1fb0-4f90-8130-0844c00a7b42',
+    title: '04 Teeth Basic Forms',
+    content: 'https://youtu.be/3D92U79GmCk',
+    description: 'description',
+    createdAt: new Date('2025-03-17T15:41:48.023Z'),
+    updatedAt: null,
+    deletedAt: null,
+    courseId: 'c117ca80-3e66-4590-9539-758ae5d7c295',
+  },
+];
+
 export const seedCourse: Partial<Course>[] = [
   {
     id: 'c117ca80-3e66-4590-9539-758ae5d7c295',
-    teacherId: 'c05dc95c-ea95-4059-b33c-e5ad1e2839ad',
-    title: 'Wingfox, Virendra Kumar | Blender Anime - NPR Environment Course',
-    description: 'Anime room',
-    content: 'files',
+    teacherId: '3df64a8a-dd47-4d3d-a021-38e536284f81',
+    title: 'Blender Character Creation Masterclass - Orc Warrior',
+    description: 'https://shorturl.at/xmm9o',
+    content:
+      'Corazon Bryant is a professional 3d artist currently working for the government creating real-time 3d models for military training. She has over 25 years of experience with art in the realm of both traditional and digital. What ignites her to wake up every morning is knowing that she will be able to use her artistic talent to help with protecting our country’s national security and she also finds fulfillment in teaching and inspiring students to surpass their own wildest expectations. Are you ready to unleash your artistic potential and step into the world of game character design?  Do you want to be prepared with the skills and techniques needed to bring your character to life? Then join me, Corazon Bryant, a professional 3d artist and educator. On this journey, you will learn how to create a breathtaking female assassin from scratch! In this immersive course, I will guide you through every step of the character creation pipeline. Beginning with an introduction to Blenders essential sculpting tools. We will create a base mesh that serves as the foundation for our character. We will dive into dynamic sculpting to add intricate details, refine anatomy, and capture the essence of our female assassin. We will explore the brushes, modifiers, and techniques that will elevate your sculpting skills to a professional level. Then we move on to retopologizing. I will show you the step by step techniques on how to create clean, animation ready topology and strategies to maintain detail while reducing poly count. We will then learn the principles of texture mapping and how to efficiently unwrap our model. We will learn how to use Substance Painter to create realistic skin, clothing, and weapon textures. We will discover how to layer materials, apply decals, and utilize smart materials to enhance the visual fidelity of our character. We will get familiar with the powerful features of Unreal Engine and how to import our  character seamlessly. We will learn how to create materials that reflect our character’s unique style and how to set up dynamic lighting that showcases our work in the best light. You will create a visually striking scene to render your character while learning tips on camera angles and composition to make your assassin truly stand out. Whether you’re a beginner eager to explore 3D art or an experienced artist looking to refine your skills, this course is designed for you. By the end of our journey, you’ll have not only created a stunning female assassin character but also gained invaluable knowledge and skills that will empower your future projects in game design. Enroll now and take the first step toward becoming a master character artist!',
     rating: null,
-    logoImage: 'https://shorturl.at/3HatU',
+    logoImage: 'https://shorturl.at/rtR83',
     price: 20,
     categoryId: 'd35f3106-805c-48e8-b8fd-ad65de2ca1f5',
     createdAt: new Date('2025-03-17 16:47:48.503 +0300'),

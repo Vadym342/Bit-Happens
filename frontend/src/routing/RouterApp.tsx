@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 
 import Courses from '../pages/Courses/components/Courses';
 import ContactUs from '../pages/ContactUs/ContactUs';
-import SignUp from '../pages/SignUp/SignUp';
 import Home from '../pages/Home/components/Home';
 import GameArt from '../pages/GameArt/GameArt';
 import CgVfx from '../pages/CgVfx/CgVfx';
@@ -13,8 +12,11 @@ import CartPage from '../pages/Cart/Cart';
 import store from '../redux/store';
 import BeATeacher from '../pages/BeLecturer/components/BeLecturer';
 import TermsOfUse from '../pages/TermsOfUse/TermsOfUse';
+import CourseInfo from '../pages/CourseInfo/components/CourseInfo';
 
 import ProtectedRoutes from './ProtectedRoutes';
+import Profile from '../pages/Profile/Profile';
+import Cart from '../pages/Cart/Cart';
 
 const AppRoutes = () => {
   return (
@@ -25,7 +27,9 @@ const AppRoutes = () => {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/be-lecturer" element={<BeATeacher />} />
       <Route path="/agree" element={<TermsOfUse />} />
-
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/course-info/:id" element={<CourseInfo />} />
+      <Route path="/profile" element={<Profile />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/game-art" element={<GameArt />} />
         <Route path="/cg-vfx" element={<CgVfx />} />

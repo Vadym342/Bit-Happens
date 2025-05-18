@@ -36,6 +36,10 @@ export class LessonsService {
     return this.lessonRepository.findAll();
   }
 
+  async findLessonsByCourseId(courseId: string): Promise<Lesson[]> {
+    return this.lessonRepository.findAllByCourseId(courseId);
+  }
+
   async deleteLesson(id: string): Promise<void> {
     const doesLessonExist = await this.lessonRepository.isExists(id);
 

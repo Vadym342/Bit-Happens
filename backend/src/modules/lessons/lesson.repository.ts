@@ -46,6 +46,14 @@ export class LessonRepository extends Repository<Lesson> {
     }
   }
 
+  async findAllByCourseId(courseId: string): Promise<Lesson[]> {
+    try {
+      return await this.lessonRepository.find({ where: { courseId } });
+    } catch (error) {
+      throw new BadRequestException(`Error fetching lessons by courseId: ${error.message}`);
+    }
+  }
+
   async softDeleteLesson(id: string): Promise<void> {
     try {
       await this.lessonRepository.softDelete(id);

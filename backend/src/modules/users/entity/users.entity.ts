@@ -15,7 +15,7 @@ import { Course } from '@modules/courses/entities/course.entity';
 import { Favorites } from '@modules/favorites/favorites.entity';
 import { LearningHistory } from '@modules/learningHistories/learningHistories.entity';
 import { Role } from '@modules/roles/roles.entity';
-import { UserCourse } from '@modules/usersCourses/usersCourses.entity';
+import { UserCourse } from '@modules/usersCourses/entities/usersCourses.entity';
 import { Wishlist } from '@modules/wishlists/wishlists.entity';
 
 @Entity({ name: 'users' })
@@ -116,6 +116,6 @@ export class User {
   @OneToMany(() => Course, (course) => course)
   courses: Course[];
 
-  @OneToMany(() => UserCourse, (userCourse) => userCourse.id)
+  @OneToMany(() => UserCourse, (userCourse) => userCourse.user)
   userCourses: UserCourse[];
 }

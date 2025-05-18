@@ -28,7 +28,6 @@ export class UsersController {
   }
 
   @Get(':id')
-  @Permissions(PERMISSIONS.VIEW_ONE_USER)
   async getUserById(@Param() { id }: UserIdParamDto): Promise<User> {
     return this.usersService.findUserById(id);
   }

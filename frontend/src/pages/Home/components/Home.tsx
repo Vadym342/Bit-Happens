@@ -46,7 +46,7 @@ const Home: React.FC = () => {
       <div className="cards-container">
         {status === 'loading'
           ? [...Array(4)].map((_, index) => (
-              <ProductCard key={index} isLoading={true} id="" title="" description="" price="" categoryId="" teacherId="" />
+              <ProductCard key={index} id="" isLoading={true} title="" description="" price="" categoryId="" teacherId="" />
             ))
           : courses
               .slice(0, 4)

@@ -33,6 +33,11 @@ export class LessonsController {
     return this.lessonsService.findLessonById(id);
   }
 
+  @Get('/course/:courseId')
+  async getLessonsByCourseId(@Param('courseId') courseId: string): Promise<Lesson[]> {
+    return this.lessonsService.findLessonsByCourseId(courseId);
+  }
+
   @Delete(':id')
   @Permissions(PERMISSIONS.DELETE_LESSON)
   @HttpCode(HttpStatus.NO_CONTENT)

@@ -1,7 +1,5 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { RootState } from '../../redux/store';
 import { removeFromCart, clearCart } from '../../redux/slices/cartSlice';
 
@@ -9,20 +7,46 @@ import './cart.css';
 import { Link } from 'react-router-dom';
 
 import FakeCheckoutModal from '../Checkout/Components/CheckoutForm';
+import { fetchTeacherName } from '../../services/service';
+
+type CartItem = {
+  id: string;
+  title: string;
+  price: number;
+  logoImage: string;
+  teacherId: string;
+};
 
 const CartPage: React.FC = () => {
-  const items = useSelector((state: RootState) => state.cart.items);
+  const items = useSelector((state: RootState) => state.cart.items) as CartItem[];
   const dispatch = useDispatch();
-
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [teacherNames, setTeacherNames] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const uniqueTeacherIds = Array.from(new Set(items.map((item) => item.teacherId)));
+
+    uniqueTeacherIds.forEach(async (id) => {
+      if (!teacherNames[id]) {
+        const name = await fetchTeacherName(id);
+        if (name) {
+          setTeacherNames((prev) => ({ ...prev, [id]: name }));
+        }
+      }
+    });
+  }, [items]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="cart-page">
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* КУРСЫ */}
+          {/* Cart Items */}
           <div className="cart-items-container">
             <div className="cart-header">
               <h2>Your Cart ({items.length})</h2>
@@ -36,7 +60,7 @@ const CartPage: React.FC = () => {
                 <img src={item.logoImage} alt={item.title} className="item-image" />
                 <div className="item-info">
                   <h3>{item.title}</h3>
-                  <p>Lecture: {item.teacherId || ''}</p>
+                  <p>Lecture: {teacherNames[item.teacherId] || 'Loading...'}</p>
                   <button onClick={() => dispatch(removeFromCart(item.id))} className="remove-btn">
                     Remove
                   </button>
@@ -46,7 +70,7 @@ const CartPage: React.FC = () => {
             ))}
           </div>
 
-          {/* ЧЕК */}
+          {/* Summary Section */}
           <div className="summary-card">
             <h3 className="summary-title">SUMMARY</h3>
 

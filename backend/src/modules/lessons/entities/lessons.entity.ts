@@ -67,7 +67,10 @@ export class Lesson {
   @OneToMany(() => Comment, (comment) => comment.id)
   commentId: Comment[];
 
-  @ManyToOne(() => Course, (course) => course.id)
+  @ManyToOne(() => Course, (course) => course.lessons)
   @JoinColumn({ name: 'course_id' })
+  course: Course;
+
+  @Column({ name: 'course_id' })
   courseId: string;
 }

@@ -12,6 +12,7 @@ import { UsersModule } from '@modules/users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { getDataSourceConfig } from './database/ormconfig';
+import { UsersCoursesModule } from '@modules/usersCourses/usersCourses.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { getDataSourceConfig } from './database/ormconfig';
     AuthModule,
     SoftwaresModule,
     LessonsModule,
+    UsersCoursesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
