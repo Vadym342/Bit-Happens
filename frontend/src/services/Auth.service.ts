@@ -1,4 +1,5 @@
 import { NavigateFunction } from 'react-router-dom';
+
 import { toastError, toastSuccess } from './toast.constants';
 
 export const signupUser = async (data: any, setIsSignUp: (isSignUp: boolean) => void) => {
@@ -43,8 +44,10 @@ export const loginUser = async (
     body: JSON.stringify({ email, password }),
   });
 
-  if (!res.ok) throw new Error('Login failed');
-
+  if (!res.ok) {
+    toastError('Login failed! This email or password is incorrect.');
+    throw new Error('Login failed!');
+  }
   const data = await res.json();
   const { token } = data;
   if (!token) throw new Error('No token in response');
