@@ -1,7 +1,23 @@
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from './AuthContext';
+
 import defaultAvatar from '../../assets/profile_default_photo.png';
+
+import { AuthContext } from './AuthContext';
 import './Profile.css';
+
+const interestsList = [
+  'Film Production',
+  'Industry Design',
+  'Graphic Design',
+  'Animation',
+  'Photography',
+  'IT&Software',
+  'Game Art',
+  'CG | VFX',
+  'Environment Design',
+  'Concept Design',
+  'C4D',
+];
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -47,30 +63,20 @@ const Profile = () => {
               </button>
             </div>
           </div>
-          <form>
+
+          <form className="profile-settings">
             <label>Full name</label>
             <input type="text" placeholder={`${user?.firstName} ${user?.lastName}`} />
 
             <label>Email</label>
-            <input type="text" placeholder={`${user?.email}`} />
+            <input type="text" placeholder={user?.email} />
 
             <label>Choose your interest</label>
             <div className="interest-grid">
-              {[
-                'Film Production',
-                'Industry Design',
-                'Graphic Design',
-                'Animation',
-                'Photography',
-                'IT&Software',
-                'Game Art',
-                'CG | VFX',
-                'Environment Design',
-                'Concept Design',
-                'C4D',
-              ].map((interest) => (
-                <label key={interest} className="interest-item">
+              {interestsList.map((interest) => (
+                <label key={interest} className="interest-item custom-checkbox">
                   <input type="checkbox" />
+                  <span className="checkmark" />
                   <span>{interest}</span>
                 </label>
               ))}

@@ -123,15 +123,14 @@
   font-weight: 500;
 }
 
-form label {
+.profile-settings label {
   display: block;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
-form input[type='text'],
-form select {
+.profile-settings input[type='text'] {
   width: 100%;
   padding: 0.6rem;
   border-radius: 6px;
@@ -146,16 +145,10 @@ form select {
   margin-top: 0.5rem;
 }
 
-.interest-item {
-  display: flex;
-  align-items: center;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  margin-top: 0;
+.interest-item input[type='checkbox'] {
+  width: auto;
+  height: auto;
+  margin-right: 0.5rem;
 }
 
 .interest-item:hover {
@@ -164,4 +157,56 @@ form select {
 
 .interest-item input {
   margin-right: 0.5rem;
+}
+
+.custom-checkbox {
+  position: relative;
+  padding-left: 28px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 18px;
+  background-color: #f9f9f9;
+  border: 2px solid #c2c2c2;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #ffa633;
+}
+
+.custom-checkbox .checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+  display: block;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

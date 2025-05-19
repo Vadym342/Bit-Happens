@@ -13,10 +13,10 @@ import store from '../redux/store';
 import BeATeacher from '../pages/BeLecturer/components/BeLecturer';
 import TermsOfUse from '../pages/TermsOfUse/TermsOfUse';
 import CourseInfo from '../pages/CourseInfo/components/CourseInfo';
-
-import ProtectedRoutes from './ProtectedRoutes';
 import Profile from '../pages/Profile/Profile';
 import Cart from '../pages/Cart/Cart';
+
+import ProtectedRoutes from './ProtectedRoutes';
 
 const AppRoutes = () => {
   return (
@@ -30,12 +30,7 @@ const AppRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/course-info/:id" element={<CourseInfo />} />
       <Route path="/profile" element={<Profile />} />
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/game-art" element={<GameArt />} />
-        <Route path="/cg-vfx" element={<CgVfx />} />
-        <Route path="/it-software" element={<ItSoftware />} />
-        <Route path="/graphic-design" element={<GraphicDesign />} />
-      </Route>
+      <Route element={<ProtectedRoutes />}></Route>
     </Routes>
   );
 };
