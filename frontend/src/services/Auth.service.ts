@@ -1,23 +1,33 @@
-import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
+import { toastError, toastSuccess } from './toast.constants';
 
-interface SignUpData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  age: number;
-  password: string;
-  roleId: string;
-}
+export const signupUser = async (data: any, setIsSignUp: (isSignUp: boolean) => void) => {
+  const formattedData = {
+    ...data,
+    age: Number(data.age),
+    roleId: data.roleId == '1' ? 'student' : 'teacher',
+  };
 
-export const signupUser = async (data: SignUpData, setIsSignUp: Dispatch<SetStateAction<boolean>>): Promise<void> => {
-  const res = await fetch(`${process.env.APP_URL}/auth/signup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error('Sign up failed');
-  setIsSignUp(false);
+  try {
+    const response = await fetch(`${process.env.APP_URL}/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formattedData),
+    });
+
+    if (!response.ok) {
+      toastError('Sign up failed! This email is already in use.');
+      throw new Error('Signup failed!');
+    }
+
+    if (response.ok) {
+      toastSuccess('Signup successfully!');
+    }
+
+    setIsSignUp(false);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const loginUser = async (
@@ -42,6 +52,7 @@ export const loginUser = async (
   localStorage.setItem('token', token);
   onLogin(token);
 
+  toastSuccess('Login successful');
   setIsModalOpen(false);
   navigate('/profile');
 };
