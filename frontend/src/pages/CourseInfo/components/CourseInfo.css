@@ -113,11 +113,6 @@
   padding: 1rem;
 }
 
-.main-content {
-  margin-top: 1.5rem;
-  display: grid;
-}
-
 .overview-section h1 {
   margin-bottom: 20px;
   font-size: 1.5rem;

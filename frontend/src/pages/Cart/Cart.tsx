@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
+
 import { RootState } from '../../redux/store';
 import { removeFromCart, clearCart } from '../../redux/slices/cartSlice';
 
@@ -9,13 +11,13 @@ import { Link } from 'react-router-dom';
 import FakeCheckoutModal from '../Checkout/Components/CheckoutForm';
 import { fetchTeacherName } from '../../services/service';
 
-type CartItem = {
+interface CartItem {
   id: string;
   title: string;
   price: number;
   logoImage: string;
   teacherId: string;
-};
+}
 
 const CartPage: React.FC = () => {
   const items = useSelector((state: RootState) => state.cart.items) as CartItem[];
@@ -55,19 +57,25 @@ const CartPage: React.FC = () => {
               </button>
             </div>
 
-            {items.map((item) => (
-              <div key={item.id} className="cart-item">
-                <img src={item.logoImage} alt={item.title} className="item-image" />
-                <div className="item-info">
-                  <h3>{item.title}</h3>
-                  <p>Lecture: {teacherNames[item.teacherId] || 'Loading...'}</p>
-                  <button onClick={() => dispatch(removeFromCart(item.id))} className="remove-btn">
-                    Remove
-                  </button>
-                </div>
-                <div className="item-price">${item.price.toFixed(2)}</div>
+            {items.length === 0 ? (
+              <div className="empty-cart">
+                <p>Your cart is empty.</p>
               </div>
-            ))}
+            ) : (
+              items.map((item) => (
+                <div key={item.id} className="cart-item">
+                  <img src={item.logoImage} alt={item.title} className="item-image" />
+                  <div className="item-info">
+                    <h3>{item.title}</h3>
+                    <p>Lecture: {teacherNames[item.teacherId] || 'Loading...'}</p>
+                    <button onClick={() => dispatch(removeFromCart(item.id))} className="remove-btn">
+                      Remove
+                    </button>
+                  </div>
+                  <div className="item-price">${item.price.toFixed(2)}</div>
+                </div>
+              ))
+            )}
           </div>
 
           {/* Summary Section */}
@@ -95,7 +103,14 @@ const CartPage: React.FC = () => {
             <button className="checkout-button" onClick={() => setShowModal(true)}>
               Checkout
             </button>
-            {showModal && <FakeCheckoutModal onClose={() => setShowModal(false)} />}
+            {showModal && (
+              <FakeCheckoutModal
+                onClose={() => setShowModal(false)}
+                onSuccess={() => {
+                  dispatch(clearCart());
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

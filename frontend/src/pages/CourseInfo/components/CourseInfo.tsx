@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+
 import './CourseInfo.css';
 import { Navigate, useLocation } from 'react-router-dom';
 import { SlActionRedo } from 'react-icons/sl';
-import { fetchCategoryName, fetchLessonsByCourseId, fetchTeacherName } from '../../../services/service';
-import { toastSuccess } from '../../../services/toast.constants';
 import { ToastContainer } from 'react-toastify';
 import { FaDownload, FaListUl, FaRegFileAlt } from 'react-icons/fa';
-import { Lesson } from '../../../shared/types/types';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
+
+import { fetchCategoryName, fetchLessonsByCourseId, fetchTeacherName } from '../../../services/service';
+import { toastSuccess } from '../../../services/toast.constants';
+import { Lesson } from '../../../shared/types/types';
+import { addToCart } from '../../../redux/slices/cartSlice';
 
 export default function CourseInfo() {
   const location = useLocation();

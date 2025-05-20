@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import './FakeCheckoutModal.css';
 
-const FakeCheckoutModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+interface FakeCheckoutModalProps {
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+const FakeCheckoutModal: React.FC<FakeCheckoutModalProps> = ({ onClose, onSuccess }) => {
   const [isPaid, setIsPaid] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [name, setName] = useState('');
@@ -11,6 +16,7 @@ const FakeCheckoutModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     e.preventDefault();
     if (cardNumber && name && cvv) {
       setIsPaid(true);
+      onSuccess();
     } else {
       alert('Please fill in all fields.');
     }
